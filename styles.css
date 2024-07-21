@@ -1,0 +1,13 @@
+body {
+    background-color: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+.top-bar {
+    background-color: #ffffff;
+    width: 100%;
+    text-align: center;
+    font-size: 50px;
+    padding: 20px 20px;
+    position: fixed;
+}
