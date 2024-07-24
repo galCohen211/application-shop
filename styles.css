@@ -1,20 +1,16 @@
 body {
     background-color: #ffffff;
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
 }
 
 .top-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #ffffff;
     width: 100%;
     padding: 1%;
     position: fixed;
     top: 0;
-    left: 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -44,4 +40,21 @@ body {
 
 .logo {
     max-width: 60%;
+    margin-top: -5%;
+    margin-bottom: -5%;
+}
+
+.product-image {
+    max-width: 30%;
+    position: absolute;
+    top: 55%;
+    transform: translateY(-50%);
+}
+
+ .men-shirt {
+    right: 25%;
+}
+
+ .women-dress {
+    left: 25%;
 }
