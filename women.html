@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Style for you</title>
     <link rel="stylesheet" href="women.css" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
   </head>
 
   <body>
@@ -13,7 +20,7 @@
         <a href="#">Info</a>
       </div>
       <div class="nav-logo">
-        <img src="images/general/official_logo.jpeg" class="logo" />
+        <img src="images/general/official_logo.jpeg" alt="Logo" class="logo" />
       </div>
     </nav>
 
@@ -22,23 +29,97 @@
       <span class="login"> Log in to your company's online store.</span>
     </div>
     <h1>Women</h1>
- 
-    <div class="filters">
-      <div class="filter-group">
-        <h2>Brand</h2>
-        <div>
-          <label><input type="checkbox" /> Tommy Hilfiger</label>
-          <label><input type="checkbox" /> Zara</label>
-          <label><input type="checkbox" /> Nike</label>
+
+    <div class="main-container">
+      <!-- Filters -->
+      <div class="filters">
+        <div class="dropdown">
+          <button class="dropdown-label">
+            Brand
+            <span class="dropdown-arrow"
+              ><i class="fas fa-chevron-down"></i
+            ></span>
+          </button>
+          <ul class="dropdown-list">
+            <li>
+              <input type="checkbox" id="brand1" value="Tommy Hilfiger" />
+              <label for="brand1">Tommy Hilfiger</label>
+            </li>
+            <li>
+              <input type="checkbox" id="brand2" value="Zara" />
+              <label for="brand2">Zara</label>
+            </li>
+            <li>
+              <input type="checkbox" id="brand3" value="Nike" />
+              <label for="brand3">Nike</label>
+            </li>
+          </ul>
+        </div>
+
+        <div class="dropdown">
+          <button class="dropdown-label">
+            Color
+            <span class="dropdown-arrow"
+              ><i class="fas fa-chevron-down"></i
+            ></span>
+          </button>
+          <ul class="dropdown-list">
+            <li>
+              <input type="checkbox" id="color1" value="White" />
+              <label for="color1">White</label>
+            </li>
+            <li>
+              <input type="checkbox" id="color2" value="Black" />
+              <label for="color2">Black</label>
+            </li>
+            <li>
+              <input type="checkbox" id="color3" value="Blue" />
+              <label for="color3">Blue</label>
+            </li>
+          </ul>
+        </div>
+
+        <div class="dropdown">
+          <button class="dropdown-label">
+            Size
+            <span class="dropdown-arrow"
+              ><i class="fas fa-chevron-down"></i
+            ></span>
+          </button>
+          <ul class="dropdown-list">
+            <li>
+              <input type="checkbox" id="size1" value="34" />
+              <label for="size1">34</label>
+            </li>
+            <li>
+              <input type="checkbox" id="size2" value="36" />
+              <label for="size2">36</label>
+            </li>
+            <li>
+              <input type="checkbox" id="size3" value="38" />
+              <label for="size3">38</label>
+            </li>
+          </ul>
         </div>
       </div>
 
-      <div class="filter-group">
-        <h2>Color</h2>
-        <div>
-          <label><input type="checkbox" /> White</label>
-          <label><input type="checkbox" /> Black</label>
-          <label><input type="checkbox" /> Blue</label>
+      <!-- Products -->
+      <div class="products">
+        <div class="product">
+          <div class="img-container">
+            <img src="images/women/Zara-jacket.png" alt="LADIES' JACKET - BLACK" />
+          </div>
+          <h2>LADIES' JACKET - BLACK</h2>
+          <p>Size: 34,36,38</p>
+          <p>$133.00 USD</p>
+        </div>
+        <div class="product">
+          <div class="img-container">
+            <img src="images/women/Nike-shirt.png" alt="LADIES' SHELL BLOUSE - WHITE" />
+          </div>
+          <h2>LADIES' SHELL BLOUSE - WHITE</h2>
+          <p>Size: 34,36</p>
+          <p>$58.00 USD</p>
         </div>
       </div>
     </div>
