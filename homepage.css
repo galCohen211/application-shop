@@ -3,19 +3,7 @@ body {
     font-family: "Times New Roman", sans-serif;
 }
 
-.background-image {
-    background-image: url('images/general/homepage_background.png');
-    background-size: cover;
-    background-position: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1; /* Make sure it stays behind other content */
-}
-
-.top-bar {
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -28,23 +16,23 @@ body {
     background-color: rgba(255, 255, 255, 0.9);
 }
 
-.top-bar .menu {
-    display: flex;
-    gap: 30px;
-}
-
-.top-bar a {
+.header a {
     color: #333;
     text-decoration: none;
     font-weight: bold;
     font-size: 18px;
 }
 
-.top-bar a:hover {
+.header a:hover {
     text-decoration: underline;
 }
 
-.top-bar .login {
+.header .left-header {
+    display: flex;
+    gap: 30px;
+}
+
+.header .right-header {
     padding-right: 2%;
 }
 
@@ -52,6 +40,18 @@ body {
     max-width: 60%;
     margin-top: -5%;
     margin-bottom: -5%;
+}
+
+.background-image {
+    background-image: url('images/general/homepage_background.png');
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Make sure it stays behind other content */
 }
 
 .text-over-background {
