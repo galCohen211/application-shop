@@ -44,7 +44,7 @@ h1 {
     justify-content: space-between;
     padding: 10px 20px;
     margin-left: 10px;
-    background-color: #fff;
+    background-color: #ffffff;
     border-bottom: 1px solid #ddd;
     position: relative;
     height: 70px;
@@ -110,9 +110,8 @@ h1 {
     margin-left: 10px;
 }
 
-.dropdown-label:hover+.dropdown-list {
+.dropdown-label:focus-within+.dropdown-list {
     display: block;
-    /* show the dropdowns only when hovering over the label */
 }
 
 .dropdown-list:hover {
