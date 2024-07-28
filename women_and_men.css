@@ -112,6 +112,7 @@ h1 {
 
 .dropdown-label:hover+.dropdown-list {
     display: block;
+    /* show the dropdowns only when hovering over the label */
 }
 
 .dropdown-list:hover {
