@@ -5,7 +5,6 @@ document.querySelectorAll('.women-link').forEach(function(link) {
     });
 });
 
-// script.js
 document.querySelectorAll('.men-link').forEach(function(link) {
     link.addEventListener('click', function(event) {
         event.preventDefault();
