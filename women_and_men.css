@@ -24,6 +24,7 @@ h1 {
     align-items: center;
     justify-content: center;
     color: white;
+    z-index: 1;
 }
 
 .login {
@@ -165,4 +166,23 @@ h1 {
     column-gap: 25px;
     row-gap: 50px;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+/* media queries enable responsive design */
+@media (max-width: 768px) {
+    .nav-links {
+        font-size: 16px;
+        gap: 10px;
+    }
+
+    .logo {
+        width: 150px;
+    }
+
+    .black-bar {
+        display: flex;
+        flex-direction: column;
+        line-height: 0.9;
+        font-size: 13px;
+    }
 }
