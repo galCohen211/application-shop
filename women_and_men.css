@@ -24,6 +24,17 @@ h1 {
     align-items: center;
     justify-content: center;
     color: white;
+    z-index: 1000;
+}
+
+.close-btn {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
 }
 
 .login {
