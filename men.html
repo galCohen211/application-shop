@@ -36,19 +36,39 @@
   </head>
 
   <body>
-    <nav class="nav">
-      <div class="nav-links">
-        <a href="women.html">Women</a>
-        <a href="men.html">Men</a>
-        <a href="#">Info</a>
-      </div>
-      <div class="nav-logo">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand nav-logo" href="#">
         <img src="images/general/official_logo.jpeg" alt="Logo" class="logo" />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto nav-links">
+          <li class="nav-item">
+            <a class="nav-link" href="women.html">Women</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="men.html">Men</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Info</a>
+          </li>
+        </ul>
       </div>
     </nav>
 
     <div class="black-bar">
-      STYLE FOR YOU
+      <span>STYLE FOR YOU</span>
       <span class="login"> Log in to your company's online store.</span>
       <button class="close-btn" onclick="closeFooter()">
         <i class="fas fa-times"></i>

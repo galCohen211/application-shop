@@ -1,5 +1,5 @@
-html,body {
-    font-family: Arial, sans-serif;
+body {
+    font-family: 'Open Sans', Arial, sans-serif;
 }
 
 h1 {
@@ -19,7 +19,7 @@ h1 {
     background-color: black;
     left: 0;
     right: 0;
-    bottom: 0px;
+    bottom: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -43,18 +43,21 @@ h1 {
     margin-left: 10px;
 }
 
+.navbar {
+    border-bottom: 1px solid #ddd;
+}
+
 .nav {
     align-items: center;
     margin-left: 10px;
     background-color: #fff;
-    border-bottom: 1px solid #ddd;
     position: relative;
     height: 70px;
 }
 
 .nav-links {
     display: flex;
-    gap: 30px;
+    column-gap: 30px;
     font-size: 20px;
 }
 
@@ -68,7 +71,7 @@ h1 {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    top: 50%;
+    top: 28%;
 }
 
 .nav-links a:hover {
@@ -154,6 +157,13 @@ h1 {
 .product img {
     width: auto;
     width: 100%;
+    transition: transform .2s ease-in-out;
+}
+
+.product img:hover {
+    opacity: .5;
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
 }
 
 .product h2 {
@@ -176,4 +186,23 @@ h1 {
     column-gap: 25px;
     row-gap: 50px;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+/* media queries enable responsive design */
+@media (max-width: 768px) {
+    .nav-links {
+        font-size: 16px;
+        gap: 10px;
+    }
+
+    .logo {
+        width: 150px;
+    }
+
+    .black-bar {
+        display: flex;
+        flex-direction: column;
+        line-height: 0.9;
+        font-size: 13px;
+    }
 }
