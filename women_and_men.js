@@ -3,7 +3,7 @@ function closeFooter() {
   footer.style.display = 'none';
 }
 
-setTimeout(() =>{
+setTimeout(() => {
   const closeBtn = document.querySelector('.close-btn');
   closeBtn.style.display = 'block';
-}, 3000);
+  }, 3000);
