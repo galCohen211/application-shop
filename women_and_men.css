@@ -101,9 +101,9 @@ h1 {
     margin-left: 10px;
 }
 
-.dropdown-label:hover+.dropdown-list {
-    display: block;
-}
+/*.dropdown-label:hover+.dropdown-list {*/
+/*    display: block;*/
+/*}*/
 
 .dropdown-list:hover {
     display: block;
