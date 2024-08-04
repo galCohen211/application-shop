@@ -43,7 +43,6 @@ body {
 }
 
 .background-image {
-    background-image: url('images/general/homepage_background.png');
     background-size: cover;
     background-position: center;
     position: fixed;

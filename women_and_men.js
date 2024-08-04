@@ -9,3 +9,13 @@ crossorigin="anonymous"
 src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 crossorigin="anonymous"
+
+function closeFooter() {
+  const footer = document.querySelector('.black-bar');
+  footer.style.display = 'none';
+}
+
+setTimeout(() => {
+  const closeBtn = document.querySelector('.close-btn');
+  closeBtn.style.display = 'block';
+  }, 3000);
