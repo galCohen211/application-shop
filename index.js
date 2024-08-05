@@ -12,7 +12,7 @@ document.querySelectorAll('.men-link').forEach(function(link) {
     });
 });
 
-//Changing images every 3 seconds
+//Changing images every 5 seconds
 document.addEventListener("DOMContentLoaded", function(){
     const image = document.getElementById("background-image");
     const images = [
