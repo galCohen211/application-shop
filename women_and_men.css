@@ -3,16 +3,46 @@ body {
     width: 100%;
 }
 
-h1 {
-    text-align: center;
-    padding-top: 50px;
-}
-
 .logo {
     width: 200px;
     display: block;
 }
 
+.navbar {
+    border-bottom: 1px solid #ddd;
+}
+
+.nav {
+    align-items: center;
+    margin-left: 10px;
+    background-color: #fff;
+    position: relative;
+    height: 70px;
+}
+
+.nav-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 28%;
+}
+
+.nav-links {
+    display: flex;
+    column-gap: 30px;
+    font-size: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+}
+
+.nav-links a:hover {
+    color: gray;
+    text-decoration: none;
+}
 
 .black-bar {
     position: fixed;
@@ -28,6 +58,12 @@ h1 {
     z-index: 1000;
 }
 
+.login {
+    cursor: pointer;
+    text-decoration: underline;
+    margin-left: 10px;
+}
+
 .close-btn {
     position: absolute;
     right: 10px;
@@ -39,46 +75,20 @@ h1 {
     display: none;
 }
 
-.login {
-    cursor: pointer;
-    text-decoration: underline;
-    margin-left: 10px;
+h1 {
+    text-align: center;
+    padding-top: 50px;
 }
 
-.navbar {
-    border-bottom: 1px solid #ddd;
-}
-
-.nav {
-    align-items: center;
-    margin-left: 10px;
-    background-color: #fff;
-    position: relative;
-    height: 70px;
-}
-
-.nav-links {
+.main-container {
     display: flex;
-    column-gap: 30px;
-    font-size: 20px;
+    padding: 50px;
+    align-items: flex-start;
 }
 
-.nav-links a {
-    text-decoration: none;
-    color: #000;
-    font-weight: bold;
-}
-
-.nav-logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 28%;
-}
-
-.nav-links a:hover {
-    color: gray;
-    text-decoration: none;
+.filters {
+    flex: 1 1 200px;
+    margin-right: 20px;
 }
 
 .dropdown {
@@ -126,15 +136,11 @@ h1 {
     cursor: pointer;
 }
 
-.main-container {
-    display: flex;
-    padding: 50px;
-    align-items: flex-start;
-}
-
-.filters {
-    flex: 1 1 200px;
-    margin-right: 20px;
+.grid-columns {
+    display: grid;
+    column-gap: 25px;
+    row-gap: 50px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 
 .product {
@@ -175,13 +181,6 @@ h1 {
     font-size: 16px;
     color: #666;
     margin: 5px 0;
-}
-
-.grid-columns {
-    display: grid;
-    column-gap: 25px;
-    row-gap: 50px;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 
 /* media queries enable responsive design */
