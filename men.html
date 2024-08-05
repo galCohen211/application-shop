@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Style for you</title>
+    <title>Style For You - MEN</title>
     <link rel="stylesheet" href="women_and_men.css" />
     <!-- Bootstrap -->
     <link
@@ -18,8 +18,8 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
   </head>
-
   <body>
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light">
       <a class="navbar-brand nav-logo" href="#">
         <img src="images/general/official_logo.jpeg" alt="Logo" class="logo" />
@@ -31,8 +31,7 @@
         data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent"
         aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+        aria-label="Toggle navigation" >
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -61,12 +60,11 @@
     <h1>Men</h1>
 
     <div class="main-container">
-      <div class="row">
         <div class="col-sm-12 col-md-2">
           <!-- Filters -->
           <div class="filters">
             <div class="dropdown">
-              <button id="button12" onclick="openDropDown()" class="dropdown-label">
+              <button class="dropdown-label" onclick="openMenu(event)">
                 Brand
                 <span class="dropdown-arrow">
                   <i class="fas fa-chevron-down"></i>
@@ -89,7 +87,7 @@
             </div>
 
             <div class="dropdown">
-              <button class="dropdown-label">
+              <button class="dropdown-label" onclick="openMenu(event)">
                 Color
                 <span class="dropdown-arrow"
                   ><i class="fas fa-chevron-down"></i
@@ -112,7 +110,7 @@
             </div>
 
             <div class="dropdown">
-              <button class="dropdown-label">
+              <button class="dropdown-label" onclick="openMenu(event)">
                 Size
                 <span class="dropdown-arrow"
                   ><i class="fas fa-chevron-down"></i
@@ -173,7 +171,6 @@
             </div>
           </div>
         </div>
-      </div>
     </div>
     <script src="women_and_men.js"></script>
   </body>
