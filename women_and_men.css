@@ -102,14 +102,6 @@ h1 {
     margin-left: 10px;
 }
 
-/*.dropdown-label:hover+.dropdown-list {*/
-/*    display: block;*/
-/*}*/
-
-/*.dropdown-list:hover {*/
-/*    display: block;*/
-/*}*/
-
 .dropdown-list {
     display: none;
     position: absolute;
@@ -184,10 +176,6 @@ h1 {
     color: #666;
     margin: 5px 0;
 }
-
-/*.row {*/
-/*    width: 100%;*/
-/*}*/
 
 .grid-columns {
     display: grid;

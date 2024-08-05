@@ -20,11 +20,6 @@ setTimeout(() => {
   closeBtn.style.display = 'block';
   }, 3000);
 
-// function openMenu() {
-//   const dropdownList = document.querySelector('.dropdown-list');
-//   dropdownList.classList.toggle('show');
-// }
-
 function openMenu(event) {
   event.stopPropagation(); // Prevent the click event from bubbling up to the document
   const dropdowns = document.querySelectorAll('.dropdown-list');
@@ -44,7 +39,7 @@ function openMenu(event) {
 document.addEventListener('click', function(event) {
   const dropdownLists = document.querySelectorAll('.dropdown-list');
 
-  // Close all dropdowns if the click is outside of any dropdown
+  // Close all dropdowns if the click is outside any dropdown
   dropdownLists.forEach(function(list) {
     if (!list.parentElement.contains(event.target)) {
       list.classList.remove('show');
