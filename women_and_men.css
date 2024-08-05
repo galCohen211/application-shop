@@ -16,8 +16,9 @@ body {
     align-items: center;
     margin-left: 10px;
     background-color: #fff;
-    position: relative;
+    position: fixed;
     height: 70px;
+
 }
 
 .nav-logo {
@@ -201,3 +202,14 @@ h1 {
         font-size: 13px;
     }
 }
+
+/*css of info*/
+.aboutUs{
+    margin:10px ;
+}
+
+.bodyAboutUs{
+    line-height: 24px, 1.5em;
+}
+
+
