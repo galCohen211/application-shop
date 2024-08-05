@@ -25,5 +25,5 @@ document.addEventListener("DOMContentLoaded", function(){
     setInterval(()=>{
         currentImage = (currentImage +1) % images.length;
         image.src = images[currentImage];
-    }, 3000);
+    }, 5000);
 })
