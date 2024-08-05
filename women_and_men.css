@@ -10,13 +10,14 @@ body {
 
 .navbar {
     border-bottom: 1px solid #ddd;
+    position: fixed !important;
+    width: 100%;
 }
 
 .nav {
     align-items: center;
     margin-left: 10px;
     background-color: #fff;
-    position: fixed;
     height: 70px;
 
 }
