@@ -19,3 +19,30 @@ setTimeout(() => {
   const closeBtn = document.querySelector('.close-btn');
   closeBtn.style.display = 'block';
   }, 3000);
+
+function openMenu(event) {
+  event.stopPropagation(); // Prevent the click event from bubbling up to the document
+  const dropdowns = document.querySelectorAll('.dropdown-list');
+
+  // Close all other dropdowns
+  dropdowns.forEach(function(dropdown) {
+    if (dropdown !== event.currentTarget.nextElementSibling) {
+      dropdown.classList.remove('show');
+    }
+  });
+
+  // Toggle the current dropdown
+  const dropdown = event.currentTarget.nextElementSibling;
+  dropdown.classList.toggle('show');
+}
+
+document.addEventListener('click', function(event) {
+  const dropdownLists = document.querySelectorAll('.dropdown-list');
+
+  // Close all dropdowns if the click is outside any dropdown
+  dropdownLists.forEach(function(list) {
+    if (!list.parentElement.contains(event.target)) {
+      list.classList.remove('show');
+    }
+  });
+});
