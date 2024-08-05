@@ -1,5 +1,6 @@
 body {
     font-family: 'Open Sans', Arial, sans-serif;
+    width: 100%;
 }
 
 h1 {
@@ -101,14 +102,6 @@ h1 {
     margin-left: 10px;
 }
 
-.dropdown-label:hover+.dropdown-list {
-    display: block;
-}
-
-.dropdown-list:hover {
-    display: block;
-}
-
 .dropdown-list {
     display: none;
     position: absolute;
@@ -119,11 +112,17 @@ h1 {
     border: 1px solid #ccc;
     border-top: none;
     width: 100%;
+    top: calc(100% + 5px);
     z-index: 1;
+    left: 0;
+}
+
+.dropdown-list.show {
+  display: block; /* Show the list when the 'show' class is added */
 }
 
 .dropdown-list li {
-    padding: 10px 15px;
+    padding: 5px 10px;
     cursor: pointer;
 }
 
@@ -176,10 +175,6 @@ h1 {
     font-size: 16px;
     color: #666;
     margin: 5px 0;
-}
-
-.row {
-    width: 100%;
 }
 
 .grid-columns {
