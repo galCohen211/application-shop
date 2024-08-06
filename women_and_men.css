@@ -10,16 +10,14 @@ body {
 
 .navbar {
     border-bottom: 1px solid #ddd;
-    position: fixed !important;
-    width: 100%;
 }
 
 .nav {
     align-items: center;
     margin-left: 10px;
     background-color: #fff;
+    position: relative;
     height: 70px;
-
 }
 
 .nav-logo {
@@ -205,12 +203,95 @@ h1 {
 }
 
 /*css of info*/
+
 .aboutUs{
     margin:10px ;
 }
 
 .bodyAboutUs{
     line-height: 24px, 1.5em;
+}
+
+/* from here bottom contact section*/
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    margin-left: -10px;
+    width: 100%;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footer p {
+    margin: 0.5rem 0;
+}
+
+.social-link {
+    color: #fff;
+    margin: 0 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.social-link:hover {
+    color: #007bff;
+}
+
+#instagram{
+    color: #fff;
+    margin: 0 0.5rem;
+    transition: color 0.3s ease;
+    background-color: #333;
+    border: none;
+
+}
+
+#instagram:hover{
+    color: #f009e0c0;
+}
+
+#facebook{
+    color: #fff;
+    margin: 0 0.5rem;
+    transition: color 0.3s ease;
+    background-color: #333;
+    border: none;
+
+}
+
+#facebook:hover{
+    color: #6b3cf9;
+}
+
+#twitter{
+    color: #fff;
+    margin: 0 0.5rem;
+    transition: color 0.3s ease;
+    background-color: #333;
+    border: none;
+    
+
+}
+
+#twitter:hover{
+    color: #1aedf8;
 }
 
 
