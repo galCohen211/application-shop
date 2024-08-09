@@ -206,6 +206,7 @@ h1 {
 
 .aboutUs{
     margin:10px ;
+    
 }
 
 .bodyAboutUs{
@@ -223,6 +224,7 @@ img {
     max-width: 100%;
     height: auto;
 }
+
 
 /* Footer Styles */
 .footer {
@@ -292,6 +294,64 @@ img {
 
 #twitter:hover{
     color: #1aedf8;
+}
+
+#paragraph{
+    flex: 1;
+    margin: 0.5rem;
+    text-align: center;
+}
+
+
+.top-section {
+    padding: 2rem 0;
+    background-color: #fff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.column {
+    flex: 1;
+    margin: 0.5rem;
+    text-align: center;
+}
+
+.product-image {
+    width: 400px; /* Set width based on the cotton image */
+    height: 300px; /* Set height based on the cotton image */
+    object-fit: cover; /* Ensure the image covers the entire area without distortion */
+    border-radius: 8px;
+    transition: transform 0.3s ease; /* Smooth transition for the hover effect */
+}
+
+.product-image:hover {
+    transform: scale(1.1); /* Scale the image by 10% on hover */
+}
+
+.description {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.description h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.description p {
+    font-size: 1rem;
+    color: #666;
 }
 
 
