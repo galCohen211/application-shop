@@ -80,7 +80,7 @@ h1 {
     padding-top: 50px;
 }
 
-.main-container {
+.main-top-images {
     display: flex;
     padding: 50px;
     align-items: flex-start;
@@ -152,7 +152,7 @@ h1 {
     align-items: center;
 }
 
-.product .img-container {
+.product .img-top-images {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -203,17 +203,15 @@ h1 {
 }
 
 /*css of info*/
-.aboutUs{
-    margin:10px ;
-    
+.aboutUs {
+    margin:10px ;   
 }
 
-.bodyAboutUs{
+.bodyAboutUs {
     line-height: 24px, 1.5em;
 }
 
 /* from here bottom contact section*/
-
 a {
     text-decoration: none;
     color: inherit;
@@ -241,12 +239,12 @@ img {
 }
 
 .footer p {
-    margin: 0.5rem 0;
+    margin: 8px 0;
 }
 
 .social-link {
     color: #fff;
-    margin: 0 0.5rem;
+    margin: 0 8px;
     transition: color 0.3s ease;
 }
 
@@ -254,57 +252,58 @@ img {
     color: #007bff;
 }
 
-#instagram{
+#instagram {
     color: #fff;
-    margin: 0 0.5rem;
+    margin: 0 8px;
     transition: color 0.3s ease;
     background-color: #333;
     border: none;
 }
 
-#instagram:hover{
+#instagram:hover {
     color: #f009e0c0;
 }
 
-#facebook{
+#facebook {
     color: #fff;
-    margin: 0 0.5rem;
+    margin: 0 8px;
     transition: color 0.3s ease;
     background-color: #333;
     border: none;
 }
 
-#facebook:hover{
+#facebook:hover {
     color: #6b3cf9;
 }
 
-#twitter{
+#twitter {
     color: #fff;
-    margin: 0 0.5rem;
+    margin: 0 8px;
     transition: color 0.3s ease;
     background-color: #333;
     border: none;
 }
 
-#twitter:hover{
+#twitter:hover {
     color: #1aedf8;
 }
 
-#paragraph{
+#paragraph {
     flex: 1;
-    margin: 0.5rem;
+    margin: 8px;
     text-align: center;
 }
 
-.top-section {
-    padding: 2rem 0;
+
+.general-info {
+    padding: 32px 0;
     background-color: #fff;
 }
 
-.container {
+.top-images {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 16px;
 }
 
 .row {
@@ -315,13 +314,13 @@ img {
 
 .column {
     flex: 1;
-    margin: 0.5rem;
+    margin: 8px;
     text-align: center;
 }
 
 .product-image {
-    width: 400px; /* Set width based on the cotton image */
-    height: 300px; /* Set height based on the cotton image */
+    width: 400px;
+    height: 300px; 
     object-fit: cover; /* Ensure the image covers the entire area without distortion */
     border-radius: 8px;
     transition: transform 0.3s ease; /* Smooth transition for the hover effect */
@@ -332,18 +331,18 @@ img {
 }
 
 .description {
-    margin-top: 1rem;
+    margin-top: 16px;
     text-align: center;
 }
 
 .description h2 {
-    font-size: 1.5rem;
+    font-size: 24px;
     color: #333;
-    margin-bottom: 0.5rem;
+    margin-bottom: 8px;
 }
 
 .description p {
-    font-size: 1rem;
+    font-size: 16px;
     color: #666;
 }
 
@@ -402,7 +401,7 @@ img {
 }
 
 #countdown {
-    font-size: 2rem;
+    font-size: 32px;
     color: #5cb85c;
     font-weight: bold;
 }
