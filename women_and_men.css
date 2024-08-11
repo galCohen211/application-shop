@@ -1,6 +1,7 @@
 body {
     font-family: 'Open Sans', Arial, sans-serif;
     width: 100%;
+    overflow-x: hidden; /* Hide horizontal overflow */
 }
 
 .logo {
@@ -229,7 +230,6 @@ img {
     text-align: center;
     position: fixed;
     bottom: 0;
-    margin-left: -10px;
     width: 100%;
 }
 
