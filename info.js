@@ -31,10 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
     closeButton.addEventListener('click', closePopup);
 });
 
-
-
-
-
 // Set the target date and time
 const targetDate = new Date("December 01, 2024 23:59:59").getTime();
 

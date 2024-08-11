@@ -203,7 +203,6 @@ h1 {
 }
 
 /*css of info*/
-
 .aboutUs{
     margin:10px ;
     
@@ -224,7 +223,6 @@ img {
     max-width: 100%;
     height: auto;
 }
-
 
 /* Footer Styles */
 .footer {
@@ -262,7 +260,6 @@ img {
     transition: color 0.3s ease;
     background-color: #333;
     border: none;
-
 }
 
 #instagram:hover{
@@ -275,7 +272,6 @@ img {
     transition: color 0.3s ease;
     background-color: #333;
     border: none;
-
 }
 
 #facebook:hover{
@@ -288,8 +284,6 @@ img {
     transition: color 0.3s ease;
     background-color: #333;
     border: none;
-    
-
 }
 
 #twitter:hover{
@@ -301,7 +295,6 @@ img {
     margin: 0.5rem;
     text-align: center;
 }
-
 
 .top-section {
     padding: 2rem 0;
