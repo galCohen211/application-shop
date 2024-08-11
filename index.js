@@ -12,6 +12,13 @@ document.querySelectorAll('.men-link').forEach(function(link) {
     });
 });
 
+document.querySelectorAll('.info-link').forEach(function(link) {
+    link.addEventListener('click', function(event) {
+        event.preventDefault();
+        window.location.href = 'info.html';
+    });
+});
+
 //Changing images and video every 5 seconds
 document.addEventListener("DOMContentLoaded", function(){
     const image = document.getElementById("background-image");
