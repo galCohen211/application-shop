@@ -8,7 +8,7 @@ function closeFooter() {
     closeBtn.style.display = 'block';
     }, 3000);
 
-// Function to show the popup
+//Function to show the popup
 function showPopup() {
     const popup = document.getElementById('popup');
     popup.style.display = 'flex'; // Show the popup
@@ -30,10 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeButton = document.querySelector('.close');
     closeButton.addEventListener('click', closePopup);
 });
-
-
-
-
 
 // Set the target date and time
 const targetDate = new Date("December 01, 2024 23:59:59").getTime();
@@ -59,6 +55,5 @@ function updateCountdown() {
         document.getElementById("countdown").innerHTML = "Offer expired";
     }
 }
-
 // Update the countdown every second
 const timerInterval = setInterval(updateCountdown, 1000);

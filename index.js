@@ -48,5 +48,3 @@ document.addEventListener("DOMContentLoaded", function(){
         image.src = images[currentImage];
     };
 });
-
-
