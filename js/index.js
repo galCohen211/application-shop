@@ -24,10 +24,10 @@ document.addEventListener("DOMContentLoaded", function(){
     const image = document.getElementById("background-image");
     const video = document.getElementById("background-video");
     const images = [
-        "images/general/homepage_background.png",
-        "images/general/homepage_background1.png",
-        "images/general/homepage_background2.png",
-        "images/general/homepage_background3.png"
+        "../assets/images/general/homepage_background.png",
+        "../assets/images/general/homepage_background1.png",
+        "../assets/images/general/homepage_background2.png",
+        "../assets/images/general/homepage_background3.png"
     ];
     let currentImage = 0;
     setInterval(()=>{
