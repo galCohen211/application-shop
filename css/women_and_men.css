@@ -203,16 +203,15 @@ h1 {
     }
 }
 
-/*css of info*/
+
+
+/* INFO */
+
 .aboutUs {
-    margin:10px ;   
+    margin: 10px ;   
 }
 
-.bodyAboutUs {
-    line-height: 24px, 1.5em;
-}
-
-/* from here bottom contact section*/
+/* from here bottom contact section */
 a {
     text-decoration: none;
     color: inherit;
@@ -229,6 +228,7 @@ img {
     color: #fff;
     text-align: center;
     position: fixed;
+    left: 0;
     bottom: 0;
     width: 100%;
 }
@@ -242,51 +242,49 @@ img {
     margin: 8px 0;
 }
 
+/* Base styling for the link and button */
 .social-link {
     color: #fff;
     margin: 0 8px;
     transition: color 0.3s ease;
 }
 
+#instagram, #facebook, #twitter {
+    color: #fff;
+    margin: 0 8px;
+    transition: color 0.3s ease;
+    background-color: #333;
+    border: none;
+}
+
+/* Change link text color on hover */
 .social-link:hover {
     color: #007bff;
+    text-decoration: none;
 }
 
-#instagram {
-    color: #fff;
-    margin: 0 8px;
+.social-link:hover #instagram i {
+    color: #E1306C;
+}
+
+.social-link:hover #facebook i {
+    color: #4267B2;
+}
+
+.social-link:hover #twitter i {
+    color: #1DA1F2;
+}
+
+#instagram i, #facebook i, #twitter i {
+    color: #fff; /* Initial icon color */
     transition: color 0.3s ease;
-    background-color: #333;
-    border: none;
-
 }
 
-#instagram:hover {
-    color: #f009e0c0;
-}
-
-#facebook {
-    color: #fff;
-    margin: 0 8px;
-    transition: color 0.3s ease;
-    background-color: #333;
-    border: none;
-}
-
-#facebook:hover {
-    color: #6b3cf9;
-}
-
-#twitter {
-    color: #fff;
-    margin: 0 8px;
-    transition: color 0.3s ease;
-    background-color: #333;
-    border: none;
-}
-
-#twitter:hover {
-    color: #1aedf8;
+/* Ensuring that hovering over text or icon changes the text color */
+.social-link:hover #instagram,
+.social-link:hover #facebook,
+.social-link:hover #twitter {
+    color: #007bff;
 }
 
 #paragraph {
@@ -324,7 +322,7 @@ img {
     height: 300px; 
     object-fit: cover; /* Ensure the image covers the entire area without distortion */
     border-radius: 8px;
-    transition: transform 0.3s ease; /* Smooth transition for the hover effect */
+    transition: transform 0.3s ease;
 }
 
 .product-image:hover {
@@ -347,14 +345,17 @@ img {
     color: #666;
 }
 
-/*popup*/
+
+
+/* Popup box */
+
 .content {
     text-align: center;
     margin-top: 50px;
 }
 
 .popup {
-    display: none; /* Hidden by default */
+    display: none;
     position: fixed;
     z-index: 1000;
     left: 0;
