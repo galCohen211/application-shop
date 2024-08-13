@@ -1,23 +1,13 @@
-function closeFooter() {
-    const footer = document.querySelector('.black-bar');
-    footer.style.display = 'none';
-  }
-
-  setTimeout(() => {
-    const closeBtn = document.querySelector('.close-btn-login-footer');
-    closeBtn.style.display = 'block';
-    }, 3000);
-
-//Function to show the popup
+// Show the popup
 function showPopup() {
     const popup = document.getElementById('popup');
-    popup.style.display = 'flex'; // Show the popup
+    popup.style.display = 'flex';
 }
 
-// Function to close the popup when the close button is clicked
+// Close the popup when the close button is clicked
 function closePopup() {
     const popup = document.getElementById('popup');
-    popup.style.display = 'none'; // Hide the popup
+    popup.style.display = 'none';
 }
 
 // Show the popup as soon as the page finishes loading
