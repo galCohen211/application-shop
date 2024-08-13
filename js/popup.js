@@ -21,13 +21,6 @@ function showPopup() {
 function closePopup() {
     const popup = document.getElementById('popup');
     popup.style.display = 'none'; // Hide the popup
-
-    // Check if the checkbox is checked and set session storage if it is
-    const checkbox = document.getElementById('doNotShowAgain');
-    if (checkbox.checked) {
-        sessionStorage.setItem('popupShown', 'true');
-        console.log("The checkbox is checked. Popup will not be shown again this session.");
-    }
 }
 
 // Show the popup as soon as the page finishes loading
