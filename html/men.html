@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Style For You - MEN</title>
-    <link rel="stylesheet" href="../css/women_and_men.css" />
+    <link rel="stylesheet" href="../css/general.css" />
+    <link rel="stylesheet" href="../css/clothing.css" />
     <!-- Bootstrap -->
     <link
       rel="stylesheet"
@@ -24,7 +25,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light">
       <a class="navbar-brand nav-logo" href="../html/index.html">
-        <img src="../assets/images/general/official_logo.jpeg" alt="Logo" class="logo" />
+        <img src="../assets/images/general/official_logo.jpeg" alt="Logo" class="logo"/>
       </a>
       <button
         class="navbar-toggler"
@@ -33,7 +34,7 @@
         data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent"
         aria-expanded="false"
-        aria-label="Toggle navigation" >
+        aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -52,10 +53,11 @@
       </div>
     </nav>
 
-    <div class="black-bar">
+    <!-- Footer -->
+    <div id="black-bar" class="hidden">
       <span>STYLE FOR YOU</span>
-      <span class="login"> Log in to your company's online store.</span>
-      <button class="close-btn" onclick="closeFooter()">
+      <span class="login-footer"> Log in to your company's online store.</span>
+      <button id="close-btn-login-footer">
         <i class="fas fa-times"></i>
       </button>
     </div>
@@ -175,19 +177,19 @@
         </div>
     </div>
 
-      <!-- Popup Modal -->
-      <div id="popup" class="popup">
-        <div class="popup-content">
-            <span class="close">&times;</span>
-            <h2>Special Offer!</h2>
-            <p>Get 20% off your first purchase. Signup and get started!!</p>
-            <p id="timer">Offer expires in: 
-                <br>
-                <span id="countdown"></span></p>
-        </div>
-    
+    <!-- Popup Modal -->
+    <div id="popup" class="popup">
+      <div class="popup-content">
+          <span class="close">&times;</span>
+          <h2>Special Offer!</h2>
+          <p>Get 20% off your first purchase. Signup and get started!!</p>
+          <p id="timer">Offer expires in: 
+              <br>
+              <span id="countdown"></span></p>
+      </div>
+    </div>
     <script src="../js/popup.js"></script>
-    <script src="../js/women_and_men.js"></script>
-  </body>
+    <script src="../js/clothing.js"></script>
+</body>
   
 </html>

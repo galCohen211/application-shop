@@ -1,0 +1,164 @@
+#black-bar {
+    display: block;
+    position: fixed;
+    height: 35px;
+    background-color: black;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    z-index: 1000;
+}
+
+#black-bar.hidden{
+    display: none;
+}
+
+.login-footer {
+    cursor: pointer;
+    text-decoration: underline;
+    margin-left: 10px;
+}
+
+#close-btn-login-footer {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    display: none;
+}
+
+h1 {
+    text-align: center;
+    padding-top: 50px;
+    font-family: math;
+    letter-spacing: 3px;
+}
+
+.main-top-images {
+    display: flex;
+    padding: 50px;
+    align-items: flex-start;
+}
+
+.filters {
+    flex: 1 1 200px;
+    margin-right: 20px;
+}
+
+.dropdown {
+    position: relative;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.dropdown-label {
+    padding: 10px;
+    font-size: 18px;
+    border: 1px solid transparent;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dropdown-arrow {
+    margin-left: 10px;
+}
+
+.dropdown-list {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    border-top: none;
+    width: 100%;
+    top: calc(100% + 5px);
+    z-index: 1;
+    left: 0;
+}
+
+.dropdown-list.show {
+  display: block; /* Show the list when the 'show' class is added */
+}
+
+.dropdown-list li {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.grid-columns {
+    display: grid;
+    column-gap: 25px;
+    row-gap: 50px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.product {
+    flex: 1 1 200px;
+    max-width: 300px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product .img-top-images {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.product img {
+    width: auto;
+    width: 100%;
+    transition: transform .2s ease-in-out;
+}
+
+.product img:hover {
+    opacity: .5;
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+}
+
+.product h2 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.product p {
+    font-size: 16px;
+    color: #666;
+    margin: 5px 0;
+}
+
+/* media queries enable responsive design */
+@media (max-width: 768px) {
+    .nav-links {
+        font-size: 16px;
+        gap: 10px;
+    }
+
+    .logo {
+        width: 150px;
+    }
+
+    .black-bar {
+        display: flex;
+        flex-direction: column;
+        line-height: 0.9;
+        font-size: 13px;
+    }
+}
