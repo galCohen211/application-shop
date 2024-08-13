@@ -45,7 +45,8 @@ body {
     text-decoration: none;
 }
 
-.black-bar {
+#black-bar {
+    display: block;
     position: fixed;
     height: 35px;
     background-color: black;
@@ -59,13 +60,17 @@ body {
     z-index: 1000;
 }
 
+#black-bar.hidden{
+    display: none;
+}
+
 .login {
     cursor: pointer;
     text-decoration: underline;
     margin-left: 10px;
 }
 
-.close-btn {
+#close-btn {
     position: absolute;
     right: 10px;
     background: none;
