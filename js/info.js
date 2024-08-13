@@ -4,7 +4,7 @@ function closeFooter() {
   }
 
   setTimeout(() => {
-    const closeBtn = document.querySelector('.close-btn');
+    const closeBtn = document.querySelector('.close-btn-login-footer');
     closeBtn.style.display = 'block';
     }, 3000);
 
