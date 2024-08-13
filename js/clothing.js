@@ -10,15 +10,26 @@ src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 crossorigin="anonymous"
 
-function closeFooter() {
-  const footer = document.querySelector('.black-bar');
-  footer.style.display = 'none';
-}
-
+// Close button appears after 3 seconds
 setTimeout(() => {
-  const closeBtn = document.querySelector('.close-btn-login-footer');
+  const closeBtn = document.getElementById('close-btn-login-footer');
   closeBtn.style.display = 'block';
-  }, 3000);
+}, 3000);
+
+//Close the black bar with sessionStorage 
+document.addEventListener('DOMContentLoaded', ()=>{
+  const footer = document.getElementById('black-bar');
+  const closeBtn = document.getElementById('close-btn-login-footer');
+
+  if(sessionStorage.getItem('black-bar') !== 'true'){
+    footer.classList.remove('hidden');
+  } 
+
+  closeBtn.addEventListener('click', () =>{
+    footer.classList.add('hidden');
+    sessionStorage.setItem('black-bar', 'true');
+  })
+})
 
 function openMenu(event) {
   event.stopPropagation(); // Prevent the click event from bubbling up to the document
