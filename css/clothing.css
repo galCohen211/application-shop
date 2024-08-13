@@ -1,4 +1,5 @@
-.black-bar {
+#black-bar {
+    display: block;
     position: fixed;
     height: 35px;
     background-color: black;
@@ -12,13 +13,17 @@
     z-index: 1000;
 }
 
+#black-bar.hidden{
+    display: none;
+}
+
 .login-footer {
     cursor: pointer;
     text-decoration: underline;
     margin-left: 10px;
 }
 
-.close-btn-login-footer {
+#close-btn-login-footer {
     position: absolute;
     right: 10px;
     background: none;
