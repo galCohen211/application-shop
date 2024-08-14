@@ -20,7 +20,7 @@ function showPopup() {
 // Function to close the popup when the close button is clicked
 function closePopup() {
     const popup = document.getElementById('popup');
-    popup.style.display = 'none'; // Hide the popup
+    popup.style.display = 'none';
 }
 
 // Show the popup as soon as the page finishes loading
