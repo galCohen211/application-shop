@@ -21,6 +21,7 @@
     />
     <link rel="icon" href="../assets/images/general/app-icon.ico" type="image/x-icon">
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -51,25 +52,26 @@
             </li>   
           </ul>
       </nav>
+
       <br>
       <section class="general-info">
         <div class="top-images">
             <div class="row">
                 <!-- Image 1 -->
                 <div class="column">
-                    <img src="../assets/images/general/cotton.jpeg" alt="Cotton" class="product-image">
+                    <img src="../assets/images/general/cotton.jpeg" alt="Cotton" class="product-image" draggable="false">
                 </div>
                 <!-- Image 2 -->
                 <div class="column">
-                    <img src="../assets/images/general/fabric.jpg" alt="Fabric" class="product-image">
+                    <img src="../assets/images/general/fabric.jpg" alt="Fabric" class="product-image" draggable="false">
                 </div>
                 <!-- Image 3 -->
                 <div class="column">
-                    <img src="../assets/images/general/homepage_background.png" alt="Striped Shirts" class="product-image">
+                    <img src="../assets/images/general/homepage_background.png" alt="Striped Shirts" class="product-image" draggable="false">
                 </div>
                 <!-- Image 4 -->
                 <div class="column">
-                    <img src="../assets/images/general/homepage_background1.png" alt="Dog and Blanket" class="product-image">
+                    <img src="../assets/images/general/homepage_background1.png" alt="Dog and Blanket" class="product-image" draggable="false">
                 </div>
             </div>
 
@@ -93,6 +95,7 @@
             </div>
         </div>
     </section>
+
       <div class="aboutUs">
         <br>
         <br>
@@ -101,7 +104,6 @@
             <p>
                 Welcome to Style For You, where elegance meets excellence, and every stitch tells a story of unparalleled craftsmanship and sophistication. At Style For You, we believe that clothing is not just about covering the body but about expressing one's innermost desires, ambitions, and identity. Our journey began with a singular vision: to create timeless pieces that transcend trends and celebrate individuality. Each collection is a symphony of luxurious fabrics, meticulous tailoring, and innovative designs, crafted for the discerning individual who values quality over quantity and seeks to make a statement without uttering a word.
             </p>
-    
             <p>
                 At Style For You, we are committed to sustainability and ethical practices. We believe that true luxury is not only defined by the quality of our products but also by the integrity with which they are made. We work closely with our suppliers to ensure that every step of our production process meets the highest standards of environmental and social responsibility. Our commitment to sustainability extends to every facet of our business, from the materials we use to the packaging we design, reflecting our dedication to preserving the planet for future generations.
             </p>
@@ -115,19 +117,7 @@
         </div>
         <div class="col-4">The Map will be here</div>
         </div>
-
-    <!-- Popup Modal -->
-    <div id="popup" class="popup">
-        <div class="popup-content">
-            <span class="close">&times;</span>
-            <h2>Special Offer!</h2>
-            <p>Get 20% off your first purchase. Signup and get started!</p>
-            <p id="timer">Offer expires in: 
-                <br>
-                <span id="countdown">10</span></p>
-        </div>
-    </div>
-
+    
         <footer class="footer">
             <div class="footer-content">
                 <p>&copy; 2024 Style For You. All rights reserved.</p>
@@ -144,18 +134,25 @@
                     Twitter
                     <button id="twitter"><i class="bi bi-twitter"></i></button>
                 </a>
-                
                 </p>
             </div>
         </footer>
       </div>
-      <div class="black-bar">
-        <span>STYLE FOR YOU</span>
-        <span class="login-footer"> Log in to your company's online store.</span>
-        <button class="close-btn-login-footer" onclick="closeFooter()">
-          <i class="fas fa-times"></i>
-        </button>
+
+      <!-- Popup Modal -->
+      <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close">&times;</span>
+            <h2>Special Offer!</h2>
+            <p>Get 20% off your first purchase. Signup and get started!!</p>
+            <p id="timer">Offer expires in: 
+                <br>
+                <span id="countdown"></span></p>
+        </div>
       </div>
+
+    <script src="../js/popup.js"></script>
     <script src="../js/info.js"></script>
 </body>
+
 </html>
