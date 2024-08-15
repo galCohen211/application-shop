@@ -8,6 +8,9 @@ import { orders } from './routers/orderRouter.ts';
 import path from 'path';
 import { expressjwt } from "express-jwt";
 
+import {closeDb} from  './db.ts';
+
+
 const PORT = 4000;
 
 const app = express();
