@@ -7,7 +7,7 @@ export async function connect(): Promise<Db> {
     if (!clinet){
         clinet = await MongoClient.connect(MONGODB_URL) 
     }
-    return clinet.db('supermarket'); 
+    return clinet.db('onlineshop'); 
 };
 
 export async function closeDb() {
