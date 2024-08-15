@@ -1,19 +1,19 @@
 import { MongoClient, Db } from 'mongodb';
 
-let clinet: MongoClient;
+let client: MongoClient;
 const MONGODB_URL = 'mongodb://localhost:27017';
 
 export async function connect(): Promise<Db> {
-    if (!clinet){
-        clinet = await MongoClient.connect(MONGODB_URL) 
+    if (!client){
+        client = await MongoClient.connect(MONGODB_URL) 
     }
-    return clinet.db('onlineshop'); 
+    return client.db('onlineshop'); 
 };
 
 export async function closeDb() {
-    if(!clinet){
+    if(!client){
         return;
     }
 
-    clinet.close();
+    client.close();
 }
