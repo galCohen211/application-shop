@@ -2,7 +2,6 @@ import express from "express";
 import { productSchema } from "../schemas/productsSchema";
 import { connect } from "../db";
 import { ObjectId } from "mongodb";
-import { userRequest } from "../models/userRequest";
 import { cartSchema } from "../schemas/cartSchema";
 
 

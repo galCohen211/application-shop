@@ -1,7 +1,6 @@
 import express from "express";
 import { connect } from "../db";
 import { ObjectId } from "mongodb";
-import { userRequest } from "../models/userRequest";
 import { cartSchema } from "../schemas/cartSchema";
 
 const router = express.Router();

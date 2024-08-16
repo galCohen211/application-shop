@@ -1,7 +1,7 @@
 import Joi from '@hapi/joi';
 
 export const userSchema = Joi.object({
-    name: Joi.string().required(),
+    firstName: Joi.string().required(),
     lastName: Joi.string().required(),
     userName: Joi.string().required(),
     id: Joi.number().required().min(9),
