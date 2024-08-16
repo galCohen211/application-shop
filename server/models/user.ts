@@ -1,9 +1,10 @@
-export interface UserRegister {
-    name: string;
+export interface User {
+    userId: string
+    firstName: string;
     lastName: string;
     userName: string;
     password: string;
-    id: number;
     city: string;
     street: string;
+    role: string
 }

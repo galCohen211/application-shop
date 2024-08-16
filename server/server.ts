@@ -17,12 +17,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
-app.use(
-    expressjwt({
-        secret: SECRET,
-        algorithms: ["HS256"],
-    }).unless({ path: ["/token"] })
-);
+
 
 app.use('/users', users);
 app.use('/products', products);
