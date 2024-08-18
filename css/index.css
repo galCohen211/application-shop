@@ -74,10 +74,41 @@ body {
     font-size: 55px;
     color: #ffffff;
     transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.text-over-background .description-container {
+    display: block;
+    margin-top: 50px;
+}
+
+.text-over-background .description-container .short-description {
+    column-count: 2;
+    column-gap: 10px;
+    column-rule-style: solid;
+    column-rule-width: 1px;
+    font-size: 22px;
+    text-align: center;
+}
+
+.text-over-background .description-container .short-description .column-one,
+.text-over-background .description-container .short-description .column-two {
+    display: block;
+}
+
+.main-text {
+    text-shadow: 2px 2px #c6c6c6;
+}
+
+.subtitle-container {
+    display: flex;
+    justify-content: center;
+    gap: 250px;
+    margin-top: 20px;
 }
 
 .subtitle {
-    font-size: 18px;
+    font-size: 22px;
     margin-top: 10px;
 }
 
