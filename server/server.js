@@ -1,6 +1,7 @@
 
 const express = require("express");
 const cors = require('cors');
+const path = require('path');
 
 const products = require('./routers/productRouter.js');
 const users = require('./routers/userRouter.js');
@@ -21,9 +22,13 @@ db.once("open", function () {
   console.log("Connected");
 });
 
-const PORT = 4000;
-
 const app = express();
+
+// view engine setup
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "jade");
+
+const PORT = 4000;
 
 app.use(express.json());
 app.use(cors());
