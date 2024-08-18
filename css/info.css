@@ -128,3 +128,7 @@ img {
     color: #666;
 }
 
+
+.column h2 {
+    text-shadow: 2px 2px #dad9d9;
+}

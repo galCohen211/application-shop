@@ -96,10 +96,6 @@ body {
     display: block;
 }
 
-.main-text {
-    text-shadow: 2px 2px #c6c6c6;
-}
-
 .subtitle-container {
     display: flex;
     justify-content: center;
