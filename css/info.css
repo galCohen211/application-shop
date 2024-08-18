@@ -95,6 +95,11 @@ img {
     flex-wrap: wrap;
 }
 
+.row p {
+    text-align: left;
+    margin-left: 20px;
+}
+
 .column {
     flex: 1;
     margin: 8px;
