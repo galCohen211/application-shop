@@ -1,25 +1,4 @@
-document.querySelectorAll('.women-link').forEach(function(link) {
-    link.addEventListener('click', function(event) {
-        event.preventDefault();
-        window.location.href = 'women.html';
-    });
-});
-
-document.querySelectorAll('.men-link').forEach(function(link) {
-    link.addEventListener('click', function(event) {
-        event.preventDefault();
-        window.location.href = 'men.html';
-    });
-});
-
-document.querySelectorAll('.info-link').forEach(function(link) {
-    link.addEventListener('click', function(event) {
-        event.preventDefault();
-        window.location.href = 'info.html';
-    });
-});
-
-//Changing images and video every 5 seconds
+// Switch between images and videos every 5 seconds
 document.addEventListener("DOMContentLoaded", function(){
     const image = document.getElementById("background-image");
     const video = document.getElementById("background-video");

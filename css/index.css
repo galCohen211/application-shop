@@ -77,25 +77,6 @@ body {
     text-align: center;
 }
 
-.text-over-background .description-container {
-    display: block;
-    margin-top: 50px;
-}
-
-.text-over-background .description-container .short-description {
-    column-count: 2;
-    column-gap: 10px;
-    column-rule-style: solid;
-    column-rule-width: 1px;
-    font-size: 22px;
-    text-align: center;
-}
-
-.text-over-background .description-container .short-description .column-one,
-.text-over-background .description-container .short-description .column-two {
-    display: block;
-}
-
 .subtitle-container {
     display: flex;
     justify-content: center;

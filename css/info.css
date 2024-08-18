@@ -132,3 +132,27 @@ img {
 .column h2 {
     text-shadow: 2px 2px #dad9d9;
 }
+
+.description-container {
+    display: block;
+    margin-top: 50px;
+}
+
+.short-description {
+    column-count: 2;
+    column-gap: 10px;
+    column-rule-style: solid;
+    column-rule-width: 1px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.short-description .column-one {
+    display: block;
+    margin-left: 30%;
+}
+
+.short-description .column-two {
+    display: block;
+    margin-right: 34%;
+}
