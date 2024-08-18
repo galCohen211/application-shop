@@ -1,6 +1,6 @@
-import express from "express";
+const express = require("express");
 
 const router = express.Router();
 
 
-export { router as users };
+module.exports = router;

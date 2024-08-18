@@ -1,19 +1,18 @@
 
-import express from 'express';
-import cors from 'cors';
-import { SECRET } from "./routers/secret.js";
-import { products } from './routers/productRouter.js'
-import { users } from './routers/userRouter.js'
-import { carts } from './routers/cartRouter.js';
-import { orders } from './routers/orderRouter.js';
-import { branches } from './routers/branchRouter.js';
+const express = require("express");
+const cors = require('cors');
 
-import path from 'path';
+const products = require('./routers/productRouter.js');
+const users = require('./routers/userRouter.js');
+const carts = require('./routers/cartRouter.js');
+const orders = require('./routers/orderRouter.js');
+const branches = require('./routers/branchRouter.js')
+
 const mongoose = require("mongoose");
 
 //Set up default mongoose connection
-const mongoDB = "mongodb://127.0.0.1/onlineshop";
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+const mongoDB = "mongodb+srv://milanezi45:eMut4vPp0d5swc45@cluster0.et32z.mongodb.net/?retryWrites=true&w=majority";
+mongoose.connect(mongoDB);
 
 //Get the default connection
 const db = mongoose.connection;
@@ -36,5 +35,8 @@ app.use('/carts', carts);
 app.use('/orders', orders);
 app.use('/branches', branches);
 
+app.get('/oriya', (req, res) => {
+  res.send('Oriyaaaaaaa');
+});
 
 app.listen(PORT, () => console.log(`Server is up at ${PORT}`));

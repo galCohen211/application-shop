@@ -1,7 +1,6 @@
-import express from "express";
-
+const express = require("express");
 
 const router = express.Router();
 
 
-export { router as branches };
+module.exports = router;
