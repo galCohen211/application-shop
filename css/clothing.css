@@ -34,10 +34,15 @@
     display: none;
 }
 
+@font-face {
+    font-family: "Bitstream Vera Serif Bold";
+    src: url("https://mdn.github.io/css-examples/web-fonts/VeraSeBd.ttf");
+  }
+
 h1 {
     text-align: center;
     padding-top: 50px;
-    font-family: math;
+    font-family: 'Bitstream Vera Serif Bold', serif;
     letter-spacing: 3px;
 }
 
@@ -162,3 +167,5 @@ h1 {
         font-size: 13px;
     }
 }
+
+

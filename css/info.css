@@ -1,11 +1,5 @@
 .aboutUs {
-    margin: 10px ;   
-}
-
-/* from here bottom contact section */
-a {
-    text-decoration: none;
-    color: inherit;
+    margin: 10px;
 }
 
 img {
@@ -13,7 +7,6 @@ img {
     height: auto;
 }
 
-/* Footer Styles */
 .footer {
     background-color: #333;
     color: #fff;
