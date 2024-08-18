@@ -52,6 +52,7 @@ body {
     height: 100%;
     object-fit: cover;
     z-index: -1; /* Make sure it stays behind other content */
+    user-select: none;
 }
 
 #background-video{
