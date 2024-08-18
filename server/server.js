@@ -6,6 +6,8 @@ import { products } from './routers/productRouter.js'
 import { users } from './routers/userRouter.js'
 import { carts } from './routers/cartRouter.js';
 import { orders } from './routers/orderRouter.js';
+import { branches } from './routers/branchRouter.js';
+
 import path from 'path';
 const mongoose = require("mongoose");
 
@@ -32,6 +34,7 @@ app.use('/users', users);
 app.use('/products', products);
 app.use('/carts', carts);
 app.use('/orders', orders);
+app.use('/branches', branches);
 
 
 app.listen(PORT, () => console.log(`Server is up at ${PORT}`));

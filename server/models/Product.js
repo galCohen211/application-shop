@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
-const UserSchema = mongoose.Schema({
-  _id: String,
-  firstname: String,
-  lastname: String,
-  email: String,
-  password: String,
-  city: String,
-  street: String,
-  role: String
+const ProductSchema = mongoose.Schema({
+  name: String,
+  category: String,
+  price: Number,
+  brand: String,
+  size: String,
+  color: String,
+  inStock: Number,
+  imagePath: String
 });
 
-module.exports = mongoose.model("User", UserSchema);
+module.exports = mongoose.model("Product", ProductSchema);

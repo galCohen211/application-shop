@@ -5,7 +5,6 @@ const OrderSchema = mongoose.Schema({
   totalPrice: Number,
   city: String,
   street: String,
-  dateToShip: String,
   dateOrdered: String,
 });
 

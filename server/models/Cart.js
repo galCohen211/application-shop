@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const CartSchema = mongoose.Schema({
   user: { type: mongoose.Schema.Types.String, ref: "User" },
-  date: String,
+  creationDate: String,
   active: Boolean
 });
 
