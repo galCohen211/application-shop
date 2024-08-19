@@ -83,6 +83,85 @@ class UserController {
         }
         return res.status(200).json({ users });
     }
+    
+    // Login logic
+    static async login(req, res) {
+        const { email, password } = req.body;
+        const user = await User.findOne({ email });
+
+        if (!user) {
+            return res.status(404).json({ success: false, message: 'The user not found' });
+        }
+
+        if (user && bcrypt.compareSync(password, user.password)) {
+            const accessToken = jwt.sign(
+                { userId: user.id, role: user.role },
+                SECRET
+            );
+            res.status(200).send({
+                firstName: user.firstName,
+                lastName: user.lastName,
+                city: user.city,
+                street: user.street,
+                gender: user.gender,
+                role: user.role,
+                accessToken
+            });
+        } else {
+            return res.status(401).json({ success: false, message: 'Invalid password!' });
+        }
+    }
+
+    // Update user logic
+    static async updateUser(req, res) {
+
+        const userId = req.params.id;
+        if (!mongoose.isValidObjectId(userId)) {
+            return res.status(400).send('Invalid user ID');
+        }
+        User.findOne({ email: req.body.email }).then(user => {
+            if (user) {
+                // This means there is another user with the same email
+                return res.status(400).json({ success: false, message: "Invalid Email - Did not Update" });
+            }
+        });
+        const validationErrors = validationResult(req);
+        if (!validationErrors.isEmpty()) {
+            return res.status(400).json({ errors: validationErrors.array() })
+        }
+        const user = await User.findByIdAndUpdate(
+            userId,
+            {
+                email: req.body.email,
+                city: req.body.city,
+                street: req.body.street
+            },
+            { new: true }
+        );
+        if (!user) {
+            return res.status(404).send('The user cannot be found');
+        }
+        res.status(200).json({ success: true, newUser: user });
+    }
+
+    // Delete user
+    static async deleteUser(req, res) {
+
+        if (!mongoose.isValidObjectId(req.params.id)) {
+            return res.status(400).send('Invalid user ID');
+        }
+        User.findByIdAndDelete(req.params.id).then(user => {
+            if (user) {
+                return res.status(200).json({ success: true, message: "The user is deleted" });
+            }
+            else {
+                return res.status(404).json({ success: false, message: "User is not found" });
+            }
+        }).catch(err => {
+            return res.status(500).json({ message: "server error", error: err });
+        });
+
+    }
 }
 
 module.exports = UserController;
