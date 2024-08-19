@@ -1,1 +1,3 @@
-export const SECRET = process.env.JWT_SECRET || "test";
+const SECRET = process.env.JWT_SECRET || "test";
+
+module.exports = SECRET;
