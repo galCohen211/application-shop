@@ -83,14 +83,14 @@ class UserController {
         }
         return res.status(200).json({ users });
     }
-    
-    // Login logic
+
+    // Login
     static async login(req, res) {
         const { email, password } = req.body;
         const user = await User.findOne({ email });
 
         if (!user) {
-            return res.status(404).json({ success: false, message: 'The user not found' });
+            return res.status(404).json({ success: false, message: 'User not found' });
         }
 
         if (user && bcrypt.compareSync(password, user.password)) {
@@ -112,9 +112,8 @@ class UserController {
         }
     }
 
-    // Update user logic
+    // Update user
     static async updateUser(req, res) {
-
         const userId = req.params.id;
         if (!mongoose.isValidObjectId(userId)) {
             return res.status(400).send('Invalid user ID');
@@ -122,7 +121,7 @@ class UserController {
         User.findOne({ email: req.body.email }).then(user => {
             if (user) {
                 // This means there is another user with the same email
-                return res.status(400).json({ success: false, message: "Invalid Email - Did not Update" });
+                return res.status(400).json({ success: false, message: "Invalid email. Did not update" });
             }
         });
         const validationErrors = validationResult(req);
@@ -146,7 +145,6 @@ class UserController {
 
     // Delete user
     static async deleteUser(req, res) {
-
         if (!mongoose.isValidObjectId(req.params.id)) {
             return res.status(400).send('Invalid user ID');
         }
@@ -160,7 +158,6 @@ class UserController {
         }).catch(err => {
             return res.status(500).json({ message: "server error", error: err });
         });
-
     }
 }
 
