@@ -38,4 +38,5 @@ app.use('/carts', carts);
 app.use('/orders', orders);
 app.use('/branches', branches);
 
+
 app.listen(PORT, () => console.log(`Server is up at ${PORT}`));
