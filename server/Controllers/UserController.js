@@ -64,7 +64,7 @@ class UserController {
 
     static async getUserById(req, res) {
         UserController.validateReqIsEmpty(req, res);
-        let userId = req.body.id
+        let userId = req.body.id;
         const errors = [];
         let foundUser = null;
 
@@ -86,6 +86,27 @@ class UserController {
         }
 
         return res.status(200).json({ foundUser });
+    }
+
+    static async getAllUsers(req, res) {
+        UserController.validateReqIsEmpty(req, res);
+        const errors = [];
+        let foundUsers = null;
+
+        await User.find({}).then(users => {
+            if (!users) {
+                errors.push({ users: "there are no users at all" });
+            }
+            else {
+                foundUsers = users;
+            }
+        })
+
+        if (Object.keys(errors).length > 0) {
+            return res.status(400).json(errors);
+        }
+
+        return res.status(200).json({ foundUsers });
     }
 }
 
