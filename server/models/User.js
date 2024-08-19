@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const UserSchema = mongoose.Schema({
-  _id: String,
   firstName: String,
   lastName: String,
   email: String,
@@ -9,7 +8,10 @@ const UserSchema = mongoose.Schema({
   street: String,
   gender: String,
   birthDate: Date,
-  role: String
+  role: {
+    type: String,
+    default: "user"
+  }
 });
 
 module.exports = mongoose.model("User", UserSchema);
