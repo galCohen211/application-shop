@@ -89,7 +89,6 @@ class UserController {
     }
 
     static async getAllUsers(req, res) {
-        UserController.validateReqIsEmpty(req, res);
         const errors = [];
         let foundUsers = null;
 
