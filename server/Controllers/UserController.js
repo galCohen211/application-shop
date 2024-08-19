@@ -54,12 +54,33 @@ class UserController {
         });
     }
 
-    // login
-    // register
-    // delete user
-    // update user
+    // Login logic
+    static async login(req, res) {
+        const { email, password } = req.body;
+        const user = await User.findOne({ email });
 
+        if (!user) {
+            return res.status(404).json({ success: false, message: 'The user not found' });
+        }
 
+        if (user && bcrypt.compareSync(password, user.password)) {
+            const accessToken = jwt.sign(
+                { userId: user.id, role: user.role },
+                SECRET
+            );
+            res.status(200).send({
+                firstName: user.firstName,
+                lastName: user.lastName,
+                city: user.city,
+                street: user.street,
+                gender: user.gender,
+                role: user.role,
+                accessToken
+            });
+        } else {
+            return res.status(401).json({ success: false, message: 'Invalid password!' });
+        }
+    }
 }
 
 module.exports = UserController;
