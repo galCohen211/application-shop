@@ -1,83 +1,35 @@
 const User = require("../models/user");
+const mongoose = require('mongoose');
+
 
 class UserController {
+  // login
+  // register
+  // delete user
+  async deleteUser(req, res) {
+    try {
 
-    // login
-    // register
-    async registerUser (req, res) {
-        console.log("registerUser controller");
-        
-        try {
-            const {
-                firstName, 
-                lastName, 
-                email, 
-                password, 
-                city, 
-                street, 
-                gender,
-                birthDate, 
-                role
-            } = req.body;
+      const { userId } = req.params;
+      console.log('user:', userId);
 
-            const existUser = await User.find({ email}, function (err) {
-                if (err) {
-                    console.error(err);
-                }
-            });
+      const userExists = await User.findById(userId);
+      console.log('exist:', userExists);
+      if (!userExists) {
+        return res.status(404).json({ success: false, message: "User not found" });
+      }
 
-            if (existUser) {
-                return res.status(400).json({message: 'User already registerd'});
-            }
+      const deletedUser = await User.findByIdAndDelete(userId);
+      console.log('Deleted user:', deletedUser);
 
-            await Tank.create({
-                firstName, 
-                lastName, 
-                email, 
-                password, 
-                city, 
-                street, 
-                gender,
-                birthDate, 
-                role
-            }, function (err) {
-                if (err) throw err;
-            });
-            
-            return res.status(200).json({message: 'User registered successfuly'});
+      return res.status(200).json({ success: true, message: "Delete success" });
 
-        } catch (error) {
-            console.error(error);
-            return res.status(500).json({message: 'server error'});
-        }
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ message: "server error" });
     }
+  }
 
-    // delete user
-    async deleteUser (req, res){
-        try {
-            const {userId} = req.parmas;
-
-            const existUser = await User.findById(userId);
-
-            if(!existUser) {
-                return res.status(400).json({message: 'User not found'});
-            }
-
-            await User.deleteOne({_id: userId}, function (err) {
-                if (err) throw err;
-            });
-            
-            return res.status(200).json({message: 'Delete success'});
-
-        } catch (error) {
-            console.error(error);
-            return res.status(500).json({message: 'server error'});
-        }
-    }
-
-    // update user
-
+  // update user
 }
 
 module.exports = UserController;
-
