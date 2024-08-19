@@ -7,7 +7,8 @@ const mongoose = require('mongoose');
 
 class UserController {
 
-    static validateReqIsEmpty(req, res) {
+    // Validates that request error array is empty
+    static validateReqErrIsEmpty(req, res) {
         const validationErrors = validationResult(req);
         if (!validationErrors.isEmpty()) {
             return res.status(400).json({ errors: validationErrors.array() });
@@ -15,7 +16,7 @@ class UserController {
         return;
     }
 
-    // Sign up logic
+    // Sign up
     static async signUp(req, res) {
         let newUser = new User({
             firstName: req.body.firstName,
@@ -27,7 +28,7 @@ class UserController {
             gender: req.body.gender,
             birthDate: req.body.birthDate
         })
-        validateReqIsEmpty(req, res);
+        validateReqErrIsEmpty(req, res);
         const errors = [];
         const { email, birthDate } = req.body;
         await User.find({ email }).then(user => {
@@ -60,6 +61,7 @@ class UserController {
         });
     }
 
+    // Get user by ID
     static async getUserById(req, res) {
 
         if (!mongoose.isValidObjectId(req.params.id)) {
@@ -73,7 +75,7 @@ class UserController {
         return res.status(200).json({ user });
     }
 
-    // Get all users logic
+    // Get all users
     static async getAllUsers(req, res) {
         const users = await User.find({});
         if (!users) {
