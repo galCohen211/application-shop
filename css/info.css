@@ -1,25 +1,18 @@
 .aboutUs {
-    margin: 10px ;   
-}
-
-/* from here bottom contact section */
-a {
-    text-decoration: none;
-    color: inherit;
+    margin: 10px;
 }
 
 img {
     max-width: 100%;
     height: auto;
+    user-select: none;
 }
 
-/* Footer Styles */
 .footer {
     background-color: #333;
     color: #fff;
     text-align: center;
     position: fixed;
-    left: 0;
     bottom: 0;
     width: 100%;
     margin-left: -10px;
@@ -102,6 +95,11 @@ img {
     flex-wrap: wrap;
 }
 
+.row p {
+    text-align: left;
+    margin-left: 20px;
+}
+
 .column {
     flex: 1;
     margin: 8px;
@@ -136,3 +134,31 @@ img {
     color: #666;
 }
 
+
+.column h2 {
+    text-shadow: 2px 2px #dad9d9;
+}
+
+.description-container {
+    display: block;
+    margin-top: 50px;
+}
+
+.short-description {
+    column-count: 2;
+    column-gap: 10px;
+    column-rule-style: solid;
+    column-rule-width: 1px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.short-description .column-one {
+    display: block;
+    margin-left: 30%;
+}
+
+.short-description .column-two {
+    display: block;
+    margin-right: 34%;
+}
