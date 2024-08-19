@@ -83,13 +83,45 @@ class UserController {
         }
     }
 
+    // Update user logic
+    static async updateUser(req, res) {
+
+        const userId = req.params.id;
+        if (!mongoose.isValidObjectId(userId)) {
+            return res.status(400).send('Invalid user ID');
+        }
+        User.findOne({ email: req.body.email }).then(user => {
+            if (user) {
+                // This means there is another user with the same email
+                return res.status(400).json({ success: false, message: "Invalid Email - Did not Update" });
+            }
+        });
+        const validationErrors = validationResult(req);
+        if (!validationErrors.isEmpty()) {
+            return res.status(400).json({ errors: validationErrors.array() })
+        }
+        const user = await User.findByIdAndUpdate(
+            userId,
+            {
+                email: req.body.email,
+                city: req.body.city,
+                street: req.body.street
+            },
+            { new: true }
+        );
+        if (!user) {
+            return res.status(404).send('The user cannot be found');
+        }
+        res.status(200).json({ success: true, newUser: user });
+    }
+
     // Delete user
     static async deleteUser(req, res) {
 
         if (!mongoose.isValidObjectId(req.params.id)) {
             return res.status(400).send('Invalid user ID');
         }
-        User.findByIdAndDelete( req.params.id ).then(user => {
+        User.findByIdAndDelete(req.params.id).then(user => {
             if (user) {
                 return res.status(200).json({ success: true, message: "The user is deleted" });
             }

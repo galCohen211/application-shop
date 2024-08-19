@@ -23,4 +23,11 @@ router.post("/login", UserController.login);
 // Delete user
 router.delete("/:id", UserController.deleteUser);
 
+// Update user
+router.put("/:id",
+    check("email").notEmpty().isEmail(),
+    check("city").notEmpty(),
+    check("street").notEmpty(),
+     UserController.updateUser);
+
 module.exports = router;
