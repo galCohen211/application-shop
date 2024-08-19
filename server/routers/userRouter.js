@@ -23,4 +23,8 @@ router.post("/login", UserController.login);
 // Delete user
 router.delete("/:id", UserController.deleteUser);
 
+// Update user
+router.post("/update/:id", UserController.updateUser);
+
+
 module.exports = router;

@@ -57,26 +57,63 @@ class UserController {
 
     // login
     // register
-    // delete user
 
     // update user
     //Where in the signature of the function do I add the word "function"?
-    static async updateUser(req, res) {
-        const updateableKeys = {
-            email: req.body.email,
-            //password: bcrypt.hashSync(req.body.password, 5),,
-            city: req.body.city,
-            street: req.body.street
-        };
-        const user = await User.findOne({ email: body.email });
 
+
+
+    static async updateUser(req, res) {
+
+        userid=req.params.id;
+        if (!mongoose.isValidObjectId(userid)) {
+            return res.status(400).send('Invalid user ID');
+        }
+        User.findOne({ email: req.body.email }).then(user=>{
+            if(user){
+                return res.status(404).json({ success: false, message: "Invalid Email - Did not Update" });//This means there is another user with the same email
+            }
+            else if(!req.body.email.isEmpty()){
+                Model.findByIdAndUpdate(userid, req.body.email);
+                res.status(200).json({ success: true, message: "Email Updated Successfully" });
+            }
+        })
+        if(!req.body.city.isEmpty()){
+            Model.findByIdAndUpdate(userid, req.body.city);
+            res.status(200).json({ success: true, message: "City Updated Successfully" });
+        }
+        else{
+            Model.findByIdAndUpdate(userid, user.city);
+            res.status(500).json({ success: false, message: "City left blank - Did not update" });
+        }
+        if(!req.body.street.isEmpty()){
+            Model.findByIdAndUpdate(userid, req.body.street);
+            res.status(404).json({ success: true, message: "Street Updated Successfully" });
+        }
+        else{
+            Model.findByIdAndUpdate(userid, user.street);
+            res.status(500).json({ success: false, message: "Street left blank - Did not update" });
+        }
+          
+        if(success.isEmpty())
+            return res.status(500).json({ message: "server error", error: err });
+        else
+        return;
+    }
         
         //I need to check the email's validation. check how or validated this. 2
         //params - req.params - how to find ID and check if user exists 1
         //findbyidandupdate - read about this 3
+
+        //steps: check if id is valid, then const { validationResult } = require('express-validator') read about the validation - check
+        //the new email is valid (if he changed it).
+        // pass all the parameters back
+        //mongoose replaceone - read
+        //findbyidandupdate - read
+        //update user with post node js - search this
         
-    
-      }
+
+
     // Login logic
     static async login(req, res) {
         const { email, password } = req.body;
