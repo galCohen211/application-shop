@@ -8,7 +8,7 @@ router.post(
     "/signup",
     check("firstName").notEmpty(),
     check("lastName").notEmpty(),
-    check("email").notEmpty(),
+    check("email").notEmpty().isEmail(),
     check("password").notEmpty(),
     check("city").notEmpty(),
     check("street").notEmpty(),
