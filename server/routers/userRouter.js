@@ -18,8 +18,7 @@ router.post(
 );
 
 router.get(
-    "/getUserById",
-    check("id").notEmpty(),
+    "/getUserById/:id",
     UserController.getUserById
 );
 

@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const { validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
 const SECRET = require('../routers/secret');
+const mongoose = require('mongoose');
 
 class UserController {
 
@@ -26,10 +27,7 @@ class UserController {
             gender: req.body.gender,
             birthDate: req.body.birthDate
         })
-        const validationErrors = validationResult(req);
-        if (!validationErrors.isEmpty()) {
-            return res.status(400).json({ errors: validationErrors.array() })
-        }
+        validateReqIsEmpty(req, res);
         const errors = [];
         const { email, birthDate } = req.body;
         await User.find({ email }).then(user => {
@@ -63,29 +61,16 @@ class UserController {
     }
 
     static async getUserById(req, res) {
-        UserController.validateReqIsEmpty(req, res);
-        let userId = req.body.id;
-        const errors = [];
-        let foundUser = null;
 
-        if (userId.length != 24) {
-            return res.status(400).json([{ id: "not valid" }]);
+        if (!mongoose.isValidObjectId(req.params.id)) {
+            return res.status(400).send('Invalid user ID');
         }
 
-        await User.findById(userId).then(user => {
-            if (!user) {
-                errors.push({ id: "unavailable" });
-            }
-            else {
-                foundUser = user;
-            }
-        })
-
-        if (Object.keys(errors).length > 0) {
-            return res.status(400).json(errors);
+        const user = await User.findById(req.params.id);
+        if (!user) {
+            return res.status(400).send('User ID not found');
         }
-
-        return res.status(200).json({ foundUser });
+        return res.status(200).json({ user });
     }
 
     // Get all users logic
