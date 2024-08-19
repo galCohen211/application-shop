@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const { validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
 const SECRET = require('../routers/secret');
+const mongoose = require('mongoose');
 
 class UserController {
 
@@ -80,6 +81,24 @@ class UserController {
         } else {
             return res.status(401).json({ success: false, message: 'Invalid password!' });
         }
+    }
+
+    // Delete user
+    static async deleteUser(req, res) {
+
+        if (!mongoose.isValidObjectId(req.params.id)) {
+            return res.status(400).send('Invalid user ID');
+        }
+        User.findByIdAndDelete( req.params.id ).then(user => {
+            if (user) {
+                return res.status(200).json({ success: true, message: "The user is deleted" });
+            }
+            else {
+                return res.status(404).json({ success: false, message: "User is not found" });
+            }
+        }).catch(err => {
+            return res.status(500).json({ message: "server error", error: err });
+        });
     }
 }
 
