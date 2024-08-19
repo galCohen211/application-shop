@@ -57,9 +57,25 @@ class UserController {
     // login
     // register
     // delete user
+
     // update user
+    //Where in the signature of the function do I add the word "function"?
+    static async updateUser(req, res) {
+        const updateableKeys = {
+            email: req.body.email,
+            //password: bcrypt.hashSync(req.body.password, 5),,
+            city: req.body.city,
+            street: req.body.street
+        };
+        const user = await User.findOne({ email: body.email });
 
-
+        
+        //I need to check the email's validation. check how or validated this. 2
+        //params - req.params - how to find ID and check if user exists 1
+        //findbyidandupdate - read about this 3
+        
+    
+      }
 }
 
 module.exports = UserController;
