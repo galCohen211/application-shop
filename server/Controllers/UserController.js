@@ -7,7 +7,16 @@ const mongoose = require('mongoose');
 
 class UserController {
 
-    // Sign up logic
+    // Validates that request error array is empty
+    static validateReqErrIsEmpty(req, res) {
+        const validationErrors = validationResult(req);
+        if (!validationErrors.isEmpty()) {
+            return res.status(400).json({ errors: validationErrors.array() });
+        }
+        return;
+    }
+
+    // Sign up
     static async signUp(req, res) {
         let newUser = new User({
             firstName: req.body.firstName,
@@ -19,10 +28,7 @@ class UserController {
             gender: req.body.gender,
             birthDate: req.body.birthDate
         })
-        const validationErrors = validationResult(req);
-        if (!validationErrors.isEmpty()) {
-            return res.status(400).json({ errors: validationErrors.array() })
-        }
+        validateReqErrIsEmpty(req, res);
         const errors = [];
         const { email, birthDate } = req.body;
         await User.find({ email }).then(user => {
@@ -55,13 +61,36 @@ class UserController {
         });
     }
 
-    // Login logic
+    // Get user by ID
+    static async getUserById(req, res) {
+
+        if (!mongoose.isValidObjectId(req.params.id)) {
+            return res.status(400).send('Invalid user ID');
+        }
+
+        const user = await User.findById(req.params.id);
+        if (!user) {
+            return res.status(400).send('User ID not found');
+        }
+        return res.status(200).json({ user });
+    }
+
+    // Get all users
+    static async getAllUsers(req, res) {
+        const users = await User.find({});
+        if (!users) {
+            return res.status(400).json("No users")
+        }
+        return res.status(200).json({ users });
+    }
+
+    // Login
     static async login(req, res) {
         const { email, password } = req.body;
         const user = await User.findOne({ email });
 
         if (!user) {
-            return res.status(404).json({ success: false, message: 'The user not found' });
+            return res.status(404).json({ success: false, message: 'User not found' });
         }
 
         if (user && bcrypt.compareSync(password, user.password)) {
@@ -83,9 +112,8 @@ class UserController {
         }
     }
 
-    // Update user logic
+    // Update user
     static async updateUser(req, res) {
-
         const userId = req.params.id;
         if (!mongoose.isValidObjectId(userId)) {
             return res.status(400).send('Invalid user ID');
@@ -93,7 +121,7 @@ class UserController {
         User.findOne({ email: req.body.email }).then(user => {
             if (user) {
                 // This means there is another user with the same email
-                return res.status(400).json({ success: false, message: "Invalid Email - Did not Update" });
+                return res.status(400).json({ success: false, message: "Invalid email. Did not update" });
             }
         });
         const validationErrors = validationResult(req);
@@ -117,7 +145,6 @@ class UserController {
 
     // Delete user
     static async deleteUser(req, res) {
-
         if (!mongoose.isValidObjectId(req.params.id)) {
             return res.status(400).send('Invalid user ID');
         }

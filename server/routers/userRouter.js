@@ -17,6 +17,16 @@ router.post(
     UserController.signUp
 );
 
+router.get(
+    "/getUserById/:id",
+    UserController.getUserById
+);
+
+router.get(
+    "/getAllUsers",
+    UserController.getAllUsers
+);
+
 // Login
 router.post("/login", UserController.login);
 
@@ -29,5 +39,6 @@ router.put("/:id",
     check("city").notEmpty(),
     check("street").notEmpty(),
      UserController.updateUser);
+
 
 module.exports = router;
