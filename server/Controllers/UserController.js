@@ -88,24 +88,13 @@ class UserController {
         return res.status(200).json({ foundUser });
     }
 
+    // Get all users logic
     static async getAllUsers(req, res) {
-        const errors = [];
-        let foundUsers = null;
-
-        await User.find({}).then(users => {
-            if (!users) {
-                errors.push({ users: "there are no users at all" });
-            }
-            else {
-                foundUsers = users;
-            }
-        })
-
-        if (Object.keys(errors).length > 0) {
-            return res.status(400).json(errors);
+        const users = await User.find({});
+        if (!users) {
+            return res.status(400).json("No users")
         }
-
-        return res.status(200).json({ foundUsers });
+        return res.status(200).json({ users });
     }
 }
 
