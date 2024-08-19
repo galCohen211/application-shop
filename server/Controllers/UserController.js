@@ -5,6 +5,14 @@ const SECRET = require('../routers/secret');
 
 class UserController {
 
+    static validateReqIsEmpty(req, res) {
+        const validationErrors = validationResult(req);
+        if (!validationErrors.isEmpty()) {
+            return res.status(400).json({ errors: validationErrors.array() });
+        }
+        return;
+    }
+
     // Sign up logic
     static async signUp(req, res) {
         let newUser = new User({
@@ -54,11 +62,29 @@ class UserController {
     }
 
     static async getUserById(req, res) {
-        let userId = req.body._id
-        const validationErrors = validationResult(req);
-        if (!validationErrors.isEmpty) { // maybe omit !
-            return res.status(400).json({ errors: validationErrors.array() })
+        UserController.validateReqIsEmpty(req, res);
+        let userId = req.body.id
+        const errors = [];
+        let foundUser = null;
+
+        if (userId.length != 24) {
+            return res.status(400).json([{ id: "not valid" }]);
         }
+
+        await User.findById(userId).then(user => {
+            if (!user) {
+                errors.push({ id: "unavailable" });
+            }
+            else {
+                foundUser = user;
+            }
+        })
+
+        if (Object.keys(errors).length > 0) {
+            return res.status(400).json(errors);
+        }
+
+        return res.status(200).json({ foundUser });
     }
 }
 

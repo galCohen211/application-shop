@@ -17,4 +17,10 @@ router.post(
     UserController.signUp
 );
 
+router.get(
+    "/getUserById",
+    check("id").notEmpty(),
+    UserController.getUserById
+);
+
 module.exports = router;
