@@ -20,39 +20,38 @@ class UserController {
         })
         const validationErrors = validationResult(req);
         if (!validationErrors.isEmpty()) {
-            return res.status(422).json({ errors: validationErrors.array() })
-        } else {
-            const errors = [];
-            const { email, birthDate } = req.body;
-            await User.find({ email }).then(user => {
-                if (user.length > 0) {
-                    errors.push({ email: "unavailable" });
-                }
-            })
-            const userDate = new Date(birthDate);
-            const currentDate = new Date();
-            if (currentDate < userDate) {
-                errors.push({ date: "unavailable" });
-            }
-            if (Object.keys(errors).length > 0) {
-                return res.status(422).json(errors);
-            }
-            newUser.save().then(user => {
-                const accessToken = jwt.sign(
-                    { userId: user.id, role: user.role },
-                    SECRET
-                );
-                res.status(200).send({
-                    firstName: user.firstName,
-                    lastName: user.lastName,
-                    city: user.city,
-                    street: user.street,
-                    gender: user.gender,
-                    role: user.role,
-                    accessToken
-                });
-            });
+            return res.status(400).json({ errors: validationErrors.array() })
         }
+        const errors = [];
+        const { email, birthDate } = req.body;
+        await User.find({ email }).then(user => {
+            if (user.length > 0) {
+                errors.push({ email: "unavailable" });
+            }
+        })
+        const userDate = new Date(birthDate);
+        const currentDate = new Date();
+        if (currentDate < userDate) {
+            errors.push({ date: "unavailable" });
+        }
+        if (Object.keys(errors).length > 0) {
+            return res.status(400).json(errors);
+        }
+        newUser.save().then(user => {
+            const accessToken = jwt.sign(
+                { userId: user.id, role: user.role },
+                SECRET
+            );
+            res.status(200).send({
+                firstName: user.firstName,
+                lastName: user.lastName,
+                city: user.city,
+                street: user.street,
+                gender: user.gender,
+                role: user.role,
+                accessToken
+            });
+        });
     }
 
     // login
