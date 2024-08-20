@@ -55,9 +55,43 @@ class BranchController {
   }
 
   //Update branch
-  static async updateBranch(req, res){
-    
-  }
+  static async updateBranch(req, res) {
+    const branchId = req.params.id;
+    const { city, street, coordinates } = req.body;
+
+    if (!mongoose.isValidObjectId(branchId)) {
+        return res.status(400).send('Invalid branch ID');
+    }
+
+    const validationErrors = validationResult(req);
+    if (!validationErrors.isEmpty()) {
+        return res.status(400).json({ errors: validationErrors.array() });
+    }
+
+    try {
+        const updateData = {
+            city: city || undefined,
+            street: street || undefined,
+            coordinates: coordinates || undefined
+        };
+
+        const branch = await Branch.findByIdAndUpdate(
+            branchId,
+            updateData,
+            { new: true }
+        );
+
+        if (!branch) {
+            return res.status(404).send('Branch not found');
+        }
+
+        res.status(200).json({ success: true, updatedBranch: branch });
+    } catch (err) {
+        console.error('Error updating branch:', err);
+        return res.status(500).json({ message: "Server error", error: err });
+    }
+}
+
 }
 
 module.exports = BranchController;
