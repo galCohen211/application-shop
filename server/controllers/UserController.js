@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const SECRET = require('../routers/secret');
 const mongoose = require('mongoose');
 
+
 class UserController {
 
     // Validates that request error array is empty
@@ -28,7 +29,10 @@ class UserController {
             gender: req.body.gender,
             birthDate: req.body.birthDate
         })
-        validateReqErrIsEmpty(req, res);
+        const validationErrors = validationResult(req);
+        if (!validationErrors.isEmpty()) {
+            return res.status(400).json({ errors: validationErrors.array() });
+        }
         const errors = [];
         const { email, birthDate } = req.body;
         await User.find({ email }).then(user => {

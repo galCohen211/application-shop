@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 const UserController = require('../controllers/UserController')
 const { check } = require("express-validator")
+const verifyToken = require("../middleware/verifyToken")
+const verifyAdminToken = require("../middleware/verifyAdminToken");
+
 
 // Sign up
 router.post(
@@ -24,6 +27,7 @@ router.get(
 
 router.get(
     "/getAllUsers",
+    verifyAdminToken,
     UserController.getAllUsers
 );
 
@@ -31,14 +35,17 @@ router.get(
 router.post("/login", UserController.login);
 
 // Delete user
-router.delete("/:id", UserController.deleteUser);
+router.delete(
+    "/:id",
+    verifyAdminToken,
+     UserController.deleteUser);
 
 // Update user
 router.put("/:id",
     check("email").notEmpty().isEmail(),
     check("city").notEmpty(),
     check("street").notEmpty(),
-     UserController.updateUser);
-
+    verifyToken,
+    UserController.updateUser);
 
 module.exports = router;
