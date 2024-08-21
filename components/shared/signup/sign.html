@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Login page | Style for you</title>
+    <link rel="stylesheet" href="sign.css">
+
+</head>
+<body>
+    <div class="container" id="container">
+        <div class="form-container sign-up">
+            <form>
+                <h1>Create Account</h1>
+                <input type="text" placeholder="First name*" id="firstName" required
+                pattern="[A-Za-z]+"
+                title="Please enter a valid first name.">
+                <input type="text" placeholder="Last name*" id="lasttName" required
+                pattern="[A-Za-z]+"
+                title="Please enter a valid first name.">
+                <input type="email" placeholder="Email*" id="email" required>
+                <input type="password" placeholder="Password*" id="password" required>
+                <p id="message">Password is <span id="strenght"></span></p>
+                <input type="text" placeholder="city*" id="city" required
+                pattern="[A-Za-z]+"
+                title="Please enter a valid city.">
+                <input type="street" placeholder="street*" id="street" required
+                pattern="[A-Za-z]+"
+                title="Please enter a valid street.">
+                <input type="text" placeholder="gender*" id="gender" required
+                pattern="male|female|other"
+                title="Please enter a gender (male, female, other).">
+                <input type="date" placeholder="Birthdate*" id="birthdate" required>
+                <button>Sign Up</button>
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form>
+                <h1>Sign In</h1>
+                <input type="email" placeholder="Email">
+                <input type="password" placeholder="Password">
+                <a href="#">Forget Your Password?</a>
+                <button>Sign In</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome Back to Style for you!</h1>
+                    <p>Enter your personal details and let Style for You guide your fashion journey</p>
+                    <button class="hidden" id="login">Sign In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Register with your personal details to get personalized style from Style for You</p>
+                    <button class="hidden" id="register">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="sign.js"></script>
+</body>
+</html>
