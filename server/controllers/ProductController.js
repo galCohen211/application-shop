@@ -39,7 +39,7 @@ class ProductController {
             return res.status(400).json({ errors: errors.array() });
         }
 
-        const mainImageUrl = `${req.protocol}://${req.get("host")}/uploads/${mainImage.filename}`;
+        const mainImageUrl = `${req.protocol}://${req.get("host")}/server/uploads/${mainImage.filename}`;
 
         let product = new Product({
             name: req.body.name,
@@ -85,6 +85,63 @@ class ProductController {
             }
         }
         res.status(200).send({ message: "Product and associated image deleted successfully", product });
+    }
+
+    // Update product
+    static async updateProduct(req, res) {
+
+        const productId = req.params.id;
+
+        // Check if the product exists
+        const existingProduct = await Product.findById(productId);
+        if (!existingProduct) {
+            return res.status(404).send("Product not found");
+        }
+
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+
+        // Handle image uploads and deletions
+        let mainImageUrl = existingProduct.imagePath;
+
+        // Determine which images should be deleted
+        const existingImages = req.body.existingImages ? req.body.existingImages.split(",") : [];
+
+        // Delete the old main image if a new one is uploaded
+        if (req.files["imagePath"]) {
+            const mainImage = req.files["imagePath"][0];
+
+            // Delete the old main image from the uploads directory
+            if (existingProduct.imagePath && !existingImages.includes(existingProduct.imagePath)) {
+                const oldMainImagePath = path.join(__dirname, "../uploads", path.basename(existingProduct.imagePath));
+                if (fs.existsSync(oldMainImagePath)) {
+                    fs.unlinkSync(oldMainImagePath);
+                }
+            }
+
+            mainImageUrl = `${req.protocol}://${req.get("host")}/server/uploads/${mainImage.filename}`;
+        }
+
+        const updatedProduct = await Product.findByIdAndUpdate(
+            productId,
+            {
+                name: req.body.name || existingProduct.name,
+                category: req.body.category || existingProduct.category,
+                price: req.body.price || existingProduct.price,
+                brand: req.body.brand || existingProduct.brand,
+                size: req.body.size || existingProduct.size,
+                color: req.body.color || existingProduct.color,
+                quantity: req.body.quantity || existingProduct.quantity,
+                imagePath: mainImageUrl
+            },
+            { new: true }
+        )
+
+        if (!updatedProduct) return res.status(500).send("The product cannot be updated");
+        res.status(200).send(updatedProduct);
     }
 }
 

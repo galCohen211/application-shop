@@ -46,6 +46,37 @@ router.post(
     ProductController.addProduct
 );
 
+// Update product
+router.put(
+    "/:id",
+    upload.fields([
+        { name: "imagePath", maxCount: 1 },
+    ]),
+    verifyAdminToken,
+    check("name")
+        .notEmpty()
+        .isString(),
+    check("category")
+        .notEmpty()
+        .isString(),
+    check("price")
+        .notEmpty()
+        .isNumeric(),
+    check("brand")
+        .notEmpty()
+        .isString(),
+    check("size")
+        .notEmpty()
+        .isString(),
+    check("color")
+        .notEmpty()
+        .isString(),
+    check("quantity")
+        .notEmpty()
+        .isNumeric(),
+    ProductController.updateProduct
+);
+
 // Delete product
 router.delete("/:id", verifyAdminToken, ProductController.deleteProduct);
 
