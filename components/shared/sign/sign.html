@@ -20,15 +20,15 @@
             placeholder="First name*"
             id="firstName"
             required
-            pattern="[A-Za-z]+"
+            pattern="[A-Za-z\s]+"
             title="Please enter a valid first name."
           />
           <input
             type="text"
             placeholder="Last name*"
-            id="lasttName"
+            id="lastName"
             required
-            pattern="[A-Za-z]+"
+            pattern="[A-Za-z\s]+"
             title="Please enter a valid first name."
           />
           <input type="email" placeholder="Email*" id="email" required />
@@ -44,15 +44,15 @@
             placeholder="City*"
             id="city"
             required
-            pattern="[A-Za-z]+"
+            pattern="[A-Za-z\s]+"
             title="Please enter a valid city."
           />
           <input
-            type="street"
+            type="text"
             placeholder="Street*"
             id="street"
             required
-            pattern="[A-Za-z]+"
+            pattern="[A-Za-z0-9\s]+"
             title="Please enter a valid street."
           />
           <input
@@ -64,16 +64,16 @@
             title="Please enter a gender (male, female, other)."
           />
           <input type="date" placeholder="Birthdate*" id="birthdate" required />
-          <button>Sign Up</button>
+          <button id="sign-up-btn">Sign Up</button>
         </form>
       </div>
       <div class="form-container sign-in">
         <form>
           <h1>Sign In</h1>
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
+          <input type="email" placeholder="Email" id="email-sign-in" required/>
+          <input type="password" placeholder="Password" id="password-sign-in" required/>
           <a href="#">Forgot Your Password?</a>
-          <button>Sign In</button>
+          <button id="sign-in-btn">Sign In</button>
         </form>
       </div>
       <div class="toggle-container">
