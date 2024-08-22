@@ -12,25 +12,25 @@ class ProductController {
         res.status(200).send(products);
     }
 
-    // Get products by category
-    static getProductsByCategory(req, res) {
-        Product.find({ category: req.params.category })
-            .then(data => res.send(data))
-            .catch(err => console.log(err));
-    }
+    // Get products by category, brand, or size
+    static getProductsByField(req, res) {
+        const { category, brand, size } = req.query;
+        let filter = {};
 
-    // Get products by brand
-    static getProductsByBrand(req, res) {
-        Product.find({ brand: req.params.brand })
-            .then(data => res.send(data))
-            .catch(err => console.log(err));
-    }
+        if (category) {
+            filter.category = category;
+        } else if (brand) {
+            filter.brand = brand;
+        } else if (size) {
+            filter.size = size;
+        }
 
-    // Get products by size
-    static getProductsBySize(req, res) {
-        Product.find({ size: req.params.size })
+        Product.find(filter)
             .then(data => res.send(data))
-            .catch(err => console.log(err));
+            .catch(err => {
+                console.error(err);
+                res.status(500).send("Error retrieving products");
+            });
     }
 
     // Add a new product

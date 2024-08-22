@@ -3,7 +3,6 @@ const { check } = require("express-validator")
 const ProductController = require("../controllers/ProductController");
 const upload = require('../multer');
 
-const verifyToken = require("../middleware/verifyToken")
 const verifyAdminToken = require("../middleware/verifyAdminToken");
 
 const router = express.Router();
@@ -11,14 +10,9 @@ const router = express.Router();
 // Get all products
 router.get("/", ProductController.getAllProducts);
 
-// Get products by category
-router.get("/:category", ProductController.getProductsByCategory);
+// Get products by field
+router.get("/field", ProductController.getProductsByField);
 
-// Get products by brand
-router.get("/:brand", ProductController.getProductsByCategory);
-
-// Get products by size
-router.get("/:size", ProductController.getProductsByCategory);
 
 //Add product
 router.post(

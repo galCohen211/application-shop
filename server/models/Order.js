@@ -6,6 +6,7 @@ const OrderSchema = mongoose.Schema({
   city: String,
   street: String,
   dateOrdered: Date,
+  creditcard: String
 });
 
 module.exports = mongoose.model("Order", OrderSchema);
