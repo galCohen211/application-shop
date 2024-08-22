@@ -4,7 +4,7 @@ body {
     overflow-x: hidden;
 }
 
-.logo {
+/* .logo {
     width: 200px;
     display: block;
 }
@@ -43,7 +43,7 @@ body {
 .nav-links a:hover {
     color: gray;
     text-decoration: none;
-}
+} */
 
 /* Popup box */
 
