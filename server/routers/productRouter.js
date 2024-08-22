@@ -1,6 +1,6 @@
 const express = require("express");
 const { check } = require("express-validator")
-const ProductController = require("../Controllers/ProductController");
+const ProductController = require("../controllers/ProductController");
 const upload = require('../multer');
 
 const verifyToken = require("../middleware/verifyToken")
@@ -14,6 +14,11 @@ router.get("/", ProductController.getAllProducts);
 // Get products by category
 router.get("/:category", ProductController.getProductsByCategory);
 
+// Get products by brand
+router.get("/:brand", ProductController.getProductsByCategory);
+
+// Get products by size
+router.get("/:size", ProductController.getProductsByCategory);
 
 //Add product
 router.post(
@@ -43,6 +48,9 @@ router.post(
     check("quantity")
         .notEmpty()
         .isNumeric(),
+    check("gender")
+        .notEmpty()
+        .isString(),
     ProductController.addProduct
 );
 
@@ -74,12 +82,13 @@ router.put(
     check("quantity")
         .notEmpty()
         .isNumeric(),
+    check("gender")
+        .notEmpty()
+        .isString(),
     ProductController.updateProduct
 );
 
 // Delete product
 router.delete("/:id", verifyAdminToken, ProductController.deleteProduct);
-
-
 
 module.exports = router;

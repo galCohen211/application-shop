@@ -19,6 +19,20 @@ class ProductController {
             .catch(err => console.log(err));
     }
 
+    // Get products by brand
+    static getProductsByBrand(req, res) {
+        Product.find({ brand: req.params.brand })
+            .then(data => res.send(data))
+            .catch(err => console.log(err));
+    }
+
+    // Get products by size
+    static getProductsBySize(req, res) {
+        Product.find({ size: req.params.size })
+            .then(data => res.send(data))
+            .catch(err => console.log(err));
+    }
+
     // Add a new product
     static async addProduct(req, res) {
 
@@ -49,6 +63,7 @@ class ProductController {
             size: req.body.size,
             color: req.body.color,
             quantity: req.body.quantity,
+            gender: req.body.gender,
             imagePath: mainImageUrl
         });
 
@@ -135,6 +150,7 @@ class ProductController {
                 size: req.body.size || existingProduct.size,
                 color: req.body.color || existingProduct.color,
                 quantity: req.body.quantity || existingProduct.quantity,
+                gender: req.body.gender || existingProduct.gender,
                 imagePath: mainImageUrl
             },
             { new: true }

@@ -7,6 +7,7 @@ const ProductSchema = mongoose.Schema({
   size: String,
   color: String,
   quantity: Number,
+  gender: String,
   imagePath: String
 });
 
