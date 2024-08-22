@@ -1,0 +1,140 @@
+/* General */
+body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.logo {
+    width: 200px;
+    display: block;
+}
+
+.nav-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 20px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+    position: relative;
+}
+
+/* Left section */
+.left-section {
+    flex-grow: 1;
+}
+
+.left-section .nav-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 35px;
+}
+
+.left-section .nav-menu ul li a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.left-section .nav-menu ul li a:hover {
+    color: gray;
+}
+
+/* Right section */
+.right-section {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.right-section .nav-icons ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 35px;
+}
+
+.right-section .nav-icons ul li a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.right-section .nav-icons ul li a i {
+    margin-right: 5px;
+}
+
+.right-section .nav-icons ul li a:hover {
+    color: gray;
+}
+
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .header {
+        padding: 15px 10px;
+    }
+
+    .nav-logo {
+        position: relative;
+        left: 0;
+        transform: none;
+        margin: 0 auto;
+    }
+
+    .left-section, .right-section {
+        flex-grow: 1;
+    }
+
+    .left-section .nav-menu ul, .right-section .nav-icons ul {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-logo {
+        position: static;
+        margin-bottom: 20px;
+        align-self: center;
+    }
+
+    .left-section, .right-section {
+        width: 100%;
+        display: block;
+    }
+
+    .left-section .nav-menu ul,
+    .right-section .nav-icons ul {
+        flex-direction: column;
+        gap: 20px;
+        text-align: left;
+    }
+
+    .left-section .nav-menu ul li,
+    .right-section .nav-icons ul li {
+        text-align: left;
+    }
+
+    .right-section {
+        margin-top: 20px;
+    }
+}
