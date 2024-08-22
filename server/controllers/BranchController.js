@@ -17,7 +17,7 @@ class BranchController {
     if (existingBranch) {
       return res.status(400).json({ message: "Branch already exists" });
     }
-    
+
     const validationErrors = validationResult(req);
     if (!validationErrors.isEmpty()) {
       return res.status(400).json({ errors: validationErrors.array() });
