@@ -19,7 +19,7 @@ class CartController {
                 });
             } else {
                 CartItem.find({ cart: cart._id })
-                    .populate("product").then((cartItems) => {
+                    .then((cartItems) => {
                         res.send({ cart, cartItems });
                     }).catch((err) => {
                         throw err;
@@ -47,6 +47,10 @@ class CartController {
 
             if (productDoc.quantity < amount) {
                 return res.status(400).send({ error: "Not enough product quantity available" });
+            }
+
+            if (amount <= 0) {
+                return res.status(400).send({error: "amount should be bigger than 0"})
             }
 
             // Check if the product is already in the user's cart

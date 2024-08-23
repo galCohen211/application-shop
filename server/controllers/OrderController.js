@@ -17,7 +17,7 @@ class OrderController {
     // Get user orders
     static async getUserOrders(req, res) {
         const userOrderHistory = await Order.find({ user: req.params.id })
-            .populate({ path: 'cart', populate: { path: 'product' } })
+            .populate({ path: 'cart' })
             .sort({ 'dateOrdered': -1 })
 
         res.send({ amount: userOrderHistory.length, data: userOrderHistory })
