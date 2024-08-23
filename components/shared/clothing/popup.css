@@ -4,47 +4,6 @@ body {
     overflow-x: hidden;
 }
 
-/* .logo {
-    width: 200px;
-    display: block;
-}
-
-.navbar {
-    border-bottom: 1px solid #ddd;
-}
-
-.nav {
-    align-items: center;
-    margin-left: 10px;
-    background-color: #fff;
-    position: relative;
-    height: 70px;
-}
-
-.nav-logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 28%;
-}
-
-.nav-links {
-    display: flex;
-    column-gap: 30px;
-    font-size: 20px;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: #000;
-    font-weight: bold;
-}
-
-.nav-links a:hover {
-    color: gray;
-    text-decoration: none;
-} */
-
 /* Popup box */
 
 .content {

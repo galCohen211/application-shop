@@ -59,12 +59,10 @@
 
 .women-items {
     float: left;
-    text-align: left;
-    
+    text-align: left;   
 }
 
 .men-items {
     float: right;
     text-align: right;
-
 }
