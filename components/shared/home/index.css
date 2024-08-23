@@ -1,0 +1,70 @@
+.background-image {
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1; /* Make sure it stays behind other content */
+    user-select: none;
+}
+
+#background-video {
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+    z-index: -1; /* Make sure it stays behind other content */
+}
+
+.text-over-background {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    font-size: 55px;
+    color: #ffffff;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.subtitle-container {
+    display: flex;
+    justify-content: center;
+    gap: 250px;
+    margin-top: 20px;
+}
+
+.subtitle {
+    font-size: 22px;
+    margin-top: 10px;
+}
+
+.subtitle a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.subtitle a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.women-items {
+    float: left;
+    text-align: left;
+    
+}
+
+.men-items {
+    float: right;
+    text-align: right;
+
+}
