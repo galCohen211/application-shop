@@ -52,7 +52,6 @@ function passwordValidation() {
 document
   .getElementById("sign-in-btn")
   .addEventListener("click", async function (event) {
-
     event.preventDefault();
     const email = document.getElementById("email-sign-in").value;
     const password = document.getElementById("password-sign-in").value;
@@ -73,6 +72,7 @@ document
     if (response.ok) {
       const data = await response.json();
       console.log("Login successful:", data);
+      window.location.href = "../../../html/index.html";
     } else {
       console.log("Login failed");
     }
@@ -80,47 +80,46 @@ document
 
 //Fetch to the register
 
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function () {
   document
-  .getElementById("sign-up-btn")
-  .addEventListener("click", async function () {
-    const firstName = document.getElementById("firstName").value;
-    const lastName = document.getElementById("lastName").value;
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const city = document.getElementById("city").value;
-    const street = document.getElementById("street").value;
-    const gender = document.getElementById("gender").value;
-    const birthDate = document.getElementById("birthdate").value;
+    .getElementById("sign-up-btn")
+    .addEventListener("click", async function () {
+      const firstName = document.getElementById("firstName").value;
+      const lastName = document.getElementById("lastName").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const city = document.getElementById("city").value;
+      const street = document.getElementById("street").value;
+      const gender = document.getElementById("gender").value;
+      const birthDate = document.getElementById("birthdate").value;
 
-    const registerData = {
-      firstName,
-      lastName,
-      email,
-      password,
-      city,
-      street,
-      gender,
-      birthDate
-    };
-    
-    const response = await fetch("http://localhost:4000/users/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(registerData),
+      const registerData = {
+        firstName,
+        lastName,
+        email,
+        password,
+        city,
+        street,
+        gender,
+        birthDate,
+      };
+
+      const response = await fetch("http://localhost:4000/users/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(registerData),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Register successful:", data);
+      } else {
+        console.log("Register failed");
+      }
     });
-
-    if (response.ok) {
-      const data = await response.json();
-      console.log("Register successful:", data);
-    } else {
-      console.log("Register failed");
-    }
-  });
-})
-
+});
 
 document.addEventListener("DOMContentLoaded", setMaxDate);
 document.addEventListener("DOMContentLoaded", passwordValidation);
