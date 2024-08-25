@@ -1,4 +1,4 @@
-//Generally about this file: This will make the popup appear once every session.
+// Generally about this file: This will make the popup appear once every session.
 
 // This function shows the popup on screen
 function showPopup() {

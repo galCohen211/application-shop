@@ -1,5 +1,5 @@
 // Apply header.html file into the pages
-fetch('header.html')
+fetch('../../guest/header/header.html')
     .then(response => response.text())
     .then(data => {
         document.getElementById('header').innerHTML = data;

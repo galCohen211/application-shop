@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Style For You - WOMEN</title>
-    <link rel="stylesheet" href="../css/general.css" />
-    <link rel="stylesheet" href="../css/clothing.css" />
+    <title>Style For You - MEN</title>
+    <link rel="stylesheet" href="../../guest/header/header.css" />
+    <link rel="stylesheet" href="../clothing/clothing.css" />
+    <link rel="stylesheet" href="../clothing/popup.css" />
     <!-- Bootstrap -->
     <link
       rel="stylesheet"
@@ -19,8 +19,9 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    <link rel="icon" href="../assets/images/general/app-icon.ico" type="image/x-icon">
+    <link rel="icon" href="../../../assets/images/general/app-icon.ico" type="image/x-icon">
   </head>
+
   <body>
     <div id="header"></div>
 
@@ -32,7 +33,7 @@
         <i class="fas fa-times"></i>
       </button>
     </div>
-    <h1>Women</h1>
+    <h1>Men</h1>
 
     <div class="main-top-images">
         <div class="col-sm-12 col-md-2">
@@ -41,9 +42,9 @@
             <div class="dropdown">
               <button class="dropdown-label" onclick="openMenu(event)">
                 Brand
-                <span class="dropdown-arrow"
-                  ><i class="fas fa-chevron-down"></i
-                ></span>
+                <span class="dropdown-arrow">
+                  <i class="fas fa-chevron-down"></i>
+                </span>
               </button>
               <ul class="dropdown-list">
                 <li>
@@ -114,60 +115,54 @@
           <div class="grid-columns">
             <div class="product">
               <div class="img-top-images">
-                <img src="../assets/images/women/shirt.png" alt="LADIES' Shirt - WHITE" />
+                <img src="../../../assets/images/men/jacket.png" alt="MENS' Jacket - Black" />
               </div>
-              <h2>LADIES' Shirt - WHITE</h2>
-              <p>Size: 34,36</p>
-              <p>$58.00 USD</p>
+              <h2>MENS' Jacket - Black</h2>
+              <p>Size: 38,40</p>
+              <p>$57.00 USD</p>
             </div>
             <div class="product">
               <div class="img-top-images">
-                <img
-                  src="../assets/images/women/jacket.png"
-                  alt="LADIES' JACKET - BLACK"
-                />
+                <img src="../../../assets/images/men/shirt.png" alt="MENS' Shirt - Navy" />
               </div>
-              <h2>LADIES' JACKET - BLACK</h2>
-              <p>Size: 34,36,38</p>
-              <p>$133.00 USD</p>
+              <h2>MENS' Shirt - Navy</h2>
+              <p>Size: 38,40,42</p>
+              <p>$120.00 USD</p>
             </div>
             <div class="product">
               <div class="img-top-images">
-                <img src="../assets/images/women/shirt.png" alt="LADIES' Shirt - WHITE" />
+                <img src="../../../assets/images/men/jacket.png" alt="MENS' Jacket - Black" />
               </div>
-              <h2>LADIES' Shirt - WHITE</h2>
-              <p>Size: 34,36</p>
-              <p>$58.00 USD</p>
+              <h2>MENS' Jacket - Black</h2>
+              <p>Size: 38,40</p>
+              <p>$57.00 USD</p>
             </div>
             <div class="product">
               <div class="img-top-images">
-                <img
-                  src="../assets/images/women/jacket.png"
-                  alt="LADIES' JACKET - BLACK"
-                />
+                <img src="../../../assets/images/men/shirt.png" alt="MENS' Shirt - Navy" />
               </div>
-              <h2>LADIES' JACKET - BLACK</h2>
-              <p>Size: 34,36,38</p>
-              <p>$133.00 USD</p>
+              <h2>MENS' Shirt - Navy</h2>
+              <p>Size: 38,40,42</p>
+              <p>$120.00 USD</p>
             </div>
           </div>
         </div>
-
-      <!-- Popup Modal -->
-      <div id="popup" class="popup">
-        <div class="popup-content">
-            <span class="close">&times;</span>
-            <h2>Special Offer!</h2>
-            <p>Get 20% off your first purchase. Signup and get started!!</p>
-            <p id="timer">Offer expires in: 
-                <br>
-                <span id="countdown"></span></p>
-        </div>
-      </div>
-
-    <script src="../js/popup.js"></script>
-    <script src="../js/clothing.js"></script>
-    <script src="../js/general.js"></script>
     </div>
-  </body>
+
+    <!-- Popup Modal -->
+    <div id="popup" class="popup">
+      <div class="popup-content">
+          <span class="close">&times;</span>
+          <h2>Special Offer!</h2>
+          <p>Get 20% off your first purchase. Signup and get started!!</p>
+          <p id="timer">Offer expires in: 
+              <br>
+              <span id="countdown"></span></p>
+      </div>
+    </div>
+    <script src="../../guest/header/header.js"></script>
+    <script src="../clothing/clothing.js"></script>
+    <script src="../clothing/popup.js"></script>
+</body>
+  
 </html>
