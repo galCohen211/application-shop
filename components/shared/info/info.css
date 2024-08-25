@@ -99,6 +99,7 @@ img {
 .row p {
     text-align: left;
     margin-left: 20px;
+    width: 85%;
 }
 
 .column {
