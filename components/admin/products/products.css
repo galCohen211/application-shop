@@ -109,3 +109,29 @@
 .delete-btn i:hover {
     color: #fff; /* Ensure the icon color changes for better visibility */
 }
+
+
+/* Search Box */
+
+.search-product {
+    width: 300px;
+    margin: 20px 50px 40px; 
+}
+
+/* Search Box Input Styling */
+.search-box {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none; /* Removes the default outline when the input is focused */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition on focus */
+}
+
+/* Search Box Focus State */
+.search-box:focus {
+    border-color: #808992; /* Changes border color on focus */
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.6); /* Adds glow effect on focus */
+}
