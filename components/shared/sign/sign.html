@@ -60,8 +60,8 @@
             placeholder="Gender*"
             id="gender"
             required
-            pattern="male|female|other"
-            title="Please enter a gender (male, female, other)."
+            pattern="Male|Female"
+            title="Please enter a gender (Male, Female)."
           />
           <input type="date" placeholder="Birthdate*" id="birthdate" required />
           <button id="sign-up-btn">Sign Up</button>
@@ -74,6 +74,7 @@
           <input type="password" placeholder="Password" id="password-sign-in" required/>
           <a href="#">Forgot Your Password?</a>
           <button id="sign-in-btn">Sign In</button>
+          <p id="error-message" >Invalid email or password.</p>
         </form>
       </div>
       <div class="toggle-container">

@@ -61,20 +61,30 @@ document
       password: password,
     };
 
-    const response = await fetch("http://localhost:4000/users/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(loginData),
-    });
+    try {
+      const response = await fetch("http://localhost:4000/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginData),
+      });
 
-    if (response.ok) {
-      const data = await response.json();
-      console.log("Login successful:", data);
-      window.location.href = "../../../html/index.html";
-    } else {
-      console.log("Login failed");
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Login successful:", data);
+        window.location.href = "../../../html/index.html";
+      } else {
+        const errorMessage = document.getElementById("error-message");
+        errorMessage.style.display = "block";
+        errorMessage.textContent = "Invalid email or password.";
+        console.log("Login failed");
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+      const errorMessage = document.getElementById("error-message");
+      errorMessage.style.display = "block";
+      errorMessage.textContent = "An error occurred. Please try again.";
     }
   });
 

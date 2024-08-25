@@ -206,6 +206,10 @@ body{
     display: none;
 }
 
+#error-message{
+    color: red;
+    display: none;
+}
 
 
 
