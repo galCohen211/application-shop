@@ -1,0 +1,111 @@
+
+/* Table Container */
+.container {
+    overflow-x: auto;
+}
+
+/* Responsive Table Styling */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.table th,
+.table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #f4f4f4;
+}
+
+/* Responsive Design for Small Screens */
+@media (max-width: 768px) {
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    .table thead {
+        display: none;
+    }
+
+    .table tbody,
+    .table tr,
+    .table td {
+        display: block;
+        width: 100%;
+    }
+
+    .table td {
+        text-align: center;
+        position: relative;
+        padding-left: 50%;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 45%;
+        padding-left: 10px;
+        font-weight: bold;
+        text-align: center;
+
+    }
+}
+
+/* Button Container */
+.button-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+.delete-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-btn i,
+.delete-btn i {
+    font-size: 20px;
+}
+
+/* Button Hover Effects */
+.btn:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+.add-btn:hover {
+    background-color: #218838; /* Darker green for hover */
+}
+
+.delete-btn:hover {
+    background-color: #c82333; /* Darker red for hover */
+}
+
+/* Icon Hover Effect */
+.add-btn i:hover,
+.delete-btn i:hover {
+    color: #fff; /* Ensure the icon color changes for better visibility */
+}
