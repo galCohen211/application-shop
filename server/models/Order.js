@@ -5,7 +5,8 @@ const OrderSchema = mongoose.Schema({
   totalPrice: Number,
   city: String,
   street: String,
-  dateOrdered: Date,
+  dateOrdered: String,
+  creditcard: String
 });
 
 module.exports = mongoose.model("Order", OrderSchema);
