@@ -109,6 +109,10 @@ body {
     margin-right: 10px;
 }
 
+.right-section .nav-icons a {
+        cursor: pointer;
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
     .header {
