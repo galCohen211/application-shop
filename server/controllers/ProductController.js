@@ -17,14 +17,18 @@ class ProductController {
         const { category, brand, size } = req.query;
         let filter = {};
 
+        // Add filters based on the presence of query parameters
         if (category) {
             filter.category = category;
-        } else if (brand) {
+        }
+        if (brand) {
             filter.brand = brand;
-        } else if (size) {
+        }
+        if (size) {
             filter.size = size;
         }
 
+        // Find products based on the constructed filter
         Product.find(filter)
             .then(data => res.send(data))
             .catch(err => {
