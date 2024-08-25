@@ -211,6 +211,27 @@ body{
     display: none;
 }
 
+.home-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+    border: none;
+    color: #333;
+    font-size: 16px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.home-button i {
+    margin-right: 5px;
+}
+
+.home-button:hover {
+    color: #b88e7b;
+}
+
 
 
 

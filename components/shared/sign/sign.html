@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="sign.css" />
   </head>
   <body>
+    <a href="../../shared/home/index.html" class="home-button">
+      <i class="fas fa-home"></i> Home
+    </a>
     <div class="container" id="container">
       <div class="form-container sign-up">
         <form>
@@ -70,11 +73,16 @@
       <div class="form-container sign-in">
         <form>
           <h1>Sign In</h1>
-          <input type="email" placeholder="Email" id="email-sign-in" required/>
-          <input type="password" placeholder="Password" id="password-sign-in" required/>
+          <input type="email" placeholder="Email" id="email-sign-in" required />
+          <input
+            type="password"
+            placeholder="Password"
+            id="password-sign-in"
+            required
+          />
           <a href="#">Forgot Your Password?</a>
           <button id="sign-in-btn">Sign In</button>
-          <p id="error-message" >Invalid email or password.</p>
+          <p id="error-message">Invalid email or password.</p>
         </form>
       </div>
       <div class="toggle-container">
@@ -98,7 +106,6 @@
         </div>
       </div>
     </div>
-
     <script src="sign.js"></script>
   </body>
 </html>
