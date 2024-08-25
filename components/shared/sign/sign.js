@@ -73,6 +73,9 @@ document
       if (response.ok) {
         const data = await response.json();
         console.log("Login successful:", data);
+        localStorage.setItem('role', data.role);
+        localStorage.setItem('accessToken', data.accessToken);
+        console.log("role:", data.role);
         window.location.href = "../../../html/index.html";
       } else {
         const errorMessage = document.getElementById("error-message");
