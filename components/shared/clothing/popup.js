@@ -13,7 +13,7 @@ function showPopup() {
         // Set session storage to indicate the popup has been shown this session
         sessionStorage.setItem('popupShown', 'true');
     } else {
-        console.log("Popup will not be displayed because it has already been shown this session");
+        console.log("Popup has already been shown this session");
     }
 }
 
