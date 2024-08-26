@@ -82,6 +82,9 @@ router.put(
     ProductController.updateProduct
 );
 
+// Search product
+router.get("/search", ProductController.searchProduct);
+
 // Delete product
 router.delete("/:id", verifyAdminToken, ProductController.deleteProduct);
 

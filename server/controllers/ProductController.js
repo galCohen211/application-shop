@@ -57,6 +57,12 @@ class ProductController {
             return res.status(400).json({ errors: errors.array() });
         }
 
+        let fileName = mainImage.filename;
+        // Replace ':' with '_'
+        fileName = fileName.replace(/:/g, '_');
+
+        // Remove the first '.png'
+        fileName = fileName.replace('.png', '');
         const mainImageUrl = `${req.protocol}://${req.get("host")}/server/uploads/${mainImage.filename}`;
 
         let product = new Product({
@@ -141,7 +147,14 @@ class ProductController {
                 }
             }
 
-            mainImageUrl = `${req.protocol}://${req.get("host")}/server/uploads/${mainImage.filename}`;
+            let fileName = mainImage.filename;
+            // Replace ':' with '_'
+            fileName = fileName.replace(/:/g, '_');
+
+            // Remove the first '.png'
+            fileName = fileName.replace('.png', '');
+
+            mainImageUrl = `${req.protocol}://${req.get("host")}/server/uploads/${fileName}`;
         }
 
         const updatedProduct = await Product.findByIdAndUpdate(
@@ -162,6 +175,31 @@ class ProductController {
 
         if (!updatedProduct) return res.status(500).send("The product cannot be updated");
         res.status(200).send(updatedProduct);
+    }
+
+    // Search product by name
+    static async searchProduct(req, res) {
+        const { name } = req.query;
+
+        if (!name) {
+            return res.status(400).send("Product name is required");
+        }
+
+        try {
+            // Use regex to perform a case-insensitive search
+            const products = await Product.find({
+                name: { $regex: name, $options: "i" }
+            });
+
+            if (products.length === 0) {
+                return res.status(404).send("No products found");
+            }
+
+            res.status(200).send(products);
+        } catch (err) {
+            console.error(err);
+            res.status(500).send("Error occurred while searching for products");
+        }
     }
 }
 
