@@ -21,7 +21,7 @@ router.post(
 );
 
 router.get(
-    "/getUserById/:id",
+    "/:id",
     UserController.getUserById
 );
 

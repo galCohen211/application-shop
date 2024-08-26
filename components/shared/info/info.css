@@ -12,10 +12,10 @@ img {
     background-color: #333;
     color: #fff;
     text-align: center;
-    position: fixed;
     bottom: 0;
     width: 100%;
-    margin-left: -10px;
+    padding: 10px 0;
+    box-sizing: border-box;
 }
 
 .footer-content {
@@ -24,7 +24,8 @@ img {
 }
 
 .footer p {
-    margin: 8px 0;
+    margin-top: 8px;
+    margin-bottom: 0px;
 }
 
 /* Base styling for the link and button */
@@ -98,6 +99,7 @@ img {
 .row p {
     text-align: left;
     margin-left: 20px;
+    width: 85%;
 }
 
 .column {
