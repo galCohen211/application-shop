@@ -8,8 +8,7 @@ function headerHtml () {
     });
 }
 
-
-function tableView(){
+function tableView () {
     const rowsPerPage = 4; // Number of rows per page
     const rows = $('#main-table tbody tr');
     const rowsCount = rows.length;
@@ -74,10 +73,7 @@ async function getAllProductTable(){
                     tableBody.append(productRow);  // Add the new row to the table
                 });
             }
-        
-            // Call the function to add the products to the table
             addProductsToTable(response);
-        
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.error("Error fetching data:", textStatus, errorThrown);
@@ -86,7 +82,29 @@ async function getAllProductTable(){
     return result;  
 }
 
-//Paging with numbers:
+//Popup
+const plusButton = document.getElementById('plusButton');
+const closePopupBtn = document.getElementById('closePopup');
+
+// Open popup when the plus button is clicked
+plusButton.addEventListener('click', function() {
+    popupForm.style.display = 'flex';  // Use flexbox to center the popup
+});
+
+// Close popup when the close button (X) is clicked
+closePopupBtn.addEventListener('click', function() {
+    popupForm.style.display = 'none';
+});
+
+// Close popup when clicking outside of the popup content
+window.addEventListener('click', function(event) {
+    if (event.target === popupForm) {
+        popupForm.style.display = 'none';
+    }
+});
+
+
+
 $(document).ready(async function () {
     headerHtml();
     await getAllProductTable();

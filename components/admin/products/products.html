@@ -53,13 +53,55 @@
         </div>
     </div>
     <div class="button-container fixed-bottom d-flex justify-content-end p-3">
-        <button class="btn add-btn mr-2">
+        <button id= "plusButton" class="btn add-btn mr-2">
             <i class="bi bi-plus"></i>
         </button>
         <button class="btn delete-btn">
             <i class="bi bi-trash"></i>
         </button>
     </div>
+<!-- The Popup Form -->
+<div id="popupForm" class="popup">
+    <div class="popup-content">
+        <span id="closePopup" class="close-btn">&times;</span>
+        <h2>Add New Product</h2>
+        <form id="productForm">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter product name">
+
+            <label for="category">Category</label>
+            <input type="text" id="category" name="category" placeholder="Enter category">
+
+            <label for="price">Price</label>
+            <input type="text" id="price" name="price" placeholder="Enter price">
+
+            <label for="brand">Brand</label>
+            <input type="text" id="brand" name="brand" placeholder="Enter brand">
+
+            <label for="size">Size</label>
+            <input type="text" id="size" name="size" placeholder="Enter size">
+
+            <label for="color">Color</label>
+            <input type="text" id="color" name="color" placeholder="Enter color">
+
+            <label for="quantity">Quantity</label>
+            <input type="text" id="quantity" name="quantity" placeholder="Enter quantity">
+
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender">
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+            </select>
+
+            <label for="imagePath">Image Path</label>
+            <input type="text" id="imagePath" name="imagePath" placeholder="Enter image path">
+
+            <button type="submit" class="btn save-btn">Save</button>
+        </form>
+    </div>
+</div>
+
+
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="products.js"></script>
