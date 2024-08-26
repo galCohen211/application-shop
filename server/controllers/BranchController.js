@@ -103,7 +103,6 @@ class BranchController {
     }
   }
 
-      // Search product by name
       static async searchBranch(req, res) {
         const { name } = req.query;
 
