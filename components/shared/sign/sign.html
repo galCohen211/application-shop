@@ -58,14 +58,19 @@
             pattern="[A-Za-z0-9\s]+"
             title="Please enter a valid street."
           />
-          <input
-            type="text"
-            placeholder="Gender*"
-            id="gender"
-            required
-            pattern="Male|Female"
-            title="Please enter a gender (Male, Female)."
-          />
+          <div class="gender-container">
+            <div class="gender-options">
+              <div>
+                <input type="radio" id="female" name="gender" value="Female" required />
+                <label for="female">Female</label>
+              </div>
+              <div>
+                <input type="radio" id="male" name="gender" value="Male" required />
+                <label for="male">Male</label>
+              </div>
+            </div>
+          </div>
+         
           <input type="date" placeholder="Birthdate*" id="birthdate" required />
           <button id="sign-up-btn">Sign Up</button>
         </form>
@@ -98,7 +103,7 @@
           <div class="toggle-panel toggle-right">
             <h1>Hello, Friend!</h1>
             <p>
-              Register with your personal details to get personalized style from
+              Register to get personalized style from
               Style for You
             </p>
             <button class="hidden" id="register">Sign Up</button>

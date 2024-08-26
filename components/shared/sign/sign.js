@@ -76,7 +76,7 @@ document
         localStorage.setItem('role', data.role);
         localStorage.setItem('accessToken', data.accessToken);
         console.log("role:", data.role);
-        window.location.href = "../../../html/index.html";
+        window.location.href = "../../shared/home/index.html";
       } else {
         const errorMessage = document.getElementById("error-message");
         errorMessage.style.display = "block";
