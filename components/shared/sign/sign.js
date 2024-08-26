@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const password = document.getElementById("password").value;
       const city = document.getElementById("city").value;
       const street = document.getElementById("street").value;
-      const gender = document.getElementById("gender").value;
+      const gender = document.querySelector('input[name="gender"]:checked').value;
       const birthDate = document.getElementById("birthdate").value;
 
       const registerData = {
