@@ -84,7 +84,6 @@ class OrderController {
         }
     }
 
-    // Group orders by city and calculate total sales
     static async groupOrdersByCity(req, res) {
         try {
             const groupedOrders = await Order.aggregate([
@@ -99,15 +98,13 @@ class OrderController {
                     $sort: { totalSales: -1 }
                 }
             ]);
-
+    
             res.status(200).json({ groupedOrders });
         } catch (err) {
             console.error(err);
             res.status(500).json({ error: "Failed to group orders by city" });
         }
-    } 
-
-
+    }
 }
 
 module.exports = OrderController;
