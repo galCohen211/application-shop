@@ -1,17 +1,16 @@
-
 $(document).ready(function () {
-    $("#placeholder_header").load("../header/header.html", function(response, status, xhr) {
+    $("#placeholder_header").load("http://127.0.0.1:5500/components/admin/header/header.html", function(response, status, xhr) {
         if (status == "error") {
             console.log("Error loading header: " + xhr.status + " " + xhr.statusText);
         }
     });
 }); 
 
+//TODO:Bug I need to fix: when the first function is there the page numbrs are not clickable.
 
 //Paging with numbers:
-
 $(document).ready(function () {
-    const rowsPerPage = 4; // Number of rows per page
+    const rowsPerPage = 2; // Number of rows per page
     const rows = $('table tbody tr');
     const rowsCount = rows.length;
     const totalPages = Math.ceil(rowsCount / rowsPerPage);
@@ -46,3 +45,6 @@ $(document).ready(function () {
     displayRows(1);
     pagination.find('li:first').addClass('active'); // Mark the first page as active
 });
+
+
+
