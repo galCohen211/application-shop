@@ -29,4 +29,7 @@ router.post("/", verifyToken,
         .notEmpty()
         .isString(), OrderController.orderCart);
 
+router.get("/groupByCity", OrderController.groupOrdersByCity);
+
+
 module.exports = router;
