@@ -73,8 +73,8 @@ document
       if (response.ok) {
         const data = await response.json();
         console.log("Login successful:", data);
-        localStorage.setItem('role', data.role);
-        localStorage.setItem('accessToken', data.accessToken);
+        localStorage.setItem("role", data.role);
+        localStorage.setItem("accessToken", data.accessToken);
         console.log("role:", data.role);
         window.location.href = "../../shared/home/index.html";
       } else {
@@ -92,18 +92,20 @@ document
   });
 
 //Fetch to the register
-
 document.addEventListener("DOMContentLoaded", function () {
   document
     .getElementById("sign-up-btn")
     .addEventListener("click", async function () {
+
       const firstName = document.getElementById("firstName").value;
       const lastName = document.getElementById("lastName").value;
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
       const city = document.getElementById("city").value;
       const street = document.getElementById("street").value;
-      const gender = document.querySelector('input[name="gender"]:checked').value;
+      const gender = document.querySelector(
+        'input[name="gender"]:checked'
+      ).value;
       const birthDate = document.getElementById("birthdate").value;
 
       const registerData = {
@@ -125,9 +127,14 @@ document.addEventListener("DOMContentLoaded", function () {
         body: JSON.stringify(registerData),
       });
 
+
+      const responseText = await response.text();
+      console.log("Response text:", responseText);
+
       if (response.ok) {
         const data = await response.json();
         console.log("Register successful:", data);
+        window.location.assign("../../shared/home/index.html");
       } else {
         console.log("Register failed");
       }

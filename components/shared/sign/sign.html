@@ -34,7 +34,14 @@
             pattern="[A-Za-z\s]+"
             title="Please enter a valid first name."
           />
-          <input type="email" placeholder="Email*" id="email" required />
+          <input
+            type="email"
+            placeholder="Email*"
+            id="email"
+            required
+            pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/"
+            title="Please enter a valid email address."
+          />
           <input
             type="password"
             placeholder="Password*"
@@ -61,16 +68,28 @@
           <div class="gender-container">
             <div class="gender-options">
               <div>
-                <input type="radio" id="female" name="gender" value="Female" required />
+                <input
+                  type="radio"
+                  id="female"
+                  name="gender"
+                  value="Female"
+                  required
+                />
                 <label for="female">Female</label>
               </div>
               <div>
-                <input type="radio" id="male" name="gender" value="Male" required />
+                <input
+                  type="radio"
+                  id="male"
+                  name="gender"
+                  value="Male"
+                  required
+                />
                 <label for="male">Male</label>
               </div>
             </div>
           </div>
-         
+
           <input type="date" placeholder="Birthdate*" id="birthdate" required />
           <button id="sign-up-btn">Sign Up</button>
         </form>
@@ -102,10 +121,7 @@
           </div>
           <div class="toggle-panel toggle-right">
             <h1>Hello, Friend!</h1>
-            <p>
-              Register to get personalized style from
-              Style for You
-            </p>
+            <p>Register to get personalized style from Style for You</p>
             <button class="hidden" id="register">Sign Up</button>
           </div>
         </div>
