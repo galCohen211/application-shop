@@ -8,6 +8,8 @@ const verifyToken = require('../middleware/verifyToken');
 
 const router = express.Router();
 
+router.get("/groupByCity", verifyAdminToken, OrderController.groupOrdersByCity);
+
 // Get all orders
 router.get("/", verifyAdminToken, OrderController.getAllOrders);
 
