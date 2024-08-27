@@ -57,12 +57,6 @@ class ProductController {
             return res.status(400).json({ errors: errors.array() });
         }
 
-        let fileName = mainImage.filename;
-        // Replace ':' with '_'
-        fileName = fileName.replace(/:/g, '_');
-
-        // Remove the first '.png'
-        fileName = fileName.replace('.png', '');
         const mainImageUrl = `${req.protocol}://${req.get("host")}/server/uploads/${mainImage.filename}`;
 
         let product = new Product({
@@ -147,14 +141,7 @@ class ProductController {
                 }
             }
 
-            let fileName = mainImage.filename;
-            // Replace ':' with '_'
-            fileName = fileName.replace(/:/g, '_');
-
-            // Remove the first '.png'
-            fileName = fileName.replace('.png', '');
-
-            mainImageUrl = `${req.protocol}://${req.get("host")}/server/uploads/${fileName}`;
+            mainImageUrl = `${req.protocol}://${req.get("host")}/server/uploads/${mainImage.filename}`;
         }
 
         const updatedProduct = await Product.findByIdAndUpdate(
