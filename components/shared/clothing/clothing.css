@@ -181,9 +181,17 @@ h1 {
 
 .popup-content .popup-image img {
     width: 100%;
-    height: 400px;
+    height: 350px;
 }
 
 #product-popup .popup-content {
     padding: 30px 60px;
 }
+
+.popup-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
