@@ -20,137 +20,87 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    <link rel="icon" href="../../../assets/images/general/app-icon.ico" type="image/x-icon">
+    <link
+      rel="icon"
+      href="../../../assets/images/general/app-icon.ico"
+      type="image/x-icon"
+    />
   </head>
 
   <body>
     <div id="header"></div>
 
     <h1>Men</h1>
-  
+
     <div class="main-top-images">
-        <div class="col-sm-12 col-md-2">
-          <!-- Filters -->
-          <div class="filters">
-            <div class="dropdown">
-              <button class="dropdown-label" onclick="openMenu(event)">
-                Brand
-                <span class="dropdown-arrow">
-                  <i class="fas fa-chevron-down"></i>
-                </span>
-              </button>
-              <ul class="dropdown-list">
-                <li>
-                  <input type="checkbox" id="brand1" value="Tommy Hilfiger" />
-                  <label for="brand1">Tommy Hilfiger</label>
-                </li>
-                <li>
-                  <input type="checkbox" id="brand2" value="Zara" />
-                  <label for="brand2">Zara</label>
-                </li>
-                <li>
-                  <input type="checkbox" id="brand3" value="Nike" />
-                  <label for="brand3">Nike</label>
-                </li>
-              </ul>
-            </div>
+      <div class="col-sm-12 col-md-2">
+        <!-- Filters -->
+        <div class="filters">
+          <div class="dropdown">
+            <button class="dropdown-label" onclick="openMenu(event)">
+              Brand
+              <span class="dropdown-arrow">
+                <i class="fas fa-chevron-down"></i>
+              </span>
+            </button>
+            <ul class="dropdown-list" id="brands-container"></ul>
+          </div>
 
-            <div class="dropdown">
-              <button class="dropdown-label" onclick="openMenu(event)">
-                Color
-                <span class="dropdown-arrow"
-                  ><i class="fas fa-chevron-down"></i
-                ></span>
-              </button>
-              <ul class="dropdown-list">
-                <li>
-                  <input type="checkbox" id="color1" value="White" />
-                  <label for="color1">White</label>
-                </li>
-                <li>
-                  <input type="checkbox" id="color2" value="Black" />
-                  <label for="color2">Black</label>
-                </li>
-                <li>
-                  <input type="checkbox" id="color3" value="Blue" />
-                  <label for="color3">Blue</label>
-                </li>
-              </ul>
-            </div>
+          <div class="dropdown">
+            <button class="dropdown-label" onclick="openMenu(event)">
+              Color
+              <span class="dropdown-arrow"
+                ><i class="fas fa-chevron-down"></i
+              ></span>
+            </button>
+            <ul class="dropdown-list" id="colors-container"></ul>
+          </div>
 
-            <div class="dropdown">
-              <button class="dropdown-label" onclick="openMenu(event)">
-                Size
-                <span class="dropdown-arrow"
-                  ><i class="fas fa-chevron-down"></i
-                ></span>
-              </button>
-              <ul class="dropdown-list">
-                <li>
-                  <input type="checkbox" id="size1" value="34" />
-                  <label for="size1">34</label>
-                </li>
-                <li>
-                  <input type="checkbox" id="size2" value="36" />
-                  <label for="size2">36</label>
-                </li>
-                <li>
-                  <input type="checkbox" id="size3" value="38" />
-                  <label for="size3">38</label>
-                </li>
-              </ul>
-            </div>
+          <div class="dropdown">
+            <button class="dropdown-label" onclick="openMenu(event)">
+              Size
+              <span class="dropdown-arrow"
+                ><i class="fas fa-chevron-down"></i
+              ></span>
+            </button>
+            <ul class="dropdown-list" id="sizes-container"></ul>
           </div>
         </div>
+      </div>
 
-        <div class="col-sm-12 col-md-10">
-          <!-- Products -->
-          <div class="grid-columns">
-            <div class="product">
-              <div class="img-top-images">
-                <img src="../../../assets/images/men/jacket.png" alt="MENS' Jacket - Black" />
-              </div>
-              <h2>MENS' Jacket - Black</h2>
-              <p>Size: 38,40</p>
-              <p>$57.00 USD</p>
-            </div>
-            <div class="product">
-              <div class="img-top-images">
-                <img src="../../../assets/images/men/shirt.png" alt="MENS' Shirt - Navy" />
-              </div>
-              <h2>MENS' Shirt - Navy</h2>
-              <p>Size: 38,40,42</p>
-              <p>$120.00 USD</p>
-            </div>
-            <div class="product">
-              <div class="img-top-images">
-                <img src="../../../assets/images/men/jacket.png" alt="MENS' Jacket - Black" />
-              </div>
-              <h2>MENS' Jacket - Black</h2>
-              <p>Size: 38,40</p>
-              <p>$57.00 USD</p>
-            </div>
-            <div class="product">
-              <div class="img-top-images">
-                <img src="../../../assets/images/men/shirt.png" alt="MENS' Shirt - Navy" />
-              </div>
-              <h2>MENS' Shirt - Navy</h2>
-              <p>Size: 38,40,42</p>
-              <p>$120.00 USD</p>
-            </div>
-          </div>
-        </div>
+      <div class="col-sm-12 col-md-10">
+        <!-- Products -->
+        <div id="products-container" class="grid-columns"></div>
+      </div>
     </div>
 
     <!-- Popup Modal -->
     <div id="popup" class="popup">
       <div class="popup-content">
-          <span class="close">&times;</span>
-          <h2>Special Offer!</h2>
-          <p>Get 20% off your first purchase. Signup and get started!!</p>
-          <p id="timer">Offer expires in: 
-              <br>
-              <span id="countdown"></span></p>
+        <span class="close">&times;</span>
+        <h2>Special Offer!</h2>
+        <p>Get 20% off your first purchase. Signup and get started!!</p>
+        <p id="timer">
+          Offer expires in:
+          <br />
+          <span id="countdown"></span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Product Popup Modal -->
+    <div id="product-popup" class="popup">
+      <div class="popup-content">
+        <span id="close-product-popup" class="close">&times;</span>
+        <div class="popup-image">
+          <img src="" alt="" id="popup-image" />
+        </div>
+        <h2 id="popup-name"></h2>
+        <p id="popup-size"></p>
+        <p id="popup-price"></p>
+        <button id="add-to-cart-btn" class="btn btn-primary mt-3">
+          Add to Cart
+        </button>
       </div>
     </div>
 
@@ -161,10 +111,10 @@
         <i class="fas fa-times"></i>
       </button>
     </div>
-    
+
     <script src="../../shared/headers/header.js"></script>
     <script src="../clothing/clothing.js"></script>
     <script src="../clothing/popup.js"></script>
-</body>
-  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </body>
 </html>
