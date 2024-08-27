@@ -95,7 +95,8 @@ document
 document.addEventListener("DOMContentLoaded", function () {
   document
     .getElementById("sign-up-btn")
-    .addEventListener("click", async function () {
+    .addEventListener("click", async function (event) {
+      event.preventDefault();
 
       const firstName = document.getElementById("firstName").value;
       const lastName = document.getElementById("lastName").value;
