@@ -169,45 +169,4 @@ img {
     height: 500px; 
     width: 100%;
 }
-
-.currency-rates-wrapper {
-    width: 100%;
-    margin-bottom: 1vh; /* Reduced space above the footer */
-  }
-  
-  .currency-rates-container {
-    background-color: #f9f9f9;
-    padding: 1.5vh 2vh;
-    border-top: 0.2vh solid #dcdcdc;
-    font-family: Arial, sans-serif;
-    text-align: left;
-    position: relative; /* Added position relative */
-    top: -12vh; /* Increased negative value to move it up further */
-    box-shadow: 0 0.5vh 0.8vh rgba(0, 0, 0, 0.1);
-    border-radius: 0.3vh;
-  }
-  
-  .currency-rates-container h4 {
-    margin-bottom: 0.8vh; /* Reduced margin */
-    font-size: 1.8vh;
-    color: #333;
-    font-weight: normal;
-  }
-  
-  .currency-rates {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8vh; /* Reduced gap */
-  }
-  
-  .currency-rates p {
-    font-size: 1.6vh;
-    color: #555;
-    margin: 0;
-  }
-  
-  .currency-rates span {
-    font-weight: normal;
-    color: #007bff;
-  }
   
