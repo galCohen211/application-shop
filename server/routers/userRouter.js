@@ -5,7 +5,6 @@ const { check } = require("express-validator")
 const verifyToken = require("../middleware/verifyToken")
 const verifyAdminToken = require("../middleware/verifyAdminToken");
 
-
 // Sign up
 router.post(
     "/signup",
@@ -21,14 +20,20 @@ router.post(
 );
 
 router.get(
-    "/:id",
-    UserController.getUserById
-);
-
-router.get(
     "/getAllUsers",
     verifyAdminToken,
     UserController.getAllUsers
+);
+
+// Search user
+router.get("/search", verifyAdminToken, UserController.searchUser);
+
+// Search user
+router.get("/search", verifyAdminToken, UserController.searchUser);
+
+router.get(
+    "/:id",
+    UserController.getUserById
 );
 
 // Login
@@ -38,7 +43,7 @@ router.post("/login", UserController.login);
 router.delete(
     "/:id",
     verifyAdminToken,
-     UserController.deleteUser);
+    UserController.deleteUser);
 
 // Update user
 router.put("/:id",
