@@ -195,3 +195,19 @@ h1 {
     margin-top: 20px;
 }
 
+#add-to-cart-btn {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#add-to-cart-btn:hover {
+    background-color: black;
+    color: white;
+}
+
+
