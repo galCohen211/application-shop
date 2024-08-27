@@ -163,6 +163,30 @@ class UserController {
             return res.status(500).json({ message: "server error", error: err });
         });
     }
+
+    // Search user by email
+    static async searchUser(req, res) {
+        const { name } = req.query;
+
+        if (!name) {
+            return res.status(400).send("email is required");
+        }
+        try {
+            // Use regex to perform a case-insensitive search
+            const users = await User.find({
+                email: { $regex: name, $options: "i" }
+            });
+
+            if (users.length === 0) {
+                return res.status(404).send("No users found");
+            }
+
+            res.status(200).send(users);
+        } catch (err) {
+            console.error(err);
+            res.status(500).send("Error occurred while searching for users");
+        }
+    }
 }
 
 module.exports = UserController;

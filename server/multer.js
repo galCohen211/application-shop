@@ -25,9 +25,9 @@ const FILE_TYPE_MAP = {
       cb(error, uploadPath);
     },
     filename: function (req, file, cb) {
-      const fileName = file.originalname.replace(/ /g, "-");
+      const fileName = file.originalname.replace(/\.[^/.]+$/, "").replace(/ /g, "-");
       const ext = FILE_TYPE_MAP[file.mimetype];
-      const timestamp = new Date(Date.now() + 4 * 60 * 60 * 1000).toISOString();
+      const timestamp = new Date(Date.now() + 4 * 60 * 60 * 1000).toISOString().replace(/:/g, '_');
       cb(null, `${fileName}-${timestamp}.${ext}`);
     },
   });

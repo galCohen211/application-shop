@@ -102,6 +102,30 @@ class BranchController {
       return res.status(500).json({ message: "Server error", error: err });
     }
   }
+
+      static async searchBranch(req, res) {
+        const { name } = req.query;
+
+        if (!name) {
+            return res.status(400).send("Branch city is required");
+        }
+
+        try {
+            // Use regex to perform a case-insensitive search
+            const branches = await Branch.find({
+                city: { $regex: name, $options: "i" }
+            });
+
+            if (branches.length === 0) {
+                return res.status(404).send("No branches found");
+            }
+
+            res.status(200).send(branches);
+        } catch (err) {
+            console.error(err);
+            res.status(500).send("Error occurred while searching for branches");
+        }
+    }
 }
 
 module.exports = BranchController;

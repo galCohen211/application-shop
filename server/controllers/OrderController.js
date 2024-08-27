@@ -25,7 +25,7 @@ class OrderController {
 
     // Submit an order
     static async orderCart(req, res) {
-        
+
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
@@ -84,7 +84,27 @@ class OrderController {
         }
     }
 
-
+    static async groupOrdersByCity(req, res) {
+        try {
+            const groupedOrders = await Order.aggregate([
+                {
+                    $group: {
+                        _id: "$city",  // Group by city
+                        totalSales: { $sum: "$totalPrice" },  // Sum the totalPrice for each group
+                        orderCount: { $sum: 1 }  // Count the number of orders in each city
+                    }
+                },
+                {
+                    $sort: { totalSales: -1 }
+                }
+            ]);
+    
+            res.status(200).json({ groupedOrders });
+        } catch (err) {
+            console.error(err);
+            res.status(500).json({ error: "Failed to group orders by city" });
+        }
+    }
 }
 
 module.exports = OrderController;
