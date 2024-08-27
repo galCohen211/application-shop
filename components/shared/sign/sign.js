@@ -91,6 +91,11 @@ document
     }
   });
 
+function validateEmail(email) {
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return emailPattern.test(email);
+}
+
 //Fetch to the register
 document.addEventListener("DOMContentLoaded", function () {
   document
@@ -108,6 +113,16 @@ document.addEventListener("DOMContentLoaded", function () {
         'input[name="gender"]:checked'
       ).value;
       const birthDate = document.getElementById("birthdate").value;
+
+      const emailErrorMessage = document.getElementById("email-error-message");
+
+      if (!validateEmail(email)) {
+        emailErrorMessage.style.display = "block";
+        emailErrorMessage.textContent = "Invalid email address.";
+        return;
+      } else {
+        emailErrorMessage.style.display = "none";
+      }
 
       const registerData = {
         firstName,
@@ -131,13 +146,10 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Response text:", responseText);
 
       if (response.ok) {
-        const data = await response.json();
-        console.log("Register successful:", data);
         window.location.assign("../../shared/home/index.html");
       } else {
         console.log("Register failed");
       }
-
     });
 });
 

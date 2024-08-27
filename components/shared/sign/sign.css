@@ -250,6 +250,25 @@ body{
     margin-right: 15px;
 }
 
+#email-error-message {
+    display: none; 
+    position: absolute; 
+    top: 150px; 
+    right: 10px;
+    background-color: #f8d7da; 
+    color: #721c24; 
+    padding: 10px; 
+    border: 1px solid #f5c6cb; 
+    border-radius: 4px; 
+    z-index: 1000; 
+}
+
+
+  
+
+
+  
+  
 
 
 
