@@ -40,6 +40,7 @@
                         <th>Quantity</th>
                         <th>Gender</th>
                         <th>Image Path</th>
+                        <th>Tools</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,15 +51,13 @@
         <div class="pagination-container">
             <ul id="pagination" class="pagination">
                 <!-- Pagination buttons will be dynamically added here -->
+
             </ul>
         </div>
     </div>
     <div class="button-container fixed-bottom d-flex justify-content-end p-3">
         <button id= "plusButton" class="btn add-btn mr-2">
             <i class="bi bi-plus"></i>
-        </button>
-        <button class="btn delete-btn">
-            <i class="bi bi-trash"></i>
         </button>
     </div>
 <!-- The Popup Form -->
@@ -94,14 +93,13 @@
                 <option value="male">Male</option>
             </select>
 
-            <label for="imagePath">Image Path</label>
-            <input type="text" id="imagePath" name="imagePath" placeholder="Enter image path">
+            <label for="imagePath">Upload Image (PNG only)</label>
+            <input type="file" id="imagePath" name="imagePath" accept="image/png" />
 
             <button type="submit" class="btn save-btn">Save</button>
         </form>
     </div>
 </div>
-
 
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

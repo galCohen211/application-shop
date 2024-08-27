@@ -71,6 +71,9 @@ async function getAllProductTable(){
                             <td>${product.quantity}</td>
                             <td>${product.gender}</td>
                             <td><img src="${product.imagePath}" alt="${product.name}" width="50" /></td> 
+                            <td><button class="btn delete-btn"><i class="bi bi-trash"></i></button>
+                                <button class="btn edit-btn"><i class="bi bi-pencil"></i></button>
+                            </td>
                         </tr>
                     `;
                     
@@ -108,69 +111,68 @@ window.addEventListener('click', function(event) {
 });
 
 
-// Create and Save product on form submission
-document.getElementById('productForm').addEventListener('submit', async function(event) {
-    event.preventDefault();  // Prevent form submission
+// // Create and Save product on form submission
+// document.getElementById('productForm').addEventListener('submit', async function(event) {
+//     event.preventDefault();  // Prevent form submission
 
-    // Gather form values
-    const productData = {
-        name: document.getElementById('name').value,
-        category: document.getElementById('category').value,
-        price: document.getElementById('price').value,
-        brand: document.getElementById('brand').value,
-        size: document.getElementById('size').value,
-        color: document.getElementById('color').value,
-        quantity: document.getElementById('quantity').value,
-        gender: document.getElementById('gender').value,
-        imagePath: document.getElementById('imagePath').value,
-    };
+//     // Gather form values
+//     const productData = {
+//         name: document.getElementById('name').value,
+//         category: document.getElementById('category').value,
+//         price: document.getElementById('price').value,
+//         brand: document.getElementById('brand').value,
+//         size: document.getElementById('size').value,
+//         color: document.getElementById('color').value,
+//         quantity: document.getElementById('quantity').value,
+//         gender: document.getElementById('gender').value,
+//         imagePath: document.getElementById('imagePath').value,
+//     };
 
-    try {
-        // Send form data to the server via POST request
-        const response = await fetch('http://localhost:4000/products', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(productData),
-        });
+//     try {
+//         // Send form data to the server via POST request
+//         const response = await fetch('http://localhost:4000/products', {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             },
+//             body: JSON.stringify(productData),
+//         });
 
-        const result = await response.json();
+//         const result = await response.json();
 
-        // Check for validation errors
-        if (!response.ok) {
-            // Show validation errors if any
-            const errorMessages = result.errors.map(err => err.msg).join('\n');
-            alert('Validation failed:\n' + errorMessages);
-        } else {
-            // If successful, add the new product to the table
-            const tableBody = document.querySelector("#main-table tbody");
-            const newRow = `
-                <tr>
-                    <td>${result.product.name}</td>
-                    <td>${result.product.category}</td>
-                    <td>$${result.product.price}</td>
-                    <td>${result.product.brand}</td>
-                    <td>${result.product.size}</td>
-                    <td>${result.product.color}</td>
-                    <td>${result.product.quantity}</td>
-                    <td><img src="${result.product.imagePath}" alt="${result.product.name}" width="50" /></td> 
-                </tr>
-            `;
-            tableBody.insertAdjacentHTML('beforeend', newRow);  // Add new row to the table
+//         // Check for validation errors
+//         if (!response.ok) {
+//             // Show validation errors if any
+//             const errorMessages = result.errors.map(err => err.msg).join('\n');
+//             alert('Validation failed:\n' + errorMessages);
+//         } else {
+//             // If successful, add the new product to the table
+//             const tableBody = document.querySelector("#main-table tbody");
+//             const newRow = `
+//                 <tr>
+//                     <td>${result.product.name}</td>
+//                     <td>${result.product.category}</td>
+//                     <td>$${result.product.price}</td>
+//                     <td>${result.product.brand}</td>
+//                     <td>${result.product.size}</td>
+//                     <td>${result.product.color}</td>
+//                     <td>${result.product.quantity}</td>
+//                     <td><img src="${result.product.imagePath}" alt="${result.product.name}" width="50" /></td> 
 
-            // Clear form fields
-            document.getElementById('productForm').reset();
+//             `;
+//             //input- file and upload pic from local computer
+//             tableBody.insertAdjacentHTML('beforeend', newRow);  // Add new row to the table
 
-            // Close the popup
-            document.getElementById('popupForm').style.display = 'none';
-        }
-    } catch (error) {
-        console.error('Error submitting form:', error);
-    }
-});
+//             // Clear form fields
+//             document.getElementById('productForm').reset();
 
-
+//             // Close the popup
+//             document.getElementById('popupForm').style.display = 'none';
+//         }
+//     } catch (error) {
+//         console.error('Error submitting form:', error);
+//     }
+// });
 
 
 $(document).ready(async function () {
