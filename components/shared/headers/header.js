@@ -67,6 +67,5 @@ function signOut() {
     localStorage.removeItem("role");
     location.reload();
     console.log("User signed out.");
-    // Redirect or perform other actions
   }
   
