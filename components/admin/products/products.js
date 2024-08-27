@@ -2,7 +2,7 @@
 //localStorage.getItem("role");
 //const role = localStorage.getItem("role");
 function headerHtml () {
-    $("#placeholder_header").load("../header/header.html", function(response, status, xhr) {
+    $("#placeholder_header").load("../../shared/headers/admin.html", function(response, status, xhr) {
         if (status == "error") {
             console.log("Error loading header: " + xhr.status + " " + xhr.statusText);
         }
