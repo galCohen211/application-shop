@@ -1,16 +1,4 @@
-.background-image {
-    background-size: cover;
-    background-position: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1; /* Make sure it stays behind other content */
-    user-select: none;
-}
-
+.background-image,
 #background-video {
     background-size: cover;
     background-position: center;
@@ -20,29 +8,35 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    z-index: -1;
+    user-select: none;
+}
+
+#background-video {
     display: none;
-    z-index: -1; /* Make sure it stays behind other content */
 }
 
 .text-over-background {
     position: absolute;
     top: 40%;
     left: 50%;
-    font-size: 55px;
+    font-size: 3vw;
     color: #ffffff;
     transform: translate(-50%, -50%);
     text-align: center;
+    padding: 0 20px;
 }
 
 .subtitle-container {
     display: flex;
     justify-content: center;
-    gap: 250px;
-    margin-top: 20px;
+    max-width: 600px;
+    margin: 20px auto 0;
+    gap: 15vw;
 }
 
 .subtitle {
-    font-size: 22px;
+    font-size: 1.5vw;
     margin-top: 10px;
 }
 
