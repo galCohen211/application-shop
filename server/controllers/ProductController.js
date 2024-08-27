@@ -14,7 +14,7 @@ class ProductController {
 
     // Get products by category, brand, or size
     static getProductsByField(req, res) {
-        const { category, brand, size } = req.query;
+        const { category, brand, size, gender } = req.query;
         let filter = {};
 
         // Add filters based on the presence of query parameters
@@ -26,6 +26,9 @@ class ProductController {
         }
         if (size) {
             filter.size = size;
+        }
+        if (gender) {
+            filter.gender = gender;
         }
 
         // Find products based on the constructed filter
