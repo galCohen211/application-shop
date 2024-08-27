@@ -1,6 +1,8 @@
 //check if role is admin and check access token
 //localStorage.getItem("role");
-//const role = localStorage.getItem("role");
+
+//I need to verify that the user approaching the page is an admin - write code here
+
 function headerHtml () {
     $("#placeholder_header").load("../../shared/headers/admin.html", function(response, status, xhr) {
         if (status == "error") {
@@ -67,6 +69,7 @@ async function getAllProductTable(){
                             <td>${product.size}</td>
                             <td>${product.color}</td>
                             <td>${product.quantity}</td>
+                            <td>${product.gender}</td>
                             <td><img src="${product.imagePath}" alt="${product.name}" width="50" /></td> 
                         </tr>
                     `;
@@ -166,6 +169,7 @@ document.getElementById('productForm').addEventListener('submit', async function
         console.error('Error submitting form:', error);
     }
 });
+
 
 
 
