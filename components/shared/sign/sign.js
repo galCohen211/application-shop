@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document
     .getElementById("sign-up-btn")
     .addEventListener("click", async function () {
-      
+
       const firstName = document.getElementById("firstName").value;
       const lastName = document.getElementById("lastName").value;
       const email = document.getElementById("email").value;
@@ -126,8 +126,6 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         body: JSON.stringify(registerData),
       });
-
-
       const responseText = await response.text();
       console.log("Response text:", responseText);
 
@@ -138,6 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         console.log("Register failed");
       }
+
     });
 });
 
