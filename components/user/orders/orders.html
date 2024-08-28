@@ -3,13 +3,34 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orders | Style For You</title>
+    <title>Orders History</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../shared/headers/user_guest.css" />
 </head>
 
 <body>
+    <div id="header"></div>
+    <div class="container mt-5">
+        <h2 class="mb-4">Orders History</h2>
+        <form id="updateUserOrders" class="needs-validation" novalidate>
+            <div class="mb-3">Order
+                <div class="mb-3">
+                    <label for="cart" id="cart" class="form-label">Cart</label>
+                </div>
+                <div class="mb-3">
+                    <label for="totalPrice" id="totalPrice" class="form-label">Total Price</label>
+                </div>
+            </div>
+        </form>
 
+        <!-- Placeholder for success or error messages -->
+        <div id="responseMessage" class="mt-4"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="orders.js"></script>
+    <script src="../../shared/headers/header.js"></script>
 </body>
 
 </html>
