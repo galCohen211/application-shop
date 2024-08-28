@@ -12,19 +12,26 @@ crossorigin = "anonymous"
 
 src = "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
 
-// Close button appears after 3 seconds
+
+// Black bar's close button appears after 3 seconds
 setTimeout(() => {
   const closeBtn = document.getElementById('close-btn-login-footer');
   closeBtn.style.display = 'block';
 }, 3000);
 
-//Close the black bar with sessionStorage
+// Close the black bar with sessionStorage
 document.addEventListener('DOMContentLoaded', () => {
   const footer = document.getElementById('black-bar');
   const closeBtn = document.getElementById('close-btn-login-footer');
+  const role = localStorage.getItem("role");
 
   if (sessionStorage.getItem('black-bar') !== 'true') {
     footer.classList.remove('hidden');
+  }
+  
+  if (role !== null) {
+    footer.classList.add('hidden');
+    sessionStorage.setItem('black-bar', 'true');
   }
 
   closeBtn.addEventListener('click', () => {
@@ -36,7 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('product-popup').style.display = 'none';
   });
 
-  // Optional: Close the popup if clicking outside of it
+
+  // Optional: Close the product popup if clicking outside of it
   window.addEventListener('click', function (event) {
     if (event.target === document.getElementById('product-popup')) {
       document.getElementById('product-popup').style.display = 'flex';
