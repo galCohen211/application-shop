@@ -118,34 +118,55 @@ class UserController {
 
     // Update user
     static async updateUser(req, res) {
-        const userId = req.params.id;
-        if (!mongoose.isValidObjectId(userId)) {
-            return res.status(400).send('Invalid user ID');
-        }
-        User.findOne({ email: req.body.email }).then(user => {
-            if (user) {
-                // This means there is another user with the same email
-                return res.status(400).json({ success: false, message: "Invalid email. Did not update" });
+        try {
+            const userId = req.params.id;
+
+            if (!mongoose.isValidObjectId(userId)) {
+                return res.status(400).send('Invalid user ID');
             }
-        });
-        const validationErrors = validationResult(req);
-        if (!validationErrors.isEmpty()) {
-            return res.status(400).json({ errors: validationErrors.array() })
+
+            // Find the user trying to be updated
+            const existingUser = await User.findById(userId);
+            if (!existingUser) {
+                return res.status(404).send('The user cannot be found');
+            }
+
+            // Check if the email is being changed
+            if (req.body.email !== existingUser.email) {
+                // If the email is being changed, check if the new email is already taken
+                const emailInUse = await User.findOne({ email: req.body.email });
+                if (emailInUse) {
+                    return res.status(400).json({ success: false, message: "The email is already taken. Did not update" });
+                }
+            }
+
+            // Validate other fields
+            const validationErrors = validationResult(req);
+            if (!validationErrors.isEmpty()) {
+                return res.status(400).json({ errors: validationErrors.array() });
+            }
+
+            // Update user details
+            const updatedUser = await User.findByIdAndUpdate(
+                userId,
+                {
+                    email: req.body.email,
+                    city: req.body.city,
+                    street: req.body.street
+                },
+                { new: true }
+            );
+
+            if (!updatedUser) {
+                return res.status(404).send('The user cannot be found');
+            }
+
+            return res.status(200).json({ success: true, newUser: updatedUser });
+        } catch (error) {
+            return res.status(500).send('Server error');
         }
-        const user = await User.findByIdAndUpdate(
-            userId,
-            {
-                email: req.body.email,
-                city: req.body.city,
-                street: req.body.street
-            },
-            { new: true }
-        );
-        if (!user) {
-            return res.status(404).send('The user cannot be found');
-        }
-        res.status(200).json({ success: true, newUser: user });
     }
+
 
     // Delete user
     static async deleteUser(req, res) {
