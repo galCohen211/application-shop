@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <title>Login | Style for you</title>
+    <link rel="stylesheet" href="sign.css" />
+  </head>
+  <body>
+    <a href="../../shared/home/index.html" class="home-button">
+      <i class="fas fa-home"></i> Home
+    </a>
+    <div class="container" id="container">
+      <div class="form-container sign-up">
+        <form>
+          <h1>Create Account</h1>
+          <input
+            type="text"
+            placeholder="First name*"
+            id="firstName"
+            required
+            pattern="[A-Za-z\s]+"
+            title="Please enter a valid first name."
+          />
+          <input
+            type="text"
+            placeholder="Last name*"
+            id="lastName"
+            required
+            pattern="[A-Za-z\s]+"
+            title="Please enter a valid first name."
+          />
+          <input
+            type="email"
+            placeholder="Email*"
+            id="email"
+            required
+            pattern="[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z]+"
+            title="Please enter a valid email address."
+          />
+          <input
+            type="password"
+            placeholder="Password*"
+            id="password"
+            required
+          />
+          <p id="message">Password is <span id="strenght"></span></p>
+          <input
+            type="text"
+            placeholder="City*"
+            id="city"
+            required
+            pattern="[A-Za-z\s]+"
+            title="Please enter a valid city."
+          />
+          <input
+            type="text"
+            placeholder="Street*"
+            id="street"
+            required
+            pattern="[A-Za-z0-9\s]+"
+            title="Please enter a valid street."
+          />
+          <div class="gender-container">
+            <div class="gender-options">
+              <div>
+                <input
+                  type="radio"
+                  id="female"
+                  name="gender"
+                  value="Female"
+                  required
+                />
+                <label for="female">Female</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  id="male"
+                  name="gender"
+                  value="Male"
+                  required
+                />
+                <label for="male">Male</label>
+              </div>
+            </div>
+          </div>
+
+          <input type="date" placeholder="Birthdate*" id="birthdate" required />
+          <button id="sign-up-btn">Sign Up</button>
+        </form>
+      </div>
+      <div class="form-container sign-in">
+        <form>
+          <h1>Sign In</h1>
+          <input type="email" placeholder="Email" id="email-sign-in" required />
+          <input
+            type="password"
+            placeholder="Password"
+            id="password-sign-in"
+            required
+          />
+          <a href="#">Forgot Your Password?</a>
+          <button id="sign-in-btn">Sign In</button>
+          <p id="error-message">Invalid email or password.</p>
+        </form>
+      </div>
+      <div class="toggle-container">
+        <div class="toggle">
+          <div class="toggle-panel toggle-left">
+            <h1>Welcome back to Style For You!</h1>
+            <p>
+              Sign in and let Style For You guide your fashion journey!
+            </p>
+            <button class="hidden" id="login">Sign In</button>
+          </div>
+          <div class="toggle-panel toggle-right">
+            <h1>Hello, Friend!</h1>
+            <p>Register to get personalized style from Style For You!</p>
+            <button class="hidden" id="register">Sign Up</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="sign.js"></script>
+  </body>
+</html>

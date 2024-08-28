@@ -66,7 +66,6 @@ img {
     transition: color 0.3s ease;
 }
 
-/* Ensuring that hovering over text or icon changes the text color */
 .social-link:hover #instagram,
 .social-link:hover #facebook,
 .social-link:hover #twitter {
@@ -165,7 +164,35 @@ img {
     margin-right: 34%;
 }
 
-#map{
+#map {
     height: 500px; 
     width: 100%;
+}
+  
+.currency {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    max-width: 300px;
+    margin-left: 20px;
+    margin-top: 5%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.currency h5 {
+    color: #333;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.currency p {
+    color: #555;
+    margin: 15px 0;
+    text-align: left;
+}
+
+.currency span {
+    font-weight: bold;
+    color: #0077f7;
 }

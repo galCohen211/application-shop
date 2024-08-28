@@ -31,4 +31,30 @@ async function initMap() {
   }
 }
 
-window.onload = initMap;
+async function fetchCurrencyRates() {
+  try {
+    const response = await fetch("https://api.exchangerate-api.com/v4/latest/USD");
+    const data = await response.json();
+
+    const usdToIls = data.rates.ILS; // Get USD to ILS rate
+    const eurToIls = (1 + (1 - data.rates.EUR)) * usdToIls; // Convert EUR to ILS
+
+    document.getElementById("usd-rate").innerText = usdToIls.toFixed(2);
+    document.getElementById("eur-rate").innerText = eurToIls.toFixed(2);
+  } catch (error) {
+    console.error("Error fetching currency rates:", error);
+    document.getElementById("usd-rate").innerText = "Error";
+    document.getElementById("eur-rate").innerText = "Error";
+  }
+}
+
+function updateCurrencyRates() {
+  fetchCurrencyRates();
+  setInterval(fetchCurrencyRates, 1000); // Updates every 60 seconds
+}
+
+window.onload = function () {
+  initMap();
+  updateCurrencyRates();
+};
+

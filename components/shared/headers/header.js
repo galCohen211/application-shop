@@ -62,3 +62,10 @@ document.addEventListener('click', function(event) {
     }
 });
 
+function signOut() {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("role");
+    location.reload();
+    console.log("User signed out.");
+  }
+  
