@@ -1,7 +1,4 @@
-//check if role is admin and check access token
-//localStorage.getItem("role");
 
-//I need to verify that the user approaching the page is an admin - write code here
 
 function headerHtml () {
     $("#placeholder_header").load("../../shared/headers/admin.html", function(response, status, xhr) {
@@ -112,68 +109,71 @@ window.addEventListener('click', function(event) {
 
 
 //Add Product
-// function addProduct() {
-//     $('#productForm').on('submit', function (event) {
-//         event.preventDefault();  // Prevent default form submission
+function addProduct() {
+    $('#productForm').on('submit', function (event) {
+        event.preventDefault();  // Prevent default form submission
 
-//         // Create FormData object and append form fields
-//         const productData = new FormData();
-//         productData.append('name', $('#name').val());
-//         productData.append('category', $('#category').val());
-//         productData.append('price', $('#price').val());
-//         productData.append('brand', $('#brand').val());
-//         productData.append('size', $('#size').val());
-//         productData.append('color', $('#color').val());
-//         productData.append('quantity', $('#quantity').val());
-//         productData.append('gender', $('#gender').val());
-//         productData.append('imagePath', $('#imagePath')[0].files[0]);  // File input
+        // Create FormData object and append form fields
+        const productData = {
+            name: $('#name').val(),
+            category: $$('#category').val(),
+            price: $('#price').val(),
+            brand: $('#brand').val(),
+            size: $('#size').val(),
+            color: $('#color').val(),
+            quantity: $('#quantity').val(),
+            gender: $('#gender').val(),
+            imagePath: $('#imagePath')[0].files[0]
+        };
 
-//         // Make an AJAX request using jQuery
-//         $.ajax({
-//             url: 'http://localhost:4000/products',
-//             type: 'POST',
-//             headers: {
-//                 'Authorization': 'Bearer ' + localStorage.getItem('token'),  // Send the JWT token
-//             },
-//             data: productData,  // Send FormData object
-//             processData: false,  // Prevent jQuery from processing the data
-//             contentType: false,  // Set content type to false for multipart/form-data
-//             success: function (result) {
-//                 // Product created successfully, add it to the table
-//                 const tableBody = $('#main-table tbody');
-//                 const newRow = `
-//                     <tr>
-//                         <td>${result.product.name}</td>
-//                         <td>${result.product.category}</td>
-//                         <td>$${result.product.price}</td>
-//                         <td>${result.product.brand}</td>
-//                         <td>${result.product.size}</td>
-//                         <td>${result.product.color}</td>
-//                         <td>${result.product.quantity}</td>
-//                         <td>${result.product.gender}</td>
-//                         <td><img src="${result.product.imagePath}" alt="${result.product.name}" width="50" /></td>
-//                     </tr>
-//                 `;
-//                 tableBody.append(newRow);  // Add the new row to the table
+        $.ajax({
+            url: 'http://localhost:4000/products',
+            type: 'POST',
+            contentType: 'application/json',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            },
+            result: JSON.stringify(productData),
+            success: function (result) {
+                $('#responseMessage').html('<div class="alert alert-success">Update went successfully!</div>');
+                const tableBody = $('#main-table tbody');
+                const newRow = `
+                    <tr>
+                        <td>${result.product.name}</td>
+                        <td>${result.product.category}</td>
+                        <td>$${result.product.price}</td>
+                        <td>${result.product.brand}</td>
+                        <td>${result.product.size}</td>
+                        <td>${result.product.color}</td>
+                        <td>${result.product.quantity}</td>
+                        <td>${result.product.gender}</td>
+                        <td><img src="${result.product.imagePath}" alt="${result.product.name}" width="50" /></td>
+                    </tr>
+                `;
+                tableBody.append(newRow);  // Add the new row to the table
 
-//                 // Clear form fields
-//                 $('#productForm')[0].reset();
+                // Clear form fields
+                $('#productForm')[0].reset();
 
-//                 // Close the popup
-//                 $('#popupForm').hide();
-//             },
-//             error: function (jqXHR, textStatus, errorThrown) {
-//                 console.error('Error submitting form:', errorThrown);
-//                 alert('An error occurred while creating the product.');
-//             }
-//         });
-//     });
-// }
+                // Close the popup
+                $('#popupForm').hide();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error('Error submitting form:', errorThrown);
+                alert('An error occurred while creating the product.');
+            }
+        });
+    });
+}
 
 $(document).ready(async function () {
+    const accessToken = localStorage.getItem('accessToken');
+    console.log(accessToken);
+    const payload = JSON.parse(atob(accessToken.split('.')[1]));
+    const userId = payload.userId;
     headerHtml();
     await getAllProductTable();
     tableView();
-    //addProduct();
+    addProduct();
     //deleteProduct()
 });
