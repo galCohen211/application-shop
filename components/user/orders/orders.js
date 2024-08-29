@@ -11,9 +11,25 @@ $(document).ready(function () {
             'Authorization': `Bearer ${accessToken}`
         },
         success: function (data) {
-            console.log(data.data[0].cart);
-            $('#totalPrice').val(data.data[0].totalPrice);
-            $('#cart').val(data.data[0].cart);
+            ordersAmount = data.amount // orders count
+            orderData = data.data[0]  // order number
+            itemData = orderData.cartItems[0] // item number
+            itemsAmount = itemData.amount // ?
+            productData = itemData.product
+
+            totalOrderPrice = orderData.totalPrice
+            itemAmount = itemData.amount
+            totalItemPrice = itemData.price
+            productName = productData.name
+            productImagePath = productData.imagePath
+            
+            console.log(productData); // just for debug
+
+            $('#totalOrderPrice').val(totalOrderPrice);
+            $('#itemAmount').val(itemAmount);
+            $('#totalItemPrice').val(totalItemPrice);
+            $('#productName').val(productName);
+            $('#productImagePath').val(productImagePath);
         },
         error: function () {
             $('#responseMessage').html('<div class="alert alert-danger">Failed to load orders details.</div>');
@@ -30,8 +46,11 @@ $(document).ready(function () {
         }
 
         const formData = {
-            totalPrice: $('#totalPrice').val(),
-            cart: $('#cart').val()
+            totalOrderPrice: $('#totalOrderPrice').val(),
+            itemAmount: $('#itemAmount').val(),
+            totalItemPrice: $('#totalItemPrice').val(),
+            productName: $('#productName').val(),
+            productImagePath: $('#productImagePath').val()
         };
 
         $.ajax({
@@ -43,7 +62,6 @@ $(document).ready(function () {
             },
             data: JSON.stringify(formData),
             success: function (data) {
-                $('#responseMessage').html('<div class="alert alert-success">Update went successfully!</div>');
                 console.log("Orders are loaded")
             },
             error: function (xhr) {
