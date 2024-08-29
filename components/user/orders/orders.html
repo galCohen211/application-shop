@@ -7,6 +7,7 @@
     <title>Orders History</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../shared/headers/user_guest.css" />
+    <link rel="stylesheet" href="orders.css" />
 </head>
 
 <body>
@@ -16,19 +17,24 @@
         <form id="updateUserOrders" class="needs-validation" novalidate>
             <div class="mb-3">Order
                 <div class="mb-3">
-                    <label for="totalOrderPrice" id="totalOrderPrice" class="form-label">Total Order Price</label>
+                    <label for="totalOrderPrice" class="form-label">Total Order Price:</label>
+                    <span id="totalOrderPrice"></span>
                 </div>
                 <div class="mb-3">
-                    <label for="itemAmount" id="itemAmount" class="form-label">Item Amount</label>
+                    <label for="itemAmount" class="form-label">Item Amount:</label>
+                    <span id="itemAmount"></span>
                 </div>
                 <div class="mb-3">
-                    <label for="totalItemPrice" id="totalItemPrice" class="form-label">Total Item Price</label>
+                    <label for="totalItemPrice" class="form-label">Total Item Price:</label>
+                    <span id="totalItemPrice"></span>
                 </div>
                 <div class="mb-3">
-                    <label for="productName" id="productName" class="form-label">Product Name</label>
+                    <label for="productName" class="form-label">Product Name:</label>
+                    <span id="productName"></span>
                 </div>
                 <div class="mb-3">
-                    <label for="productImagePath" id="productImagePath" class="form-label">Product Image Path</label>
+                    <label for="productImagePath" class="form-label">Product Image:</label>
+                    <img id="productImage" src="" alt="Product Image" class="img-fluid mt-2 productImage"/>
                 </div>
             </div>
         </form>

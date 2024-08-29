@@ -11,25 +11,29 @@ $(document).ready(function () {
             'Authorization': `Bearer ${accessToken}`
         },
         success: function (data) {
-            ordersAmount = data.amount // orders count
-            orderData = data.data[0]  // order number
-            itemData = orderData.cartItems[0] // item number
-            itemsAmount = itemData.amount // ?
-            productData = itemData.product
+            ordersAmount = data.amount; // orders count
+            orderData = data.data[0];  // order number
+            itemData = orderData.cartItems[0]; // item number
+            itemsAmount = itemData.amount; 
+            productData = itemData.product;
 
-            totalOrderPrice = orderData.totalPrice
-            itemAmount = itemData.amount
-            totalItemPrice = itemData.price
-            productName = productData.name
-            productImagePath = productData.imagePath
+            totalOrderPrice = orderData.totalPrice;
+            itemAmount = itemData.amount;
+            totalItemPrice = itemData.price;
+            productName = productData.name;
+            productImagePath = productData.imagePath;
             
             console.log(productData); // just for debug
 
-            $('#totalOrderPrice').val(totalOrderPrice);
-            $('#itemAmount').val(itemAmount);
-            $('#totalItemPrice').val(totalItemPrice);
-            $('#productName').val(productName);
-            $('#productImagePath').val(productImagePath);
+            // Update the HTML content
+            $('#totalOrderPrice').text(totalOrderPrice);
+            $('#itemAmount').text(itemAmount);
+            $('#totalItemPrice').text(totalItemPrice);
+            $('#productName').text(productName);
+            $('#productImagePath').text(productImagePath);
+
+            // Update the image src attribute
+            $('#productImage').attr('src', productImagePath);
         },
         error: function () {
             $('#responseMessage').html('<div class="alert alert-danger">Failed to load orders details.</div>');
@@ -46,11 +50,11 @@ $(document).ready(function () {
         }
 
         const formData = {
-            totalOrderPrice: $('#totalOrderPrice').val(),
-            itemAmount: $('#itemAmount').val(),
-            totalItemPrice: $('#totalItemPrice').val(),
-            productName: $('#productName').val(),
-            productImagePath: $('#productImagePath').val()
+            totalOrderPrice: $('#totalOrderPrice').text(),
+            itemAmount: $('#itemAmount').text(),
+            totalItemPrice: $('#totalItemPrice').text(),
+            productName: $('#productName').text(),
+            productImagePath: $('#productImage').attr('src')
         };
 
         $.ajax({
@@ -62,7 +66,7 @@ $(document).ready(function () {
             },
             data: JSON.stringify(formData),
             success: function (data) {
-                console.log("Orders are loaded")
+                console.log("Orders are loaded");
             },
             error: function (xhr) {
                 let errorMessage = 'Unknown error occurred.';
