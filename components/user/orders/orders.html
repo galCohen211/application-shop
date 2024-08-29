@@ -14,36 +14,33 @@
     <div id="header"></div>
     <div class="container mt-5">
         <h2 class="mb-4">Orders History</h2>
-        <form id="updateUserOrders" class="needs-validation" novalidate>
-            <div class="mb-3">Order
-                <div class="mb-3">
-                    <label for="totalOrderPrice" class="form-label">Total Order Price:</label>
-                    <span id="totalOrderPrice"></span>
-                </div>
-                <div class="mb-3">
-                    <label for="productName" class="form-label">Product Name:</label>
-                    <span id="productName"></span>
-                </div>
-                <div class="mb-3">
-                    <label for="itemAmount" class="form-label">Item Amount:</label>
-                    <span id="itemAmount"></span>
-                </div>
-                <div class="mb-3">
-                    <label for="totalItemPrice" class="form-label">Total Item Price:</label>
-                    <span id="totalItemPrice"></span>
-                </div>
-                <div class="mb-3">
-                    <label for="productImagePath" class="form-label">Product Image:</label>
-                    <img id="productImage" src="" alt="Product Image" class="img-fluid mt-2 productImage" />
-                </div>
-            </div>
-        </form>
-
-        <!-- Placeholder for success or error messages -->
-        <div id="responseMessage" class="mt-4"></div>
+        <ul id="ordersList" class="list-group"></ul>
     </div>
 
+    <!-- Modal -->
+<div class="modal fade" id="orderDetailsModal" tabindex="-1" aria-labelledby="orderDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="orderDetailsModalLabel">Order Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Total Order Price:</strong> <span id="modalTotalOrderPrice"></span></p>
+                <p><strong>Date Ordered:</strong> <span id="modalDateOrdered"></span></p>
+                <ul id="itemsList" class="list-group"></ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <ul id="pagination" class="pagination justify-content-center mt-4"></ul>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="orders.js"></script>
     <script src="../../shared/headers/header.js"></script>
 </body>
