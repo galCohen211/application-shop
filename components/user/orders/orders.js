@@ -7,9 +7,7 @@ $(document).ready(function () {
     const ordersPerPage = 1;
 
     function parseDate(dateString) {
-        // Split the date string by "/"
         const [day, month, year] = dateString.split('/');
-        // Create a new Date object (months are 0-based in JavaScript)
         return new Date(year, month - 1, day);
     }
 
