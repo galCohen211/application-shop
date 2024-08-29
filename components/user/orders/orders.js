@@ -1,3 +1,17 @@
+function parseDate(dateString) {
+    const [day, month, year] = dateString.split('/');
+    return new Date(year, month - 1, day);
+}
+
+function formatDate(date) {
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+
+    // Return the date in "dd/mm/yyyy" format
+    return `${day}/${month}/${year}`;
+}
+
 $(document).ready(function () {
     const accessToken = localStorage.getItem('accessToken');
     const payload = JSON.parse(atob(accessToken.split('.')[1]));
@@ -5,11 +19,6 @@ $(document).ready(function () {
 
     let currentPage = 1;
     const ordersPerPage = 1;
-
-    function parseDate(dateString) {
-        const [day, month, year] = dateString.split('/');
-        return new Date(year, month - 1, day);
-    }
 
     function renderOrders(orders, page) {
         const start = (page - 1) * ordersPerPage;
@@ -34,9 +43,9 @@ $(document).ready(function () {
             const order = $(this).data('order');
             $('#modalTotalOrderPrice').text(order.totalPrice);
 
-            // Convert and format dateOrdered
+            // Parse and format the dateOrdered
             const parsedDate = parseDate(order.dateOrdered);
-            const formattedDate = parsedDate.toLocaleDateString();
+            const formattedDate = formatDate(parsedDate);
             $('#modalDateOrdered').text(formattedDate);
 
             const itemsList = $('#itemsList');
