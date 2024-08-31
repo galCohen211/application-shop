@@ -33,7 +33,7 @@ $(document).ready(function () {
             const orderNumber = start + index + 1;
             const orderItem = `
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Order #${orderNumber} - Total: ${order.totalPrice}
+                    Order #${orderNumber} - Total: ${order.totalPrice}$
                     <button class="btn btn-primary view-details-btn" data-order='${JSON.stringify(order)}' data-bs-toggle="modal" data-bs-target="#orderDetailsModal">View Details</button>
                 </li>
             `;
