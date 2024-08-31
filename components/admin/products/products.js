@@ -1,18 +1,16 @@
-
-
-function headerHtml () {
-    $("#placeholder_header").load("../../shared/headers/admin.html", function(response, status, xhr) {
+function headerHtml() {
+    $("#placeholder_header").load("../../shared/headers/admin.html", function (response, status, xhr) {
         if (status == "error") {
             console.log("Error loading header: " + xhr.status + " " + xhr.statusText);
         }
     });
 }
 
-function tableView () {
+function tableView() {
     const rowsPerPage = 4; // Number of rows per page
     const rows = $('#main-table tbody tr');
     const rowsCount = rows.length;
-    const totalPages = Math.ceil(rowsCount / rowsPerPage);//How many divisions of pages do we need
+    const totalPages = Math.ceil(rowsCount / rowsPerPage); // How many divisions of pages do we need
     const pagination = $('<ul class="pagination"></ul>'); // Create the pagination element
 
     // Function to display rows for the given page number
@@ -46,17 +44,17 @@ function tableView () {
 }
 
 //GetAllProducts
-async function getAllProductTable(){
+async function getAllProductTable() {
     const result = await $.ajax({
-        url: 'http://localhost:4000/products', 
-        type: 'GET',                 
-        dataType: 'json',           
-        success: function(response) {
+        url: 'http://localhost:4000/products',
+        type: 'GET',
+        dataType: 'json',
+        success: function (response) {
             function addProductsToTable(products) {
                 const tableBody = $("#main-table tbody");
-                tableBody.empty();  // Clear any existing rows
-        
-                products.forEach(function(product) {
+                tableBody.empty(); // Clear any existing rows
+
+                products.forEach(function (product) {
                     const productRow = `
                         <tr>
                             <td>${product.name}</td>
@@ -73,17 +71,17 @@ async function getAllProductTable(){
                             </td>
                         </tr>
                     `;
-                    
-                    tableBody.append(productRow);  // Add the new row to the table
+
+                    tableBody.append(productRow); // Add the new row to the table
                 });
             }
             addProductsToTable(response);
         },
-        error: function(jqXHR, textStatus, errorThrown) {
+        error: function (jqXHR, textStatus, errorThrown) {
             console.error("Error fetching data:", textStatus, errorThrown);
         }
     });
-    return result;  
+    return result;
 }
 
 //Popup
@@ -91,32 +89,31 @@ const plusButton = document.getElementById('plusButton');
 const closePopupBtn = document.getElementById('closePopup');
 
 // Open popup when the plus button is clicked
-plusButton.addEventListener('click', function() {
-    popupForm.style.display = 'flex';  // Use flexbox to center the popup
+plusButton.addEventListener('click', function () {
+    popupForm.style.display = 'flex'; // Use flexbox to center the popup
 });
 
 // Close popup when the close button (X) is clicked
-closePopupBtn.addEventListener('click', function() {
+closePopupBtn.addEventListener('click', function () {
     popupForm.style.display = 'none';
 });
 
 // Close popup when clicking outside of the popup content
-window.addEventListener('click', function(event) {
+window.addEventListener('click', function (event) {
     if (event.target === popupForm) {
         popupForm.style.display = 'none';
     }
 });
 
-
 //Add Product
-function addProduct() {
+function addProduct(accessToken) {
     $('#productForm').on('submit', function (event) {
-        event.preventDefault();  // Prevent default form submission
+        event.preventDefault(); // Prevent default form submission
 
         // Create FormData object and append form fields
         const productData = {
             name: $('#name').val(),
-            category: $$('#category').val(),
+            category: $('#category').val(),
             price: $('#price').val(),
             brand: $('#brand').val(),
             size: $('#size').val(),
@@ -133,7 +130,7 @@ function addProduct() {
             headers: {
                 'Authorization': `Bearer ${accessToken}`
             },
-            result: JSON.stringify(productData),
+            data: JSON.stringify(productData),
             success: function (result) {
                 $('#responseMessage').html('<div class="alert alert-success">Update went successfully!</div>');
                 const tableBody = $('#main-table tbody');
@@ -150,7 +147,7 @@ function addProduct() {
                         <td><img src="${result.product.imagePath}" alt="${result.product.name}" width="50" /></td>
                     </tr>
                 `;
-                tableBody.append(newRow);  // Add the new row to the table
+                tableBody.append(newRow); // Add the new row to the table
 
                 // Clear form fields
                 $('#productForm')[0].reset();
@@ -174,6 +171,6 @@ $(document).ready(async function () {
     headerHtml();
     await getAllProductTable();
     tableView();
-    addProduct();
+    addProduct(accessToken);
     //deleteProduct()
 });
