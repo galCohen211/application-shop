@@ -18,7 +18,7 @@ $(document).ready(function () {
     const userId = payload.userId;
 
     let currentPage = 1;
-    const ordersPerPage = 1;
+    const ordersPerPage = 5;
 
     function renderOrders(orders, page) {
         const start = (page - 1) * ordersPerPage;
@@ -28,6 +28,7 @@ $(document).ready(function () {
         const ordersList = $('#ordersList');
         ordersList.empty();
 
+        // HTML for each order
         paginatedOrders.forEach((order, index) => {
             const orderNumber = start + index + 1;
             const orderItem = `
@@ -51,6 +52,7 @@ $(document).ready(function () {
             const itemsList = $('#itemsList');
             itemsList.empty();
 
+            // HTML for each cart item
             order.cartItems.forEach(item => {
                 const itemData = `
                     <li class="list-group-item d-flex align-items-center">
