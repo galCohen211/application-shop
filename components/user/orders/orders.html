@@ -14,28 +14,36 @@
     <div id="header"></div>
     <div class="container mt-5">
         <h2 class="mb-4">Orders History</h2>
+
+        <!-- Loading animation -->
+        <div id="loadingSpinner" class="text-center my-3" style="display: none;">
+            <div class="spinner-border" role="status"></div>
+            <div><br>Loading...</div>
+        </div>
+
         <ul id="ordersList" class="list-group"></ul>
     </div>
 
     <!-- Modal -->
-<div class="modal fade" id="orderDetailsModal" tabindex="-1" aria-labelledby="orderDetailsModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="orderDetailsModalLabel">Order Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p><strong>Total Order Price:</strong> <span id="modalTotalOrderPrice"></span></p>
-                <p><strong>Date Ordered:</strong> <span id="modalDateOrdered"></span></p>
-                <ul id="itemsList" class="list-group"></ul>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    <div class="modal fade" id="orderDetailsModal" tabindex="-1" aria-labelledby="orderDetailsModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="orderDetailsModalLabel">Order Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Total Order Price:</strong> <span id="modalTotalOrderPrice"></span></p>
+                    <p><strong>Date Ordered:</strong> <span id="modalDateOrdered"></span></p>
+                    <ul id="itemsList" class="list-group"></ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
     <ul id="pagination" class="pagination justify-content-center mt-4"></ul>
 

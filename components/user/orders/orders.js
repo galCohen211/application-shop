@@ -1,17 +1,3 @@
-function parseDate(dateString) {
-    const [day, month, year] = dateString.split('/');
-    return new Date(year, month - 1, day);
-}
-
-function formatDate(date) {
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
-    const year = date.getFullYear();
-
-    // Return the date in "dd/mm/yyyy" format
-    return `${day}/${month}/${year}`;
-}
-
 $(document).ready(function () {
     const accessToken = localStorage.getItem('accessToken');
     const payload = JSON.parse(atob(accessToken.split('.')[1]));
@@ -28,7 +14,6 @@ $(document).ready(function () {
         const ordersList = $('#ordersList');
         ordersList.empty();
 
-        // HTML for each order
         paginatedOrders.forEach((order, index) => {
             const orderNumber = start + index + 1;
             const orderItem = `
@@ -42,9 +27,8 @@ $(document).ready(function () {
 
         $('.view-details-btn').on('click', function () {
             const order = $(this).data('order');
-            $('#modalTotalOrderPrice').text(order.totalPrice);
+            $('#modalTotalOrderPrice').text(order.totalPrice + '$');
 
-            // Parse and format the dateOrdered
             const parsedDate = parseDate(order.dateOrdered);
             const formattedDate = formatDate(parsedDate);
             $('#modalDateOrdered').text(formattedDate);
@@ -52,14 +36,13 @@ $(document).ready(function () {
             const itemsList = $('#itemsList');
             itemsList.empty();
 
-            // HTML for each cart item
             order.cartItems.forEach(item => {
                 const itemData = `
                     <li class="list-group-item d-flex align-items-center">
                         <div class="text-content">
                             <p><strong>Product Name:</strong> ${item.product.name}</p>
                             <p><strong>Item Amount:</strong> ${item.amount}</p>
-                            <p><strong>Total Item Price:</strong> ${item.price}</p>
+                            <p><strong>Total Item Price:</strong> ${item.price + '$'}</p>
                         </div>
                         <img src="${item.product.imagePath}" alt="Product Image" class="img-fluid productImage" />
                     </li>
@@ -95,10 +78,15 @@ $(document).ready(function () {
         headers: {
             'Authorization': `Bearer ${accessToken}`
         },
+        beforeSend: function () {
+            $('#loadingSpinner').show();
+        },
         success: function (data) {
+            $('#loadingSpinner').hide();
             renderOrders(data.data, currentPage);
         },
         error: function () {
+            $('#loadingSpinner').hide();
             $('#responseMessage').html('<div class="alert alert-danger">Failed to load orders details.</div>');
         }
     });
