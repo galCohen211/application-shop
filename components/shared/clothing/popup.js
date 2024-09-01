@@ -58,5 +58,9 @@ function updateCountdown() {
         document.getElementById("countdown").innerHTML = "Offer expired";
     }
 }
+
+// Let the countdown begin immediately 
+updateCountdown();
+
 // Update the countdown every second
 const timerInterval = setInterval(updateCountdown, 1000);
