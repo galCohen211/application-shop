@@ -124,7 +124,6 @@ function addProduct(accessToken) {
             },
             data: formData,
             success: function (result) {
-                $('#responseMessage').html('<div class="alert alert-success">Update went successfully!</div>');
                 const tableBody = $('#main-table tbody');
                 const newRow = `
                     <tr>

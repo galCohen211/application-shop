@@ -1,4 +1,3 @@
-
 /* Table Container */
 .container {
     overflow-x: auto;
@@ -263,7 +262,7 @@ form select:focus {
     background-color: #28a745;
     margin-top: 20px;
     align-self: center;
-    width: 100px;
+    width: 100%;
 }
 
 .save-btn:hover {
