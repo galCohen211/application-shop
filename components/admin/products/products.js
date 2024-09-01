@@ -103,26 +103,26 @@ function addProduct(accessToken) {
         event.preventDefault(); // Prevent default form submission
 
         // Create FormData object and append form fields
-        const productData = {
-            name: $('#name').val(),
-            category: $('#category').val(),
-            price: $('#price').val(),
-            brand: $('#brand').val(),
-            size: $('#size').val(),
-            color: $('#color').val(),
-            quantity: $('#quantity').val(),
-            gender: $('#gender').val(),
-            imagePath: $('#imagePath')[0].files[0]
-        };
+        const formData = new FormData();
+        formData.append('name', $('#name').val());
+        formData.append('category', $('#category').val());
+        formData.append('price', $('#price').val());
+        formData.append('brand', $('#brand').val());
+        formData.append('size', $('#size').val());
+        formData.append('color', $('#color').val());
+        formData.append('quantity', $('#quantity').val());
+        formData.append('gender', $('#gender').val());
+        formData.append('imagePath', $('#imagePath')[0].files[0]);
 
         $.ajax({
             url: `http://localhost:4000/products`,
             type: 'POST',
-            contentType: 'application/json',
+            contentType: false,
+            processData: false,
             headers: {
                 'Authorization': `Bearer ${accessToken}`
             },
-            data: JSON.stringify(productData),
+            data: formData,
             success: function (result) {
                 $('#responseMessage').html('<div class="alert alert-success">Update went successfully!</div>');
                 const tableBody = $('#main-table tbody');
