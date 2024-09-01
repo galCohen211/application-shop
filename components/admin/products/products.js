@@ -49,7 +49,7 @@ async function getAllProductTable() {
                 products.forEach(function (product) {
                     const productRow = `
                         <tr>
-                            <td>${product.name}</td>
+                            <td data-id="${product._id}">${product.name}</td>
                             <td>${product.category}</td>
                             <td>$${product.price}</td>
                             <td>${product.brand}</td>
@@ -58,8 +58,9 @@ async function getAllProductTable() {
                             <td>${product.quantity}</td>
                             <td>${product.gender}</td>
                             <td><img src="${product.imagePath}" alt="${product.name}" width="50" /></td> 
-                            <td><button class="btn delete-btn"><i class="bi bi-trash"></i></button>
+                            <td>
                                 <button class="btn edit-btn"><i class="bi bi-pencil"></i></button>
+                                <button class="btn delete-btn"><i class="bi bi-trash"></i></button>
                             </td>
                         </tr>
                     `;
@@ -154,6 +155,31 @@ function addProduct(accessToken) {
     });
 }
 
+function deleteProduct(accessToken) {
+    $('#main-table').on('click', '.delete-btn', function () {
+        const row = $(this).closest('tr'); // Get the row containing the clicked button
+        const productId = row.find('td:first').data('id'); // Assuming the product ID is stored in a data attribute
+
+        if (confirm("Are you sure you want to delete this product?")) {
+            $.ajax({
+                url: `http://localhost:4000/products/${productId}`,
+                type: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`
+                },
+                success: function () {
+                    row.remove(); // Remove the row from the table
+                    alert('Product deleted successfully.');
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error('Error deleting product:', errorThrown);
+                    alert('An error occurred while deleting the product.');
+                }
+            });
+        }
+    });
+}
+
 $(document).ready(async function () {
     const accessToken = localStorage.getItem('accessToken');
     const payload = JSON.parse(atob(accessToken.split('.')[1]));
@@ -161,5 +187,5 @@ $(document).ready(async function () {
     await getAllProductTable();
     tableView();
     addProduct(accessToken);
-    //deleteProduct()
+    deleteProduct(accessToken);
 });
