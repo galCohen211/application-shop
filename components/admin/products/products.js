@@ -159,7 +159,6 @@ $(document).ready(async function () {
     const accessToken = localStorage.getItem('accessToken');
     const payload = JSON.parse(atob(accessToken.split('.')[1]));
     const userId = payload.userId;
-    headerHtml();
     await getAllProductTable();
     tableView();
     addProduct(accessToken);
