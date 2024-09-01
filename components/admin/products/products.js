@@ -128,44 +128,73 @@ function addProduct(accessToken) {
         formData.append('quantity', $('#quantity').val());
         formData.append('gender', $('#gender').val());
         formData.append('imagePath', $('#imagePath')[0].files[0]);
+        header_text = $('#popup-header')[0].innerHTML;
 
-        $.ajax({
-            url: `http://localhost:4000/products`,
-            type: 'POST',
-            contentType: false,
-            processData: false,
-            headers: {
-                'Authorization': `Bearer ${accessToken}`
-            },
-            data: formData,
-            success: function (result) {
-                const tableBody = $('#main-table tbody');
-                const newRow = `
-                    <tr>
-                        <td>${result.product.name}</td>
-                        <td>${result.product.category}</td>
-                        <td>$${result.product.price}</td>
-                        <td>${result.product.brand}</td>
-                        <td>${result.product.size}</td>
-                        <td>${result.product.color}</td>
-                        <td>${result.product.quantity}</td>
-                        <td>${result.product.gender}</td>
-                        <td><img src="${result.product.imagePath}" alt="${result.product.name}" width="50" /></td>
-                    </tr>
-                `;
-                tableBody.append(newRow); // Add the new row to the table
+        if("Update" in header_text)
+        {
+            $.ajax({
+                url: `http://localhost:4000/products`,
+                type: 'PUT',
+                contentType: false,
+                processData: false,
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`
+                },
+                data: formData,
+                success: function (result) {
+                    alert('The product was updated sucessfully')
+                    // Clear form fields
+                    $('#productForm')[0].reset();
+    
+                    // Close the popup
+                    $('#popupForm').hide();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error('Error submitting form:', errorThrown);
+                    alert('An error occurred while updating the product.');
+                }
+            });    
+        }
+        else
+        {
+            $.ajax({
+                url: `http://localhost:4000/products`,
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`
+                },
+                data: formData,
+                success: function (result) {
+                    const tableBody = $('#main-table tbody');
+                    const newRow = `
+                        <tr>
+                            <td>${result.product.name}</td>
+                            <td>${result.product.category}</td>
+                            <td>$${result.product.price}</td>
+                            <td>${result.product.brand}</td>
+                            <td>${result.product.size}</td>
+                            <td>${result.product.color}</td>
+                            <td>${result.product.quantity}</td>
+                            <td>${result.product.gender}</td>
+                            <td><img src="${result.product.imagePath}" alt="${result.product.name}" width="50" /></td>
+                        </tr>
+                    `;
+                    tableBody.append(newRow); // Add the new row to the table
 
-                // Clear form fields
-                $('#productForm')[0].reset();
+                    // Clear form fields
+                    $('#productForm')[0].reset();
 
-                // Close the popup
-                $('#popupForm').hide();
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.error('Error submitting form:', errorThrown);
-                alert('An error occurred while creating the product.');
-            }
-        });
+                    // Close the popup
+                    $('#popupForm').hide();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error('Error submitting form:', errorThrown);
+                    alert('An error occurred while creating the product.');
+                }
+            });
+        }
     });
 }
 
@@ -206,10 +235,10 @@ function updateProduct(accessToken) {
                 'Authorization': `Bearer ${accessToken}`
             },
             success: function (result) {
-                console.log(result);
+                console.log(result.product);
                 popupForm.style.display = 'flex';
                 $('#popup-header')[0].innerHTML = "Update Product";
-                //fillPopup(result)
+                fillPopup(result.product);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.error('Error updating product:', errorThrown);
