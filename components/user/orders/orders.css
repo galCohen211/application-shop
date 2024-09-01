@@ -1,0 +1,13 @@
+.text-content {
+    flex: 1;
+}
+
+.list-group-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.list-group-item .productImage {
+    max-width: 100px;
+}
