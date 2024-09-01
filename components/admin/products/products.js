@@ -35,6 +35,19 @@ function tableView() {
     pagination.find('li:first').addClass('active'); // Mark the first page as active
 }
 
+// fill popup in product details
+function fillPopup(product)
+{
+    $('#name')[0].value = product.name;
+    $('#category')[0].value = product.category;
+    $('#price')[0].value = product.price;
+    $('#brand')[0].value = product.brand;
+    $('#quantity')[0].value = product.quantity;
+    $('#gender')[0].value = product.gender;
+    $('#color')[0].value = product.color;
+    $('#size')[0].value = product.size;
+}
+
 //GetAllProducts
 async function getAllProductTable() {
     const result = await $.ajax({
@@ -84,6 +97,7 @@ const closePopupBtn = document.getElementById('closePopup');
 // Open popup when the plus button is clicked
 plusButton.addEventListener('click', function () {
     popupForm.style.display = 'flex'; // Use flexbox to center the popup
+    $('#popup-header')[0].innerHTML = "Add New Product";
 });
 
 // Close popup when the close button (X) is clicked
@@ -180,6 +194,31 @@ function deleteProduct(accessToken) {
     });
 }
 
+//updateUser
+function updateProduct(accessToken) {
+    $('#main-table').on('click', '.edit-btn', function () {
+        const row = $(this).closest('tr'); // Get the row containing the clicked button
+        const productId = row.find('td:first').data('id'); // Assuming the product ID is stored in a data attribute
+        $.ajax({
+            url: `http://localhost:4000/products/${productId}`,
+            type: 'GET',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            },
+            success: function (result) {
+                console.log(result);
+                popupForm.style.display = 'flex';
+                $('#popup-header')[0].innerHTML = "Update Product";
+                //fillPopup(result)
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error('Error updating product:', errorThrown);
+                alert('An error occurred while updating the product.');
+            }
+        });
+    })
+}
+
 $(document).ready(async function () {
     const accessToken = localStorage.getItem('accessToken');
     const payload = JSON.parse(atob(accessToken.split('.')[1]));
@@ -188,4 +227,5 @@ $(document).ready(async function () {
     tableView();
     addProduct(accessToken);
     deleteProduct(accessToken);
+    updateProduct(accessToken);
 });

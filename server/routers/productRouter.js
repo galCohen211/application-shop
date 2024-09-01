@@ -88,4 +88,8 @@ router.get("/search", ProductController.searchProduct);
 // Delete product
 router.delete("/:id", verifyAdminToken, ProductController.deleteProduct);
 
+// Get Product by Id
+router.get("/:id", verifyAdminToken, ProductController.getProductById);
+
+
 module.exports = router;
