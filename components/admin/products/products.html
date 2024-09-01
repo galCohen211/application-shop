@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Products</title>
     <link rel="stylesheet" href="products.css" />
-     <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <link rel="stylesheet" href="../../shared/headers/admin.css"/>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="../../shared/headers/admin.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
-    <header id="placeholder_header">
-    </header>
+    <div id="header"></div>
 
     <div class="search-product">
         <input type="text" class="search-box" placeholder="search here..." />
@@ -47,7 +47,7 @@
                 </tbody>
             </table>
         </div>
-            <!-- Pagination -->
+        <!-- Pagination -->
         <div class="pagination-container">
             <ul id="pagination" class="pagination">
                 <!-- Pagination buttons will be dynamically added here -->
@@ -56,51 +56,53 @@
         </div>
     </div>
     <div class="button-container fixed-bottom d-flex justify-content-end p-3">
-        <button id= "plusButton" class="btn add-btn mr-2">
+        <button id="plusButton" class="btn add-btn mr-2">
             <i class="bi bi-plus"></i>
         </button>
     </div>
-<!-- The Popup Form -->
-<div id="popupForm" class="popup">
-    <div class="popup-content">
-        <span id="closePopup" class="close-btn">&times;</span>
-        <h2>Add New Product</h2>
-        <form id="productForm">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Enter product name">
+    <!-- The Popup Form -->
+    <div id="popupForm" class="popup">
+        <div class="popup-content">
+            <span id="closePopup" class="close-btn">&times;</span>
+            <h2>Add New Product</h2>
+            <form id="productForm">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter product name">
 
-            <label for="category">Category</label>
-            <input type="text" id="category" name="category" placeholder="Enter category">
+                <label for="category">Category</label>
+                <input type="text" id="category" name="category" placeholder="Enter category">
 
-            <label for="price">Price</label>
-            <input type="text" id="price" name="price" placeholder="Enter price">
+                <label for="price">Price</label>
+                <input type="text" id="price" name="price" placeholder="Enter price">
 
-            <label for="brand">Brand</label>
-            <input type="text" id="brand" name="brand" placeholder="Enter brand">
+                <label for="brand">Brand</label>
+                <input type="text" id="brand" name="brand" placeholder="Enter brand">
 
-            <label for="size">Size</label>
-            <input type="text" id="size" name="size" placeholder="Enter size">
+                <label for="size">Size</label>
+                <input type="text" id="size" name="size" placeholder="Enter size">
 
-            <label for="color">Color</label>
-            <input type="text" id="color" name="color" placeholder="Enter color">
+                <label for="color">Color</label>
+                <input type="text" id="color" name="color" placeholder="Enter color">
 
-            <label for="quantity">Quantity</label>
-            <input type="text" id="quantity" name="quantity" placeholder="Enter quantity">
+                <label for="quantity">Quantity</label>
+                <input type="text" id="quantity" name="quantity" placeholder="Enter quantity">
 
-            <label for="gender">Gender</label>
-            <select id="gender" name="gender">
-                <option value="female">Female</option>
-                <option value="male">Male</option>
-            </select>
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender">
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                </select>
 
-            <label for="imagePath">Upload Image (PNG only)</label>
-            <input type="file" id="imagePath" name="imagePath" accept="image/png" />
+                <label for="imagePath">Upload Image (PNG only)</label>
+                <input type="file" id="imagePath" name="imagePath" accept="image/png" />
 
-            <button type="submit" class="btn save-btn">Save</button>
-        </form>
+                <button type="submit" class="btn save-btn">Save</button>
+            </form>
+        </div>
     </div>
-</div>
 
     <script src="products.js"></script>
+    <script src="../../shared/headers/header.js"></script>
 </body>
+
 </html>

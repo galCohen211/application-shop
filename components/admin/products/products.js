@@ -1,11 +1,3 @@
-function headerHtml() {
-    $("#placeholder_header").load("../../shared/headers/admin.html", function (response, status, xhr) {
-        if (status == "error") {
-            console.log("Error loading header: " + xhr.status + " " + xhr.statusText);
-        }
-    });
-}
-
 function tableView() {
     const rowsPerPage = 4; // Number of rows per page
     const rows = $('#main-table tbody tr');
@@ -124,7 +116,7 @@ function addProduct(accessToken) {
         };
 
         $.ajax({
-            url: 'http://localhost:4000/products',
+            url: `http://localhost:4000/products`,
             type: 'POST',
             contentType: 'application/json',
             headers: {
@@ -165,7 +157,6 @@ function addProduct(accessToken) {
 
 $(document).ready(async function () {
     const accessToken = localStorage.getItem('accessToken');
-    console.log(accessToken);
     const payload = JSON.parse(atob(accessToken.split('.')[1]));
     const userId = payload.userId;
     headerHtml();
