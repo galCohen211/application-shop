@@ -204,6 +204,10 @@
     overflow: auto; /* Allow scrolling if the content is too tall */
 }
 
+#id {
+    display: none;
+}
+
 /* Popup Content */
 .popup-content {
     background-color: white;

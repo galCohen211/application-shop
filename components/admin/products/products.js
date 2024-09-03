@@ -38,6 +38,7 @@ function tableView() {
 // fill popup in product details
 function fillPopup(product)
 {
+    $('#id')[0].value = product._id;
     $('#name')[0].value = product.name;
     $('#category')[0].value = product.category;
     $('#price')[0].value = product.price;
@@ -130,10 +131,11 @@ function addProduct(accessToken) {
         formData.append('imagePath', $('#imagePath')[0].files[0]);
         header_text = $('#popup-header')[0].innerHTML;
 
-        if("Update" in header_text)
+        if(header_text.includes("Update"))
         {
+            product_id = $('#id')[0].value;
             $.ajax({
-                url: `http://localhost:4000/products`,
+                url: `http://localhost:4000/products/${product_id}`,
                 type: 'PUT',
                 contentType: false,
                 processData: false,
