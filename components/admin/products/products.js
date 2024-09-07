@@ -1,8 +1,12 @@
+// Table view and pagination
 function tableView() {
     const rowsPerPage = 4; // Number of rows per page
     const rows = $('#main-table tbody tr');
     const rowsCount = rows.length;
-    const totalPages = Math.ceil(rowsCount / rowsPerPage); // How many divisions of pages do we need
+    const totalPages = Math.ceil(rowsCount / rowsPerPage); // How many divisions of pages we need
+
+    $('#pagination').empty(); // Clear previous pagination
+
     const pagination = $('<ul class="pagination"></ul>'); // Create the pagination element
 
     // Function to display rows for the given page number
@@ -35,9 +39,8 @@ function tableView() {
     pagination.find('li:first').addClass('active'); // Mark the first page as active
 }
 
-// fill popup in product details
-function fillPopup(product)
-{
+// Fill popup with product details
+function fillPopup(product) {
     $('#id')[0].value = product._id;
     $('#name')[0].value = product.name;
     $('#category')[0].value = product.category;
@@ -49,7 +52,7 @@ function fillPopup(product)
     $('#size')[0].value = product.size;
 }
 
-//GetAllProducts
+// Get all products
 async function getAllProductTable() {
     const result = await $.ajax({
         url: 'http://localhost:4000/products',
@@ -91,30 +94,29 @@ async function getAllProductTable() {
     return result;
 }
 
-//Popup
+// Open the popup when the plus button is clicked
 const plusButton = document.getElementById('plusButton');
 const closePopupBtn = document.getElementById('closePopup');
 
-// Open popup when the plus button is clicked
 plusButton.addEventListener('click', function () {
     popupForm.style.display = 'flex'; // Use flexbox to center the popup
     $('#popup-header')[0].innerHTML = "Add New Product";
 });
 
-// Close popup when the close button (X) is clicked
+// Close the popup when the close button (X) is clicked
 closePopupBtn.addEventListener('click', function () {
     popupForm.style.display = 'none';
 });
 
-// Close popup when clicking outside of the popup content
+// Close the popup when clicking outside the popup content
 window.addEventListener('click', function (event) {
     if (event.target === popupForm) {
         popupForm.style.display = 'none';
     }
 });
 
-//Add Product
-function addProduct(accessToken) {
+// Add or update a product
+function addOrUpdateProduct(accessToken) {
     $('#productForm').on('submit', function (event) {
         event.preventDefault(); // Prevent default form submission
 
@@ -129,13 +131,12 @@ function addProduct(accessToken) {
         formData.append('quantity', $('#quantity').val());
         formData.append('gender', $('#gender').val());
         formData.append('imagePath', $('#imagePath')[0].files[0]);
-        header_text = $('#popup-header')[0].innerHTML;
 
-        if(header_text.includes("Update"))
-        {
-            product_id = $('#id')[0].value;
+        const headerText = $('#popup-header').text();
+        if (headerText.includes("Update")) {
+            const productId = $('#id').val();
             $.ajax({
-                url: `http://localhost:4000/products/${product_id}`,
+                url: `http://localhost:4000/products/${productId}`,
                 type: 'PUT',
                 contentType: false,
                 processData: false,
@@ -143,24 +144,19 @@ function addProduct(accessToken) {
                     'Authorization': `Bearer ${accessToken}`
                 },
                 data: formData,
-                success: function (result) {
-                    alert('The product was updated sucessfully')
-                    // Clear form fields
+                success: function () {
+                    alert('Product updated successfully');
                     $('#productForm')[0].reset();
-    
-                    // Close the popup
                     $('#popupForm').hide();
                 },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    console.error('Error submitting form:', errorThrown);
+                error: function (error) {
+                    console.error('Error updating product:', error);
                     alert('An error occurred while updating the product.');
                 }
-            });    
-        }
-        else
-        {
+            });
+        } else {
             $.ajax({
-                url: `http://localhost:4000/products`,
+                url: 'http://localhost:4000/products',
                 type: 'POST',
                 contentType: false,
                 processData: false,
@@ -183,27 +179,24 @@ function addProduct(accessToken) {
                             <td><img src="${result.product.imagePath}" alt="${result.product.name}" width="50" /></td>
                         </tr>
                     `;
-                    tableBody.append(newRow); // Add the new row to the table
-
-                    // Clear form fields
+                    tableBody.append(newRow);
                     $('#productForm')[0].reset();
-
-                    // Close the popup
                     $('#popupForm').hide();
                 },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    console.error('Error submitting form:', errorThrown);
-                    alert('An error occurred while creating the product.');
+                error: function (error) {
+                    console.error('Error adding product:', error);
+                    alert('An error occurred while adding the product.');
                 }
             });
         }
     });
 }
 
+// Delete a product
 function deleteProduct(accessToken) {
     $('#main-table').on('click', '.delete-btn', function () {
-        const row = $(this).closest('tr'); // Get the row containing the clicked button
-        const productId = row.find('td:first').data('id'); // Assuming the product ID is stored in a data attribute
+        const row = $(this).closest('tr');
+        const productId = row.find('td:first').data('id');
 
         if (confirm("Are you sure you want to delete this product?")) {
             $.ajax({
@@ -216,8 +209,8 @@ function deleteProduct(accessToken) {
                     row.remove(); // Remove the row from the table
                     alert('Product deleted successfully.');
                 },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    console.error('Error deleting product:', errorThrown);
+                error: function (error) {
+                    console.error('Error deleting product:', error);
                     alert('An error occurred while deleting the product.');
                 }
             });
@@ -225,11 +218,12 @@ function deleteProduct(accessToken) {
     });
 }
 
-//updateUser
-function updateProduct(accessToken) {
+// Edit a product
+function editProduct(accessToken) {
     $('#main-table').on('click', '.edit-btn', function () {
-        const row = $(this).closest('tr'); // Get the row containing the clicked button
-        const productId = row.find('td:first').data('id'); // Assuming the product ID is stored in a data attribute
+        const row = $(this).closest('tr');
+        const productId = row.find('td:first').data('id');
+
         $.ajax({
             url: `http://localhost:4000/products/${productId}`,
             type: 'GET',
@@ -237,26 +231,92 @@ function updateProduct(accessToken) {
                 'Authorization': `Bearer ${accessToken}`
             },
             success: function (result) {
-                console.log(result.product);
                 popupForm.style.display = 'flex';
-                $('#popup-header')[0].innerHTML = "Update Product";
+                $('#popup-header').text("Update Product");
                 fillPopup(result.product);
             },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.error('Error updating product:', errorThrown);
-                alert('An error occurred while updating the product.');
+            error: function (error) {
+                console.error('Error fetching product details:', error);
+                alert('An error occurred while fetching product details.');
             }
         });
-    })
+    });
 }
+
+// Search Products
+async function searchProducts(accessToken) {
+    const searchQuery = $('.search-box').val().trim();
+
+    // If search box is cleared, fetch all products again
+    if (searchQuery === '') {
+        await getAllProductTable();
+        tableView();
+        return;
+    }
+
+    const result = await $.ajax({
+        url: `http://localhost:4000/products/search?name=${encodeURIComponent(searchQuery)}`,
+        type: 'GET',
+        headers: {
+            'Authorization': `Bearer ${accessToken}`
+        },
+        success: function (response) {
+            const tableBody = $("#main-table tbody");
+            tableBody.empty(); // Clear previous rows
+
+            if (response.length > 0) {
+                response.forEach(product => {
+                    const productRow = `
+                        <tr>
+                            <td data-id="${product._id}">${product.name}</td>
+                            <td>${product.category}</td>
+                            <td>$${product.price}</td>
+                            <td>${product.brand}</td>
+                            <td>${product.size}</td>
+                            <td>${product.color}</td>
+                            <td>${product.quantity}</td>
+                            <td>${product.gender}</td>
+                            <td><img src="${product.imagePath}" alt="${product.name}" width="50" /></td>
+                            <td>
+                                <button class="btn edit-btn"><i class="bi bi-pencil"></i></button>
+                                <button class="btn delete-btn"><i class="bi bi-trash"></i></button>
+                            </td>
+                        </tr>
+                    `;
+                    tableBody.append(productRow);
+                });
+            } else {
+                // Show empty table
+                tableBody.append('<tr><td colspan="10">No products found</td></tr>');
+            }
+
+            // Reinitialize pagination after search results
+            tableView();
+        },
+        error: function (error) {
+            console.error('Error fetching search results:', error);
+            // No need to throw an error; simply show an empty table with headers
+            $("#main-table tbody").empty();
+            tableView(); // Clear pagination if no results
+        }
+    });
+
+    return result;
+}
+
 
 $(document).ready(async function () {
     const accessToken = localStorage.getItem('accessToken');
-    const payload = JSON.parse(atob(accessToken.split('.')[1]));
-    const userId = payload.userId;
     await getAllProductTable();
     tableView();
-    addProduct(accessToken);
+
+    // Event listeners
+    addOrUpdateProduct(accessToken);
     deleteProduct(accessToken);
-    updateProduct(accessToken);
+    editProduct(accessToken);
+
+    // Search functionality
+    $('.search-box').on('input', function () {
+        searchProducts(accessToken);
+    });
 });
