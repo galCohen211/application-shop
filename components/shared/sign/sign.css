@@ -26,14 +26,17 @@ body{
     min-height: 540px;
 }
 
-.container p{
-    font-size: 14px;
+.container p {
     line-height: 20px;
     letter-spacing: 0.3px;
-    margin: 20px 0;
 }
 
-.container a{
+.toggle-container p {
+    margin: 20px 0;
+    font-size: 14px;
+}
+
+.container a {
     color: #333;
     font-size: 13px;
     text-decoration: none;
@@ -195,13 +198,19 @@ body{
     text-decoration: underline;
 }
 
-#message{
+.validatable-input-container {
+    width: 100%;
+    position: relative;
+}
+
+.input-message-text {
+    display: block;
+    margin: 0;
+    left: 0;
+    bottom: -10px;
+    color: red;
     position: absolute;
-    color: black;
     font-size: 9px;
-    margin-top: 5px; 
-    left: 42px; 
-    width: 100%; 
     text-align: left;
     display: none;
 }
@@ -236,6 +245,7 @@ body{
     display: flex;
     align-items: center;
     margin-bottom: 15px;
+    place-content: center;
 }
 
 .gender-options {
@@ -248,19 +258,6 @@ body{
     flex-direction: column;
     align-items: center;
     margin-right: 15px;
-}
-
-#email-error-message {
-    display: none; 
-    position: absolute; 
-    top: 150px; 
-    right: 10px;
-    background-color: #f8d7da; 
-    color: #721c24; 
-    padding: 10px; 
-    border: 1px solid #f5c6cb; 
-    border-radius: 4px; 
-    z-index: 1000; 
 }
 
 

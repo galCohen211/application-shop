@@ -23,7 +23,7 @@ function setMaxDate() {
 //Password Validation
 function passwordValidation() {
   var pass = document.getElementById("password");
-  var msg = document.getElementById("message");
+  var msg = document.getElementById("password-hint-message");
   var str = document.getElementById("strenght");
 
   pass.addEventListener("input", () => {
@@ -96,6 +96,89 @@ function validateEmail(email) {
   return emailPattern.test(email);
 }
 
+function showValidationMessage({
+  firstName,
+  lastName,
+  email,
+  password,
+  city,
+  street,
+  gender,
+  birthDate,
+}) {
+  let isValid = true;
+
+  const firstNameMessage = document.getElementById("firstname-error-message");
+  if (!firstName) {
+    firstNameMessage.style.display = "block";
+    isValid = false;
+  } else {
+    firstNameMessage.style.display = "none";
+  }
+
+  const lastNameMessage = document.getElementById("lastname-error-message");
+  if (!lastName) {
+    lastNameMessage.style.display = "block";
+    isValid = false;
+  } else {
+    lastNameMessage.style.display = "none";
+  }
+
+  const emailErrorMessage = document.getElementById("email-error-message");
+  if (!validateEmail(email)) {
+    emailErrorMessage.style.display = "block";
+    isValid = false;
+  } else {
+    emailErrorMessage.style.display = "none";
+  }
+
+  const passwordErrorMessage = document.getElementById("password-hint-message");
+  const passwordErrorMessageStrenght = document.getElementById("strenght");
+  if (!password) {
+    passwordErrorMessage.style.display = "block";
+    passwordErrorMessageStrenght.innerHTML = "required";
+    isValid = false;
+  } else {
+    passwordErrorMessage.style.display = "none";
+  }
+
+  const cityErrorMessage = document.getElementById("city-error-message");
+  if (!city) {
+    cityErrorMessage.style.display = "block";
+    isValid = false;
+  } else {
+    cityErrorMessage.style.display = "none";
+  }
+
+  const streetErrorMessage = document.getElementById("street-error-message");
+  if (!street) {
+    streetErrorMessage.style.display = "block";
+    isValid = false;
+  } else {
+    streetErrorMessage.style.display = "none";
+  }
+
+  const genderErrorMessage = document.getElementById("gender-error-message");
+  if (!gender) {
+    genderErrorMessage.style.display = "block";
+    isValid = false;
+  } else {
+    genderErrorMessage.style.display = "none";
+  }
+
+  const birthDateErrorMessage = document.getElementById(
+    "birthdate-error-message"
+  );
+  if (!birthDate) {
+    birthDateErrorMessage.style.display = "block";
+    isValid = false;
+  } else {
+    birthDateErrorMessage.style.display = "none";
+  }
+
+  return isValid;
+}
+
 //Fetch to the register
 document.addEventListener("DOMContentLoaded", function () {
   document
@@ -111,17 +194,22 @@ document.addEventListener("DOMContentLoaded", function () {
       const street = document.getElementById("street").value;
       const gender = document.querySelector(
         'input[name="gender"]:checked'
-      ).value;
+      )?.value;
       const birthDate = document.getElementById("birthdate").value;
 
-      const emailErrorMessage = document.getElementById("email-error-message");
+      const isFormValid = showValidationMessage({
+        firstName,
+        lastName,
+        email,
+        password,
+        city,
+        street,
+        gender,
+        birthDate,
+      });
 
-      if (!validateEmail(email)) {
-        emailErrorMessage.style.display = "block";
-        emailErrorMessage.textContent = "Invalid email address.";
+      if (!isFormValid) {
         return;
-      } else {
-        emailErrorMessage.style.display = "none";
       }
 
       const registerData = {
@@ -143,7 +231,6 @@ document.addEventListener("DOMContentLoaded", function () {
         body: JSON.stringify(registerData),
       });
       const responseText = await response.text();
-      console.log("Response text:", responseText);
 
       if (response.ok) {
         window.location.assign("../../shared/home/index.html");

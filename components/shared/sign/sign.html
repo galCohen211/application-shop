@@ -16,85 +16,133 @@
     </a>
     <div class="container" id="container">
       <div class="form-container sign-up">
-        <form>
+        <form id="sign-up-form">
           <h1>Create Account</h1>
-          <input
-            type="text"
-            placeholder="First name*"
-            id="firstName"
-            required
-            pattern="[A-Za-z\s]+"
-            title="Please enter a valid first name."
-          />
-          <input
-            type="text"
-            placeholder="Last name*"
-            id="lastName"
-            required
-            pattern="[A-Za-z\s]+"
-            title="Please enter a valid first name."
-          />
-          
-          <input
-            type="email"
-            placeholder="Email*"
-            id="email"
-            required
-            pattern="[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z]+"
-            title="Please enter a valid email address."
-          />
-          <p id="email-error-message" class="error-message">Invalid email address.</p>
 
-          <input
-            type="password"
-            placeholder="Password*"
-            id="password"
-            required
-          />
-          <p id="message">Password is <span id="strenght"></span></p>
-          <input
-            type="text"
-            placeholder="City*"
-            id="city"
-            required
-            pattern="[A-Za-z\s]+"
-            title="Please enter a valid city."
-          />
-          <input
-            type="text"
-            placeholder="Street*"
-            id="street"
-            required
-            pattern="[A-Za-z0-9\s]+"
-            title="Please enter a valid street."
-          />
-          <div class="gender-container">
-            <div class="gender-options">
-              <div>
-                <input
-                  type="radio"
-                  id="female"
-                  name="gender"
-                  value="Female"
-                  required
-                />
-                <label for="female">Female</label>
-              </div>
-              <div>
-                <input
-                  type="radio"
-                  id="male"
-                  name="gender"
-                  value="Male"
-                  required
-                />
-                <label for="male">Male</label>
-              </div>
-            </div>
+          <div class="validatable-input-container">
+            <input
+              type="text"
+              placeholder="First name*"
+              id="firstName"
+              required
+              pattern="[A-Za-z\s]+"
+              title="Please enter a valid first name."
+            />
+            <p id="firstname-error-message" class="input-message-text">
+              Firstname is required
+            </p>
           </div>
 
-          <input type="date" placeholder="Birthdate*" id="birthdate" required />
-          <button id="sign-up-btn">Sign Up</button>
+          <div class="validatable-input-container">
+            <input
+              type="text"
+              placeholder="Last name*"
+              id="lastName"
+              required
+              pattern="[A-Za-z\s]+"
+              title="Please enter a valid first name."
+            />
+            <p id="lastname-error-message" class="input-message-text">
+              Lastname is required
+            </p>
+          </div>
+
+          <div class="validatable-input-container">
+            <input
+              type="email"
+              placeholder="Email*"
+              id="email"
+              required
+              pattern="[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z]+"
+              title="Please enter a valid email address."
+            />
+            <p id="email-error-message" class="input-message-text">
+              Invalid email address
+            </p>
+          </div>
+
+          <div class="validatable-input-container">
+            <input
+              type="password"
+              placeholder="Password*"
+              id="password"
+              required
+            />
+            <p id="password-hint-message" class="input-message-text">
+              Password is <span id="strenght"></span>
+            </p>
+          </div>
+
+          <div class="validatable-input-container">
+            <input
+              type="text"
+              placeholder="City*"
+              id="city"
+              required
+              pattern="[A-Za-z\s]+"
+              title="Please enter a valid city."
+            />
+            <p id="city-error-message" class="input-message-text">
+              City is required
+            </p>
+          </div>
+
+          <div class="validatable-input-container">
+            <input
+              type="text"
+              placeholder="Street*"
+              id="street"
+              required
+              pattern="[A-Za-z0-9\s]+"
+              title="Please enter a valid street."
+            />
+            <p id="street-error-message" class="input-message-text">
+              Street is required
+            </p>
+          </div>
+
+          <div class="validatable-input-container">
+            <div class="gender-container">
+              <div class="gender-options">
+                <div>
+                  <input
+                    type="radio"
+                    id="female"
+                    name="gender"
+                    value="Female"
+                    required
+                  />
+                  <label for="female">Female</label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    id="male"
+                    name="gender"
+                    value="Male"
+                    required
+                  />
+                  <label for="male">Male</label>
+                </div>
+              </div>
+            </div>
+            <p id="gender-error-message" class="input-message-text">
+              Gender is required
+            </p>
+          </div>
+
+          <div class="validatable-input-container">
+            <input
+              type="date"
+              placeholder="Birthdate*"
+              id="birthdate"
+              required
+            />
+            <p id="birthdate-error-message" class="input-message-text">
+              Birthdate is required
+            </p>
+          </div>
+          <button type="click" id="sign-up-btn">Sign Up</button>
         </form>
       </div>
       <div class="form-container sign-in">
@@ -116,9 +164,7 @@
         <div class="toggle">
           <div class="toggle-panel toggle-left">
             <h1>Welcome back to Style For You!</h1>
-            <p>
-              Sign in and let Style For You guide your fashion journey!
-            </p>
+            <p>Sign in and let Style For You guide your fashion journey!</p>
             <button class="hidden" id="login">Sign In</button>
           </div>
           <div class="toggle-panel toggle-right">
