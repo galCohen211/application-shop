@@ -115,6 +115,13 @@ window.addEventListener('click', function (event) {
     }
 });
 
+function refreshTable() {
+    // Fetch all products and reinitialize table view and pagination
+    getAllProductTable().then(() => {
+        tableView();
+    });
+}
+
 // Add or update a product
 function addOrUpdateProduct(accessToken) {
     $('#productForm').on('submit', function (event) {
@@ -148,6 +155,7 @@ function addOrUpdateProduct(accessToken) {
                     alert('Product updated successfully');
                     $('#productForm')[0].reset();
                     $('#popupForm').hide();
+                    refreshTable();
                 },
                 error: function (error) {
                     console.error('Error updating product:', error);

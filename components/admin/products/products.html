@@ -51,7 +51,6 @@
         <div class="pagination-container">
             <ul id="pagination" class="pagination">
                 <!-- Pagination buttons will be dynamically added here -->
-
             </ul>
         </div>
     </div>
@@ -71,13 +70,28 @@
                 <input type="text" id="name" name="name" placeholder="Enter product name">
 
                 <label for="category">Category</label>
-                <input type="text" id="category" name="category" placeholder="Enter category">
+                <select id="category" name="category">
+                    <option value="Shirts">Shirts</option>
+                    <option value="Dresses">Dresses</option>
+                    <option value="Jackets">Jackets</option>
+                    <option value="Skirts">Skirts</option>
+                    <option value="Pants">Pants</option>
+                    <option value="Skirts">Skirts</option>
+                    <option value="Socks">Socks</option>
+                </select>
 
-                <label for="price">Price</label>
+                <label for="price">Price ($)</label>
                 <input type="number" id="price" name="price" placeholder="Enter price">
 
                 <label for="brand">Brand</label>
-                <input type="text" id="brand" name="brand" placeholder="Enter brand">
+                <select id="brand" name="brand">
+                    <option value="Zara">Zara</option>
+                    <option value="Tommy Hilfiger">Tommy Hilfiger</option>
+                    <option value="Pull & Bear">Pull & Bear</option>
+                    <option value="Calvin Klein">Calvin Klein</option>
+                    <option value="Nike">Nike</option>
+                    <option value="Adidas">Adidas</option>
+                </select>
 
                 <label for="size">Size</label>
                 <select id="size" name="size">
