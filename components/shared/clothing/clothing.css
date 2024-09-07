@@ -59,6 +59,9 @@ h1 {
 .dropdown {
     position: relative;
     display: block;
+}
+
+.dropdown-root {
     margin-bottom: 20px;
 }
 
