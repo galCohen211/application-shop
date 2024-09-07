@@ -158,12 +158,21 @@
         <form>
           <h1>Sign In</h1>
           <input type="email" placeholder="Email" id="email-sign-in" required />
-          <input
+          <!-- <input
             type="password"
             placeholder="Password"
             id="password-sign-in"
             required
-          />
+          /> -->
+          <div class="validatable-input-container">
+            <input
+              type="password"
+              placeholder="Password"
+              id="password-sign-in"
+              required
+            />
+            <i class="fas fa-eye" id="toggle-password"></i>
+          </div>
           <a href="#">Forgot Your Password?</a>
           <button id="sign-in-btn">Sign In</button>
           <p id="error-message">Invalid email or password.</p>

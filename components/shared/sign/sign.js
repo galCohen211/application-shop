@@ -258,5 +258,25 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+  // Toggle the eye icon
+  document.addEventListener("DOMContentLoaded", function () {
+  const eye = document.getElementById('toggle-password');
+  const passwordField = document.getElementById('password-sign-in');
+  
+  eye.addEventListener('click', function () {
+    let type;
+    if (passwordField.type === 'password') {
+        type = 'text';
+    } else {
+        type = 'password';
+    }
+    passwordField.type = type;
+    
+    eye.classList.toggle('fa-eye');
+    eye.classList.toggle('fa-eye-slash');
+  });
+});
+
+
 document.addEventListener("DOMContentLoaded", setMaxDate);
 document.addEventListener("DOMContentLoaded", passwordValidation);

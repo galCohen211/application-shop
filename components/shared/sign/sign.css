@@ -204,6 +204,21 @@ body{
     text-align: center;
 }
 
+.validatable-input-container input[type="password"] {
+    padding-right: 40px; 
+    width: 100%;
+}
+
+.validatable-input-container .fas {
+    position: absolute;
+    right: 10px; 
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px; 
+    color: #333; 
+}
+
 .input-message-text {
     display: block;
     margin: 0;
