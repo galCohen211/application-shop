@@ -232,10 +232,28 @@ document.addEventListener("DOMContentLoaded", function () {
       });
       const responseText = await response.text();
 
+      console.log(response);
+      console.log(responseText);
+
       if (response.ok) {
         window.location.assign("../../shared/home/index.html");
       } else {
+        try {
+          const errorMsg = JSON.parse(responseText)[0];
+          if (errorMsg.email === "unavailable") {
+            document.getElementById("form-submit-error-message").innerText =
+              "User already exists";
+          }
+        } catch (error) {
+          document.getElementById("form-submit-error-message").innerText =
+            "An error occurred. Please try again.";
+        } finally {
+          document.getElementById(
+            "form-submit-error-message-container"
+          ).style.display = "block";
+        }
         console.log("Register failed");
+        console.error(error);
       }
     });
 });

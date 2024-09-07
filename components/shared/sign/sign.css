@@ -23,7 +23,7 @@ body{
     overflow: hidden;
     width: 768px;
     max-width: 100%;
-    min-height: 540px;
+    min-height: 600px;
 }
 
 .container p {
@@ -53,7 +53,7 @@ body{
     font-weight: 600;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    margin-top: 10px;
+    margin-top: 30px;
     cursor: pointer;
 }
 
@@ -201,6 +201,7 @@ body{
 .validatable-input-container {
     width: 100%;
     position: relative;
+    text-align: center;
 }
 
 .input-message-text {
@@ -212,6 +213,15 @@ body{
     position: absolute;
     font-size: 9px;
     text-align: left;
+    display: none;
+}
+
+.form-message-text {
+    width: 100%;
+    bottom: -22px;
+    color: red;
+    position: absolute;
+    font-size: 13px;
     display: none;
 }
 
