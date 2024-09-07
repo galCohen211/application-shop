@@ -28,9 +28,6 @@ router.get(
 // Search user
 router.get("/search", verifyAdminToken, UserController.searchUser);
 
-// Search user
-router.get("/search", verifyAdminToken, UserController.searchUser);
-
 router.get(
     "/:id",
     UserController.getUserById

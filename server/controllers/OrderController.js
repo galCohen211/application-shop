@@ -16,11 +16,28 @@ class OrderController {
 
     // Get user orders
     static async getUserOrders(req, res) {
-        const userOrderHistory = await Order.find({ user: req.params.id })
-            .populate({ path: 'cart' })
-            .sort({ 'dateOrdered': -1 })
+        try {
+            // Fetch user orders and populate the cart
+            const userOrderHistory = await Order.find({ user: req.params.id })
+                .populate({ path: 'cart' })
+                .sort({ 'dateOrdered': -1 });
 
-        res.send({ amount: userOrderHistory.length, data: userOrderHistory })
+            // Iterate over each order to fetch the cart items
+            const ordersWithItems = await Promise.all(userOrderHistory.map(async (order) => {
+
+                // Find the cart items for the specific cart and populate the product field
+                const cartItems = await CartItem.find({ cart: order.cart._id })
+                    .populate('product');
+
+                return {
+                    ...order._doc, 
+                    cartItems: cartItems // Add the cart items to the order object
+                };
+            }));
+            res.send({ amount: ordersWithItems.length, data: ordersWithItems });
+        } catch (error) {
+            res.status(500).send({ message: 'Error fetching orders', error });
+        }
     }
 
     // Submit an order
@@ -98,7 +115,7 @@ class OrderController {
                     $sort: { totalSales: -1 }
                 }
             ]);
-    
+
             res.status(200).json({ groupedOrders });
         } catch (err) {
             console.error(err);
