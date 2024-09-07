@@ -100,8 +100,10 @@ const closePopupBtn = document.getElementById('closePopup');
 
 plusButton.addEventListener('click', function () {
     popupForm.style.display = 'flex'; // Use flexbox to center the popup
-    $('#popup-header')[0].innerHTML = "Add New Product";
+    $('#popup-header').text("Add New Product");
+    $('#productForm')[0].reset(); // Reset all form fields
 });
+
 
 // Close the popup when the close button (X) is clicked
 closePopupBtn.addEventListener('click', function () {
@@ -152,7 +154,6 @@ function addOrUpdateProduct(accessToken) {
                 },
                 data: formData,
                 success: function () {
-                    alert('Product updated successfully');
                     $('#productForm')[0].reset();
                     $('#popupForm').hide();
                     refreshTable();
