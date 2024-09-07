@@ -23,17 +23,20 @@ body{
     overflow: hidden;
     width: 768px;
     max-width: 100%;
-    min-height: 540px;
+    min-height: 600px;
 }
 
-.container p{
-    font-size: 14px;
+.container p {
     line-height: 20px;
     letter-spacing: 0.3px;
-    margin: 20px 0;
 }
 
-.container a{
+.toggle-container p {
+    margin: 20px 0;
+    font-size: 14px;
+}
+
+.container a {
     color: #333;
     font-size: 13px;
     text-decoration: none;
@@ -50,7 +53,7 @@ body{
     font-weight: 600;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    margin-top: 10px;
+    margin-top: 30px;
     cursor: pointer;
 }
 
@@ -195,14 +198,45 @@ body{
     text-decoration: underline;
 }
 
-#message{
+.validatable-input-container {
+    width: 100%;
+    position: relative;
+    text-align: center;
+}
+
+.validatable-input-container input[type="password"] {
+    padding-right: 40px; 
+    width: 100%;
+}
+
+.validatable-input-container .fas {
     position: absolute;
-    color: black;
+    right: 10px; 
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px; 
+    color: #333; 
+}
+
+.input-message-text {
+    display: block;
+    margin: 0;
+    left: 0;
+    bottom: -10px;
+    color: red;
+    position: absolute;
     font-size: 9px;
-    margin-top: 5px; 
-    left: 42px; 
-    width: 100%; 
     text-align: left;
+    display: none;
+}
+
+.form-message-text {
+    width: 100%;
+    bottom: -22px;
+    color: red;
+    position: absolute;
+    font-size: 13px;
     display: none;
 }
 
@@ -236,6 +270,7 @@ body{
     display: flex;
     align-items: center;
     margin-bottom: 15px;
+    place-content: center;
 }
 
 .gender-options {
@@ -249,9 +284,3 @@ body{
     align-items: center;
     margin-right: 15px;
 }
-
-
-
-
-
-
