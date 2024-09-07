@@ -23,7 +23,7 @@ function setMaxDate() {
 //Password Validation
 function passwordValidation() {
   var pass = document.getElementById("password");
-  var msg = document.getElementById("message");
+  var msg = document.getElementById("password-hint-message");
   var str = document.getElementById("strenght");
 
   pass.addEventListener("input", () => {
@@ -91,6 +91,94 @@ document
     }
   });
 
+function validateEmail(email) {
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return emailPattern.test(email);
+}
+
+function showValidationMessage({
+  firstName,
+  lastName,
+  email,
+  password,
+  city,
+  street,
+  gender,
+  birthDate,
+}) {
+  let isValid = true;
+
+  const firstNameMessage = document.getElementById("firstname-error-message");
+  if (!firstName) {
+    firstNameMessage.style.display = "block";
+    isValid = false;
+  } else {
+    firstNameMessage.style.display = "none";
+  }
+
+  const lastNameMessage = document.getElementById("lastname-error-message");
+  if (!lastName) {
+    lastNameMessage.style.display = "block";
+    isValid = false;
+  } else {
+    lastNameMessage.style.display = "none";
+  }
+
+  const emailErrorMessage = document.getElementById("email-error-message");
+  if (!validateEmail(email)) {
+    emailErrorMessage.style.display = "block";
+    isValid = false;
+  } else {
+    emailErrorMessage.style.display = "none";
+  }
+
+  const passwordErrorMessage = document.getElementById("password-hint-message");
+  const passwordErrorMessageStrenght = document.getElementById("strenght");
+  if (!password) {
+    passwordErrorMessage.style.display = "block";
+    passwordErrorMessageStrenght.innerHTML = "required";
+    isValid = false;
+  } else {
+    passwordErrorMessage.style.display = "none";
+  }
+
+  const cityErrorMessage = document.getElementById("city-error-message");
+  if (!city) {
+    cityErrorMessage.style.display = "block";
+    isValid = false;
+  } else {
+    cityErrorMessage.style.display = "none";
+  }
+
+  const streetErrorMessage = document.getElementById("street-error-message");
+  if (!street) {
+    streetErrorMessage.style.display = "block";
+    isValid = false;
+  } else {
+    streetErrorMessage.style.display = "none";
+  }
+
+  const genderErrorMessage = document.getElementById("gender-error-message");
+  if (!gender) {
+    genderErrorMessage.style.display = "block";
+    isValid = false;
+  } else {
+    genderErrorMessage.style.display = "none";
+  }
+
+  const birthDateErrorMessage = document.getElementById(
+    "birthdate-error-message"
+  );
+  if (!birthDate) {
+    birthDateErrorMessage.style.display = "block";
+    isValid = false;
+  } else {
+    birthDateErrorMessage.style.display = "none";
+  }
+
+  return isValid;
+}
+
 //Fetch to the register
 document.addEventListener("DOMContentLoaded", function () {
   document
@@ -106,8 +194,23 @@ document.addEventListener("DOMContentLoaded", function () {
       const street = document.getElementById("street").value;
       const gender = document.querySelector(
         'input[name="gender"]:checked'
-      ).value;
+      )?.value;
       const birthDate = document.getElementById("birthdate").value;
+
+      const isFormValid = showValidationMessage({
+        firstName,
+        lastName,
+        email,
+        password,
+        city,
+        street,
+        gender,
+        birthDate,
+      });
+
+      if (!isFormValid) {
+        return;
+      }
 
       const registerData = {
         firstName,
@@ -128,18 +231,52 @@ document.addEventListener("DOMContentLoaded", function () {
         body: JSON.stringify(registerData),
       });
       const responseText = await response.text();
-      console.log("Response text:", responseText);
+
+      console.log(response);
+      console.log(responseText);
 
       if (response.ok) {
-        const data = await response.json();
-        console.log("Register successful:", data);
         window.location.assign("../../shared/home/index.html");
       } else {
+        try {
+          const errorMsg = JSON.parse(responseText)[0];
+          if (errorMsg.email === "unavailable") {
+            document.getElementById("form-submit-error-message").innerText =
+              "User already exists";
+          }
+        } catch (error) {
+          document.getElementById("form-submit-error-message").innerText =
+            "An error occurred. Please try again.";
+        } finally {
+          document.getElementById(
+            "form-submit-error-message-container"
+          ).style.display = "block";
+        }
         console.log("Register failed");
+        console.error(error);
       }
-
     });
 });
+
+  // Toggle the eye icon
+  document.addEventListener("DOMContentLoaded", function () {
+  const eye = document.getElementById('toggle-password');
+  const passwordField = document.getElementById('password-sign-in');
+  
+  eye.addEventListener('click', function () {
+    let type;
+    if (passwordField.type === 'password') {
+        type = 'text';
+    } else {
+        type = 'password';
+    }
+    passwordField.type = type;
+    
+    eye.classList.toggle('fa-eye');
+    eye.classList.toggle('fa-eye-slash');
+  });
+});
+
 
 document.addEventListener("DOMContentLoaded", setMaxDate);
 document.addEventListener("DOMContentLoaded", passwordValidation);
