@@ -107,7 +107,7 @@ class CartController {
 
   static deleteProductFromCart(req, res) {
     const { cart, item } = req.query;
-    CartItem.findOneAndDelete({ _id: item, cart }).then((item) => {
+    CartItem.findOneAndDelete({ product: item, cart }).then((item) => {
       res.send(item);
     });
   }
