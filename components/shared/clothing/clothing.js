@@ -156,6 +156,7 @@ function insertAvailableFilterField(data, filterFieldName, filterElementID) {
   $(`#${filterElementID}`).html(brandsHTML);
 }
 
+//Filter products
 function filterProducts(products, filters) {
   return products.filter((product) => {
     return filters.some((filter) => {
@@ -166,6 +167,7 @@ function filterProducts(products, filters) {
   });
 }
 
+//Function is responsible for managing active filters based on checkbox input
 function handleFilterProductsChange(
   checkbox,
   filterFieldName,
