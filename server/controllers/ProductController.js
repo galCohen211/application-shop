@@ -81,6 +81,19 @@ class ProductController {
         return res.status(200).send(product);
     }
 
+    // Get Product By Id
+    static async getProductById(req, res) {
+        const { id } = req.params;
+        if (!mongoose.isValidObjectId(id)) {
+            return res.status(400).send("Invalid product id");
+        }
+        const product = await Product.findById(id);
+        if (!product) {
+            return res.status(404).send("Product not found");
+        }
+        res.status(200).send({ message: "Found Product successfully", product });
+    }
+
     // Delete product
     static async deleteProduct(req, res) {
 
