@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -27,6 +26,7 @@
       type="image/x-icon"
     />
   </head>
+
   <body>
     <div id="header"></div>
 
@@ -39,9 +39,9 @@
           <div class="dropdown dropdown-root">
             <button class="dropdown-label" onclick="openMenu(event)">
               Brand
-              <span class="dropdown-arrow"
-                ><i class="fas fa-chevron-down"></i
-              ></span>
+              <span class="dropdown-arrow">
+                <i class="fas fa-chevron-down"></i>
+              </span>
             </button>
             <ul class="dropdown-list" id="brands-container"></ul>
           </div>
@@ -68,55 +68,56 @@
         </div>
       </div>
 
-      <div class="col-sm-12 col-md-10">
+      <div class="col-sm-12 col-md-10" id="products-container-col">
         <!-- Products -->
         <div id="products-container" class="grid-columns"></div>
       </div>
+      <div id="product-empty-message"></div>
+    </div>
 
-      <!-- Popup Modal -->
-      <div id="popup" class="popup">
-        <div class="popup-content">
-          <span class="close">&times;</span>
-          <h2>Special Offer!</h2>
-          <p>Get 20% off your first purchase. Sign-up and get started!!</p>
-          <p id="timer">
-            Offer expires in:
-            <br />
-            <span id="countdown"></span>
-          </p>
-        </div>
+    <!-- Popup Modal -->
+    <div id="popup" class="popup">
+      <div class="popup-content">
+        <span class="close">&times;</span>
+        <h2>Special Offer!</h2>
+        <p>Get 20% off your first purchase. Sign-up and get started!!</p>
+        <p id="timer">
+          Offer expires in:
+          <br />
+          <span id="countdown"></span>
+        </p>
       </div>
+    </div>
 
-      <!-- Product Popup Modal -->
-      <div id="product-popup" class="popup">
-        <div class="popup-content">
-          <span id="close-product-popup" class="close">&times;</span>
-          <div class="popup-image">
-            <img src="" alt="" id="popup-image" />
-          </div>
-          <h2 id="popup-name"></h2>
-          <p id="popup-size"></p>
-          <p id="popup-price"></p>
-          <button id="add-to-cart-btn" class="btn btn-primary mt-3">
-            Add to Cart
-          </button>
+    <!-- Product Popup Modal -->
+    <div id="product-popup" class="popup">
+      <div class="popup-content">
+        <span id="close-product-popup" class="close">&times;</span>
+        <div class="popup-image">
+          <img src="" alt="" id="popup-image" />
         </div>
-      </div>
-
-      <div id="black-bar" class="hidden">
-        <span>STYLE FOR YOU</span>
-        <span class="login-footer">
-          <a href="../sign/sign.html">Log in</a> to your company's online store.
-        </span>
-        <button id="close-btn-login-footer">
-          <i class="fas fa-times"></i>
+        <h2 id="popup-name"></h2>
+        <p id="popup-size"></p>
+        <p id="popup-price"></p>
+        <button id="add-to-cart-btn" class="btn btn-primary mt-3">
+          Add to Cart
         </button>
       </div>
-
-      <script src="../../shared/headers/header.js"></script>
-      <script src="../clothing/clothing.js"></script>
-      <script src="../clothing/popup.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     </div>
+
+    <div id="black-bar" class="hidden">
+      <span>STYLE FOR YOU</span>
+      <span class="login-footer">
+        <a href="../sign/sign.html">Log in</a> to your company's online store.
+      </span>
+      <button id="close-btn-login-footer">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <script src="../../shared/headers/header.js"></script>
+    <script src="../clothing/clothing.js"></script>
+    <script src="../clothing/popup.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   </body>
 </html>
