@@ -15,6 +15,8 @@ crossorigin = "anonymous";
 
 src = "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js";
 
+var productAmount;
+
 // Black bar's close button appears after 3 seconds
 setTimeout(() => {
   const closeBtn = document.getElementById("close-btn-login-footer");
@@ -90,25 +92,45 @@ document.addEventListener("DOMContentLoaded", () => {
   const addToCartButton = document.getElementById("add-to-cart-btn");
   addToCartButton.addEventListener("click", () => {
     const authToken = localStorage.getItem("accessToken");
-    fetch("http://localhost:4000/carts/", {
-      method: "POST",
+    const accessToken = localStorage.getItem("accessToken");
+    const payload = JSON.parse(atob(accessToken.split(".")[1]));
+    const userId = payload.userId;
+
+    fetch(`http://localhost:4000/carts/?id=${userId}`, {
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${authToken}`,
       },
-      body: JSON.stringify({
-        product: selectedProductId,
-        amount: 1,
-      }),
     })
       .then((response) => response.json())
-      .then((data) => {
-        console.log("Product added to cart:", data);
-        localStorage.setItem("recentlyAddedProductId", selectedProductId);
-        window.location.href = "../../user/cart/cart.html";
+      .then((cart) => {
+        let addProductToCartUrl = `http://localhost:4000/carts/?user=${userId}`;
+        if (cart != {}) {
+          addProductToCartUrl += `&cart=${cart}`;
+        }
+
+        fetch(addProductToCartUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${authToken}`,
+          },
+          body: JSON.stringify({
+            product: selectedProduct,
+            amount: productAmount,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Product added to cart:", data);
+          })
+          .catch((error) => {
+            console.error("Error adding product to cart:", error);
+          });
       })
       .catch((error) => {
-        console.error("Error adding product to cart:", error);
+        console.error("Error getting cart:", error);
       });
   });
 });
@@ -136,13 +158,15 @@ function insertProductsHtml(data) {
 }
 
 function showProductPopup(product) {
+  productAmount = 1;
   $("#popup-image").attr("src", product.imagePath);
   $("#popup-image").attr("alt", product.name);
   $("#popup-name").text(product.name);
   $("#popup-size").text("Size: " + product.size);
   $("#popup-price").text("$" + product.price.toFixed(2) + " USD");
+  $("#product-amount").text(productAmount);
   document.getElementById("product-popup").style.display = "flex";
-  selectedProductId = product._id;
+  selectedProduct = product;
 }
 
 function insertAvailableFilterField(data, filterFieldName, filterElementID) {
@@ -188,3 +212,20 @@ document.addEventListener("click", function (event) {
     }
   });
 });
+
+// +
+function decreaseAmount() {
+  console.log("HERE");
+  if (productAmount > 1) productAmount--;
+  $("#product-amount").text(productAmount);
+}
+
+// -
+function increaseAmount() {
+  if (productAmount < 99) productAmount++;
+  $("#product-amount").text(productAmount);
+}
+
+
+
+
