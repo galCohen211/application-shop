@@ -226,6 +226,12 @@ function increaseAmount() {
   $("#product-amount").text(productAmount);
 }
 
+function addSuccess(){
+  alert("Added to cart successfully!");
+}
+
+
+
 
 
 
