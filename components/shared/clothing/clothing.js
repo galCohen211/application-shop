@@ -124,6 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
           .then((response) => response.json())
           .then((data) => {
             console.log("Product added to cart:", data);
+            localStorage.setItem("recentlyAddedProductId", productId);
           })
           .catch((error) => {
             console.error("Error adding product to cart:", error);
