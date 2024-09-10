@@ -121,12 +121,21 @@ document.addEventListener("DOMContentLoaded", () => {
             amount: productAmount,
           }),
         })
-          .then((response) => response.json())
+          //.then((response) => response.json())
+          .then((response) => {
+            if (!response.ok) {
+              return response.json().then((error) => {
+                throw new Error(error.message);
+              });
+            }
+            return response.json();
+          })
           .then((data) => {
             console.log("Product added to cart:", data);
-            localStorage.setItem("recentlyAddedProductId", selectedProduct._id);
+            addSuccess();
           })
           .catch((error) => {
+            alert("Not enough product quantity available"); 
             console.error("Error adding product to cart:", error);
           });
       })
@@ -227,12 +236,9 @@ function increaseAmount() {
   $("#product-amount").text(productAmount);
 }
 
-function addSuccess(){
-  alert("Added to cart successfully!");
+function addSuccess() {
+  document.getElementById("product-popup").style.display = "none";
+  setTimeout(() => {
+    alert("Added to cart successfully!");
+  }, 200);
 }
-
-
-
-
-
-

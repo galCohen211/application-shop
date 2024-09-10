@@ -4,14 +4,7 @@ var cartProducts = [];
 //Load product
 function loadCart() {
   const authToken = localStorage.getItem("accessToken");
-  const recentlyAddedProductId = localStorage.getItem("recentlyAddedProductId");
-  if (!recentlyAddedProductId) {
-    $("#products-container").html("<p>No items in cart</p>");
-    return;
-  }
-
-  const accessToken = localStorage.getItem("accessToken");
-  const payload = JSON.parse(atob(accessToken.split(".")[1]));
+  const payload = JSON.parse(atob(authToken.split(".")[1]));
   const userId = payload.userId;
 
   // Fetching the whole cart
@@ -35,9 +28,8 @@ function loadCart() {
         })
           .then((response) => response.json())
           .then((products) => {
+            // Looping through all the products
             cartProducts = products
-
-              // Looping through all the products
               .map((product) => {
                 // Get the product from the existing cart (to get it's amount in the cart)
                 const cartItem = cartDetails.cartItems.find(
@@ -82,13 +74,19 @@ function loadCart() {
               document.getElementById(
                 "total-cart-price"
               ).innerText = `No items in cart`;
+              document.getElementById("open-checkout-btn").disabled = true;
             }
-
-            document.getElementById(
-              "total-cart-price-container"
-            ).style.display = "flex";
           });
+      } else {
+        document.getElementById(
+          "total-cart-price"
+        ).innerText = `No items in cart`;
+
+        document.getElementById("open-checkout-btn").disabled = true;
       }
+
+      document.getElementById("total-cart-price-container").style.display =
+        "flex";
     })
     .catch((error) => {
       console.error("Error fetching product:", error);
@@ -138,6 +136,7 @@ function deleteProductFromCart(productId) {
           document.getElementById(
             "total-cart-price"
           ).innerText = `No items in cart`;
+          document.getElementById("open-checkout-btn").disabled = true;
         }
       } else {
         console.error("Product element not found");
@@ -157,3 +156,73 @@ function confirmDelete(productId) {
     deleteProductFromCart(productId);
   }
 }
+
+function openSubmitForm() {
+  showPopup();
+}
+
+function submitOrder() {
+  const city = document.getElementById("City").value;
+  const street = document.getElementById("Street").value;
+  const creditcard = document.getElementById("creditcard").value;
+  const authToken = localStorage.getItem("accessToken");
+  const payload = JSON.parse(atob(authToken.split(".")[1]));
+  const user = payload.userId;
+  const data = {
+    city,
+    street,
+    creditcard,
+    totalPrice: parseFloat(cartTotalPrice),
+    user,
+    cart: cartId,
+  };
+
+  fetch(`http://localhost:4000/orders`, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${authToken}`,
+    },
+  })
+    .then((response) => response.json())
+    .then((response) => {
+      if (response.orderSubmitted) {
+        closePopup();
+        cartId = null;
+        cartTotalPrice = 0;
+        cartProducts = [];
+        loadCart();
+        const productContainer = document.getElementById("products-container");
+        const productElements = productContainer.querySelectorAll(".product");
+        productElements.forEach((product) => {
+          productContainer.removeChild(product);
+        });
+        document.getElementById(
+          "total-cart-price"
+        ).innerText = `No items in cart`;
+
+        alert("Order placed succefully!");
+      }
+    })
+    .catch((error) => {
+      alert("Error accured during placing the order :/");
+      console.error(error);
+    });
+}
+
+// This function shows the popup on screen
+function showPopup() {
+  document.getElementById("popup").style.display = "flex";
+}
+
+// Function to close the popup when the close button is clicked
+function closePopup() {
+  document.getElementById("popup").style.display = "none";
+}
+
+// Close the popup when the close button is clicked
+document.addEventListener("DOMContentLoaded", function () {
+  const closeButton = document.querySelector(".close");
+  closeButton.addEventListener("click", closePopup);
+});

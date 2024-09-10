@@ -109,5 +109,41 @@ h1 {
     padding-top: 0;
 }
   
+.mb-3 {
+    width: 100%;
+}
+
+button {
+    width: 100%;
+    margin-top: 20px; 
+}
+
+.center-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: white;
+    border: 2px solid #ccc; 
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
   
-  
+.order-form-popup {
+    border: none;
+    box-shadow: none;
+    padding: 26px;
+}
+
+.submit-btn {
+    margin-top: 10px;
+}
+
+.submit-btn:disabled {
+    background-color: #a7a7a7 !important;
+    border-color: #a7a7a7 !important;
+    cursor: not-allowed;
+}

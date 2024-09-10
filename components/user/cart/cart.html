@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../../shared/headers/user_guest.css" />
     <link rel="stylesheet" href="../../shared/headers/admin.css" />
     <link rel="stylesheet" href="../cart/cart.css" />
+    <link rel="stylesheet" href="../../shared/clothing/popup.css" />
     <!-- Bootstrap -->
     <link
       rel="stylesheet"
@@ -36,12 +37,62 @@
         <div class="total-cart-price-wrapper">
           <h1>Order summary:</h1>
           <h3 id="total-cart-price"></h3>
+          <button type="submit" id="open-checkout-btn" class="btn btn-primary submit-btn" onclick="openSubmitForm()">Submit Order</button>
         </div>
       </div>
 
       <div class="col-sm-12 col-md-10">
         <!-- Products -->
         <div id="products-container" class="grid-columns"></div>
+      </div>
+
+      <!-- Popup Modal -->
+      <div id="popup" class="popup">
+        <div class="popup-content">
+          <span class="close">&times;</span>
+
+          <div class="container center-form order-form-popup">
+            <h1>Fill the form</h1>
+            <form id="gameForm"></form>
+              <div class="mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="City"
+                  required
+                  title="Please enter a valid City."
+                  id="City"
+                />
+              </div>
+              <div class="mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Street"
+                  required
+                  title="Please enter a valid Street."
+                  id="Street"
+                />
+              </div>
+              <div class="mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="creditcard"
+                  required
+                  title="Please enter a valid creditcard."
+                  id="creditcard"
+                />
+              </div>
+              <div class="mb-3">
+                <button onclick="submitOrder()" class="btn btn-primary">
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+
+        </div>
       </div>
 
       <script src="../cart/cart.js"></script>
