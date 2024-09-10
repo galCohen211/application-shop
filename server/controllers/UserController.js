@@ -4,7 +4,8 @@ const { validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
 const SECRET = require('../routers/secret');
 const mongoose = require('mongoose');
-
+const { OAuth2Client } = require('google-auth-library');
+const client = new OAuth2Client('Y724624414737-b6sqaet5vul4it8q3gk9prdmb641unfd.apps.googleusercontent.com');
 
 class UserController {
 
@@ -208,6 +209,61 @@ class UserController {
             res.status(500).send("Error occurred while searching for users");
         }
     }
+
+    // Google Login
+    static async googleLogin(req, res) {
+        const { idToken } = req.body;
+
+        // Verify the Google ID token
+        let ticket;
+        try {
+            ticket = await client.verifyIdToken({
+                idToken,
+                audience: '724624414737-b6sqaet5vul4it8q3gk9prdmb641unfd.apps.googleusercontent.com',
+            });
+        } catch (error) {
+            return res.status(401).json({ success: false, message: 'Invalid Google token' });
+        }
+
+        const payload = ticket.getPayload();
+        const { email, given_name: firstName, family_name: lastName } = payload;
+
+        // Check if user exists in the database
+        let user = await User.findOne({ email });
+
+        // If user doesn't exist, create a new user with 'user' role
+        if (!user) {
+            user = new User({
+                email,
+                firstName,
+                lastName,
+                role: 'user', // Default role
+                city: '', // Optionally set default fields
+                street: '',
+                gender: ''
+            });
+            await user.save();
+        }
+
+        // Generate JWT for the user
+        const accessToken = jwt.sign(
+            { userId: user.id, role: user.role },
+            SECRET
+        );
+
+        // Respond with user info and access token
+        res.status(200).json({
+            firstName: user.firstName,
+            lastName: user.lastName,
+            city: user.city,
+            street: user.street,
+            gender: user.gender,
+            role: user.role,
+            accessToken,
+            success: true
+        });
+    }
 }
+
 
 module.exports = UserController;
