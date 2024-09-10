@@ -32,12 +32,16 @@
     <h1>Your Cart</h1>
 
     <div class="main-top-images">
-      <div class="col-sm-12 col-md-2"></div>
+      <div id="total-cart-price-container" style="display: none">
+        <div class="total-cart-price-wrapper">
+          <h1>Order summary:</h1>
+          <h3 id="total-cart-price"></h3>
+        </div>
+      </div>
 
       <div class="col-sm-12 col-md-10">
         <!-- Products -->
         <div id="products-container" class="grid-columns"></div>
-        
       </div>
 
       <script src="../cart/cart.js"></script>

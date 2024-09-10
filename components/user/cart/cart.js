@@ -1,5 +1,7 @@
 var cartId = null;
-
+var cartTotalPrice = 0;
+var cartProducts = [];
+//Load product
 function loadCart() {
   const authToken = localStorage.getItem("accessToken");
   const recentlyAddedProductId = localStorage.getItem("recentlyAddedProductId");
@@ -12,6 +14,7 @@ function loadCart() {
   const payload = JSON.parse(atob(accessToken.split(".")[1]));
   const userId = payload.userId;
 
+  // Fetching the whole cart
   fetch(`http://localhost:4000/carts/?id=${userId}`, {
     method: "GET",
     headers: {
@@ -23,6 +26,7 @@ function loadCart() {
     .then((cartDetails) => {
       cartId = cartDetails.cart._id;
       if (cartDetails?.cartItems) {
+        // Fetching whole products
         fetch(`http://localhost:4000/products`, {
           method: "GET",
           headers: {
@@ -31,18 +35,26 @@ function loadCart() {
         })
           .then((response) => response.json())
           .then((products) => {
-            const cartProducts = products
-              .map((product) => {
-                const amount = cartDetails.cartItems.filter(
-                  (cartItem) => cartItem.product === product._id
-                ).length;
+            cartProducts = products
 
-                // If the item appears in array2, add the amount field
-                if (amount > 0) {
-                  return { ...product, amount }; // Add the 'amount' field
+              // Looping through all the products
+              .map((product) => {
+                // Get the product from the existing cart (to get it's amount in the cart)
+                const cartItem = cartDetails.cartItems.find(
+                  (cartItem) => cartItem.product === product._id
+                );
+                if (cartItem) {
+                  return { ...product, amount: cartItem.amount }; // Add the 'amount' field
                 }
               })
-              .filter(Boolean); // Remove undefined values
+              .filter(Boolean); // Remove undefined values - products that not in the cart
+
+            //Total price calculation
+            cartTotalPrice = cartDetails.cartItems
+              .reduce((accumulator, currentValue) => {
+                return accumulator + currentValue.price;
+              }, 0)
+              .toFixed(2);
 
             if (cartProducts?.length) {
               let productsHTML = "";
@@ -63,9 +75,18 @@ function loadCart() {
               `;
               });
               $("#products-container").html(productsHTML);
+              document.getElementById(
+                "total-cart-price"
+              ).innerText = `Cart total price: ${cartTotalPrice}$`;
             } else {
-              $("#products-container").html("<p>No items in cart</p>");
+              document.getElementById(
+                "total-cart-price"
+              ).innerText = `No items in cart`;
             }
+
+            document.getElementById(
+              "total-cart-price-container"
+            ).style.display = "flex";
           });
       }
     })
@@ -98,6 +119,26 @@ function deleteProductFromCart(productId) {
       );
       if (productElement) {
         productElement.remove();
+        cartProducts = cartProducts.filter(
+          (product) => product._id !== productId
+        );
+
+        //Total price calculation
+        cartTotalPrice = cartProducts
+          .reduce((accumulator, currentValue) => {
+            return accumulator + currentValue.price * currentValue.amount;
+          }, 0)
+          .toFixed(2);
+
+        if (cartProducts?.length) {
+          document.getElementById(
+            "total-cart-price"
+          ).innerText = `Cart total price: ${cartTotalPrice}$`;
+        } else {
+          document.getElementById(
+            "total-cart-price"
+          ).innerText = `No items in cart`;
+        }
       } else {
         console.error("Product element not found");
       }
