@@ -71,6 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
     type: "GET",
     success: function (data) {
       // Process the retrieved data
+      allGenderProducts = data;
       insertProductsHtml(data);
       const filterFieldsArr = [
         { fieldName: "brand", filterContainer: "brands-container" },
@@ -200,7 +201,7 @@ function insertAvailableFilterField(data, filterFieldName, filterElementID) {
     if (!brandMap.has(product[filterFieldName])) {
       brandMap.set(product[filterFieldName], true);
       brandsHTML += `<li>
-        <input type="checkbox" id="${product[filterFieldName]}" value="${product[filterFieldName]}" />
+        <input type="checkbox" id="${product[filterFieldName]}" value="${product[filterFieldName]}" onchange="handleFilterProductsChange(this, '${filterFieldName}', '${product[filterFieldName]}')"/>
         <label for="${product[filterFieldName]}">${product[filterFieldName]}</label>
       </li>`;
     }
