@@ -1,0 +1,149 @@
+h1 {
+    text-align: center;
+    padding: 1rem 0;
+    font-family: 'Bitstream Vera Serif Bold', serif;
+    letter-spacing: 3px;
+    font-size: 2rem !important;
+}
+
+/* media queries enable responsive design */
+@media (max-width: 768px) {
+    .nav-links {
+        font-size: 16px;
+        gap: 10px;
+    }
+
+    .logo {
+        width: 150px;
+    }
+}
+
+@font-face {
+    font-family: "Bitstream Vera Serif Bold";
+    src: url("https://mdn.github.io/css-examples/web-fonts/VeraSeBd.ttf");
+}
+
+.main-top-images {
+    margin-bottom: 30px;
+}
+
+.grid-columns {
+    display: grid;
+    column-gap: 25px;
+    row-gap: 50px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.product {
+    cursor: pointer;
+    flex: 1 1 200px;
+    max-width: 300px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 0 4px 1px #d0d0d0;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.product .img-top-images {
+    width: 100%;
+    height: 340px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.product img {
+    width: auto;
+    width: 100%;
+    transition: transform .2s ease-in-out;
+}
+
+.product h2 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.product p {
+    font-size: 16px;
+    color: #666;
+    margin: 5px 0;
+}
+
+  .delete-btn {
+    background-color: #e74c3c; 
+    color: white; 
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px; 
+  }
+  
+  .delete-btn:hover {
+    background-color: #c0392b; 
+  }
+
+#total-cart-price-container {
+    text-align: center;
+    width: 100%;
+    place-content: center;
+}
+
+.total-cart-price-wrapper {
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 30px 130px;
+    margin: 10px 0;
+}
+
+.total-cart-price-wrapper h1 {
+    margin-top: 0;
+    padding-top: 0;
+}
+  
+.mb-3 {
+    width: 100%;
+}
+
+button {
+    width: 100%;
+    margin-top: 20px; 
+}
+
+.center-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: white;
+    border: 2px solid #ccc; 
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+  
+.order-form-popup {
+    border: none;
+    box-shadow: none;
+    padding: 26px;
+}
+
+.submit-btn {
+    margin-top: 10px;
+}
+
+.submit-btn:disabled {
+    background-color: #a7a7a7 !important;
+    border-color: #a7a7a7 !important;
+    cursor: not-allowed;
+}
