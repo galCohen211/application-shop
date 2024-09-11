@@ -16,6 +16,8 @@ crossorigin = "anonymous";
 src = "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js";
 
 var productAmount;
+var allGenderProducts = [];
+var activeFilteres = [];
 
 // Black bar's close button appears after 3 seconds
 setTimeout(() => {
@@ -157,6 +159,19 @@ function insertProductsHtml(data) {
     productsHTML += " <p>$" + product.price.toFixed(2) + " USD</p>";
     productsHTML += "</div>";
   });
+
+  if (productsHTML === "" && activeFilteres.length) {
+    document.getElementById("products-container-col").style.display = "none";
+    document.getElementById("product-empty-message").style.display = "block";
+
+    $("#product-empty-message").html(
+      "<h1>No products matched your filteres :(</h1>"
+    );
+  } else {
+    document.getElementById("products-container-col").style.display = "block";
+    document.getElementById("product-empty-message").style.display = "none";
+  }
+
   $("#products-container").html(productsHTML);
 
   // Attach click event to each product
@@ -193,6 +208,44 @@ function insertAvailableFilterField(data, filterFieldName, filterElementID) {
 
   // Append the product HTML to the container
   $(`#${filterElementID}`).html(brandsHTML);
+}
+
+//Filter products
+function filterProducts(products, filters) {
+  return products.filter((product) => {
+    return filters.some((filter) => {
+      const filterValue = filter.filterFieldValue;
+      const productValue = product[filter.filterFieldName];
+      return productValue === filterValue;
+    });
+  });
+}
+
+//Function is responsible for managing active filters based on checkbox input
+function handleFilterProductsChange(
+  checkbox,
+  filterFieldName,
+  filterFieldValue
+) {
+  if (checkbox.checked) {
+    activeFilteres.push({ filterFieldName, filterFieldValue });
+  } else {
+    activeFilteres = activeFilteres.filter((item) => {
+      return (
+        JSON.stringify(item) !==
+        JSON.stringify({ filterFieldName, filterFieldValue })
+      );
+    });
+  }
+
+  let filteredProducts;
+  if (activeFilteres.length) {
+    filteredProducts = filterProducts(allGenderProducts, activeFilteres);
+  } else {
+    filteredProducts = allGenderProducts;
+  }
+
+  insertProductsHtml(filteredProducts);
 }
 
 function openMenu(event) {
