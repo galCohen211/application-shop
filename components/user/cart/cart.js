@@ -58,7 +58,7 @@ function loadCart() {
                   </div>
                   <h2>${cartProduct.name}</h2>
                   <p>Size: ${cartProduct.size}</p>
-                  <p>${cartProduct.price} USD</p>
+                  <p>${cartProduct.price} $</p>
                   <p>Amount: ${cartProduct.amount}</p>
                   <button class="delete-btn" onclick="confirmDelete('${cartProduct._id}')">
                     Delete
@@ -202,7 +202,7 @@ function submitOrder() {
           "total-cart-price"
         ).innerText = `No items in cart`;
 
-        alert("Order placed succefully!");
+        alert("Order placed successfully!");
       }
     })
     .catch((error) => {

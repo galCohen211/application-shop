@@ -121,7 +121,6 @@ document.addEventListener("DOMContentLoaded", () => {
             amount: productAmount,
           }),
         })
-          //.then((response) => response.json())
           .then((response) => {
             if (!response.ok) {
               return response.json().then((error) => {
