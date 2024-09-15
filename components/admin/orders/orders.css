@@ -57,51 +57,6 @@
     }
 }
 
-/* Button */
-.btn {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #007bff;
-}
-
-.btn:hover {
-    background-color: #0056b3;
-}
-
-/* Icon Hover Effect */
-.add-btn i:hover,
-.delete-btn i:hover {
-    color: #fff;
-}
-
-/* Search Box */
-.search-product {
-    width: 300px;
-    margin: 20px 50px 40px; 
-}
-
-/* Search Box Input Styling */
-.search-box {
-    width: 80%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    outline: none;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition on focus */
-}
-
-/* Search Box Focus State */
-.search-box:focus {
-    border-color: #808992;
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
-}
-
 /* Pagination Styling */
 .pagination-container {
     display: flex;
@@ -152,85 +107,6 @@
     right: 20px;
     display: flex;
     gap: 10px;
-}
-
-/* Popup Background */
-.popup {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-    overflow: auto; /* Allow scrolling if the content is too tall */
-}
-
-/* Popup Content */
-.popup-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 500px;
-    max-height: 80vh;
-    overflow-y: auto;
-    position: relative;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
-    animation: slide-down 0.3s ease-out;
-}
-
-/* Close Button */
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.close-btn:hover {
-    color: red;
-}
-
-/* Form Styling */
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-form label {
-    margin: 10px 0 5px;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-form input,
-form select {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-}
-
-form input:focus,
-form select:focus {
-    border-color: #007bff;
-    outline: none;
-}
-
-.save-btn {
-    background-color: #28a745;
-    margin-top: 20px;
-    align-self: center;
-    width: 100%;
-}
-
-.save-btn:hover {
-    background-color: #218838;
 }
 
 /* Popup Slide Down Animation */

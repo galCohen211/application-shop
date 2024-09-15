@@ -12,10 +12,9 @@ async function getUserName(id) {
     }
 }
 
-
 // Table view and pagination
 function tableView() {
-    const rowsPerPage = 5; // Number of rows per page
+    const rowsPerPage = 5;
     const rows = $('#main-table tbody tr');
     const rowsCount = rows.length;
     const totalPages = Math.ceil(rowsCount / rowsPerPage); // How many divisions of pages we need
@@ -28,7 +27,7 @@ function tableView() {
     function displayRows(pageNumber) {
         const start = (pageNumber - 1) * rowsPerPage;
         const end = start + rowsPerPage;
-        rows.hide(); // Hide all rows
+        rows.hide();
         rows.slice(start, end).show(); // Show the rows for the current page
     }
 
@@ -52,30 +51,39 @@ function tableView() {
     // Initialize the first page
     displayRows(1);
     pagination.find('li:first').addClass('active'); // Mark the first page as active
+
+    // Show the table now that pagination is set up
+    $('#main-table').show();
 }
 
 // Get all orders
 async function getAllOrders(accessToken) {
-    const result = await $.ajax({
-        url: 'http://localhost:4000/orders',
-        type: 'GET',
-        headers: {
-            'Authorization': `Bearer ${accessToken}`
-        },
-        dataType: 'json',
-        success: async function (response) {
-            async function addOrdersToTable(orders) {
-                const tableBody = $("#main-table tbody");
-                tableBody.empty(); // Clear any existing rows
+    try {
+        // Show the loading spinner
+        $('#loadingSpinner').show();
 
-                console.log(orders.data)
-                orders.data.forEach(async function (order) {
+        // Hide the table while data is loading
+        $('#main-table').hide();
+
+        const result = await $.ajax({
+            url: 'http://localhost:4000/orders',
+            type: 'GET',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            },
+            dataType: 'json'
+        });
+
+        const tableBody = $("#main-table tbody");
+        tableBody.empty(); // Clear any existing rows
+
+        // Function to add orders to the table
+        const addOrdersToTable = async (orders) => {
+            for (const order of orders.data) {
+                try {
                     const userData = await getUserName(order.user);
                     const firstName = userData.user.firstName;
                     const lastName = userData.user.lastName;
-                    // firstName = getUserName(order.user)
-                    // console.log(firstName)
-                    // lastName = getUserName(order.user)
                     const orderRow = `
                         <tr>
                             <td data-id="${order._id}">${order._id}</td>
@@ -87,28 +95,27 @@ async function getAllOrders(accessToken) {
                             <td>${order.street}</td>
                         </tr>
                     `;
-
                     tableBody.append(orderRow); // Add the new row to the table
-                });
+                } catch (error) {
+                    console.error("Error fetching user data:", error);
+                }
             }
-            await addOrdersToTable(response);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.error("Error fetching data:", textStatus, errorThrown);
-        }
-    });
-    return result;
-}
+            tableView(); // Initialize pagination after adding rows
+        };
 
-// function refreshTable() {
-//     // Fetch all orders and reinitialize table view and pagination
-//     getAllOrders().then(() => {
-//         tableView();
-//     });
-// }
+        await addOrdersToTable(result);
+
+    } catch (error) {
+        console.error("Error fetching orders:", error);
+    } finally {
+        // Hide the loading spinner
+        $('#loadingSpinner').hide();
+        // Show the table
+        $('#main-table').show();
+    }
+}
 
 $(document).ready(async function () {
     const accessToken = localStorage.getItem('accessToken');
     await getAllOrders(accessToken);
-    tableView();
 });
