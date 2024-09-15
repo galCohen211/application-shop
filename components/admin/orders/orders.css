@@ -57,6 +57,24 @@
     }
 }
 
+/* Style for Total Orders */
+#totalOrders {
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #totalOrders {
+        font-size: 16px;
+    }
+}
+
 /* Pagination Styling */
 .pagination-container {
     display: flex;

@@ -77,6 +77,8 @@ async function getAllOrders(accessToken) {
         const tableBody = $("#main-table tbody");
         tableBody.empty(); // Clear any existing rows
 
+        $('#totalOrders').text(`Total orders: ${result.amount}`);
+
         // Function to add orders to the table
         const addOrdersToTable = async (orders) => {
             for (const order of orders.data) {
