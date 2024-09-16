@@ -14,7 +14,7 @@ async function getUserName(id) {
 
 // Table view and pagination
 function tableView() {
-    const rowsPerPage = 5;
+    const rowsPerPage = 4;
     const rows = $('#main-table tbody tr');
     const rowsCount = rows.length;
     const totalPages = Math.ceil(rowsCount / rowsPerPage); // How many divisions of pages we need
@@ -117,7 +117,94 @@ async function getAllOrders(accessToken) {
     }
 }
 
+async function getSalesByCity(accessToken) {
+    try {
+        const result = await $.ajax({
+            url: 'http://localhost:4000/orders/groupByCity',
+            type: 'GET',
+            dataType: 'json',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            },
+        });
+
+        const data = result.groupedOrders;
+        createBarChart(data); // Pass the grouped order data to the chart creation function
+    } catch (error) {
+        console.error('Error fetching sales by city:', error);
+    }
+}
+
+function createBarChart(data) {
+    const svg = d3.select('#barChart');
+    const margin = { top: 20, right: 30, bottom: 40, left: 60 }; // Increased left margin for space
+    const width = 800 - margin.left - margin.right;
+    const height = 400 - margin.top - margin.bottom;
+
+    // Clear any previous elements inside the svg
+    svg.selectAll("*").remove();
+
+    const g = svg
+        .attr('width', width + margin.left + margin.right)
+        .attr('height', height + margin.top + margin.bottom)
+        .append('g')
+        .attr('transform', `translate(${margin.left},${margin.top})`);
+
+    // X scale for city names
+    const x = d3.scaleBand()
+        .domain(data.map(d => d._id))
+        .range([0, width])
+        .padding(0.1);
+
+    // Y scale for total sales
+    const y = d3.scaleLinear()
+        .domain([0, d3.max(data, d => d.totalSales)])
+        .range([height, 0]);
+
+    // Append the bars
+    g.selectAll('.bar')
+        .data(data)
+        .enter().append('rect')
+        .attr('class', 'bar')
+        .attr('x', d => x(d._id))
+        .attr('y', d => y(d.totalSales))
+        .attr('width', x.bandwidth())
+        .attr('height', d => height - y(d.totalSales));
+
+    // X-axis
+    g.append('g')
+        .attr('transform', `translate(0,${height})`)
+        .call(d3.axisBottom(x))
+        .selectAll('text')
+        .attr('transform', 'rotate(-45)')
+        .style('text-anchor', 'end');
+
+    // Y-axis
+    g.append('g')
+        .call(d3.axisLeft(y));
+
+    // Axis labels
+    // X-axis label
+    svg.append('text')
+        .attr('x', width / 2 + margin.left)
+        .attr('y', height + margin.top + margin.bottom - 5)
+        .attr('text-anchor', 'middle')
+        .attr('class', 'axis-label')
+        .text('City');
+
+    // Y-axis label
+    svg.append('text')
+        .attr('transform', 'rotate(-90)')
+        .attr('x', -(height / 2) - margin.top)
+        .attr('y', margin.left / 2 - 10) // Adjusted Y position
+        .attr('text-anchor', 'middle')
+        .attr('class', 'axis-label')
+        .text('Total Sales ($)');
+}
+
+
 $(document).ready(async function () {
     const accessToken = localStorage.getItem('accessToken');
-    await getAllOrders(accessToken);
+    await getAllOrders(accessToken); // Fetch and display the orders
+    await getSalesByCity(accessToken); // Fetch and display the D3.js chart
 });

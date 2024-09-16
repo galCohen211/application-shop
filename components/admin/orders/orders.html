@@ -14,11 +14,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link rel="stylesheet" href="../../shared/headers/admin.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
 </head>
 
 <body>
     <div id="header"></div>
-
 
     <div class="container mt-4">
         <!-- Display Total Orders -->
@@ -29,6 +29,14 @@
             <div class="spinner-border" role="status"></div>
             <div><br>Loading...</div>
         </div>
+
+        <!-- D3 -->
+        <div id="salesByCityChart" class="mb-4">
+            <h4>Total sales by city</h4>
+            <svg id="barChart"></svg>
+        </div>
+
+        <br>
 
         <!-- Bootstrap's responsive table class -->
         <div class="table-responsive">
@@ -44,8 +52,7 @@
                         <th>Street</th>
                     </tr>
                 </thead>
-                <tbody>
-                </tbody>
+                <tbody></tbody>
             </table>
         </div>
         <!-- Pagination -->
