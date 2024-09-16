@@ -137,7 +137,7 @@ async function getSalesByCity(accessToken) {
 
 function createBarChart(data) {
     const svg = d3.select('#barChart');
-    const margin = { top: 20, right: 30, bottom: 40, left: 60 }; // Increased left margin for space
+    const margin = { top: 20, right: 30, bottom: 40, left: 60 };
     const width = 800 - margin.left - margin.right;
     const height = 400 - margin.top - margin.bottom;
 
@@ -183,7 +183,6 @@ function createBarChart(data) {
     g.append('g')
         .call(d3.axisLeft(y));
 
-    // Axis labels
     // X-axis label
     svg.append('text')
         .attr('x', width / 2 + margin.left)
@@ -196,7 +195,7 @@ function createBarChart(data) {
     svg.append('text')
         .attr('transform', 'rotate(-90)')
         .attr('x', -(height / 2) - margin.top)
-        .attr('y', margin.left / 2 - 10) // Adjusted Y position
+        .attr('y', margin.left / 2 - 10)
         .attr('text-anchor', 'middle')
         .attr('class', 'axis-label')
         .text('Total Sales ($)');
@@ -205,6 +204,6 @@ function createBarChart(data) {
 
 $(document).ready(async function () {
     const accessToken = localStorage.getItem('accessToken');
-    await getAllOrders(accessToken); // Fetch and display the orders
-    await getSalesByCity(accessToken); // Fetch and display the D3.js chart
+    await getAllOrders(accessToken);
+    await getSalesByCity(accessToken);
 });
