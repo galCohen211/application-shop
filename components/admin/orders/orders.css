@@ -57,18 +57,18 @@
     }
 }
 
-/* Style for Total Orders */
-#totalOrders {
-    font-size: 30px;
+#salesByCityChart h4 {
+    font-size: 24px;
     font-weight: bold;
-    color: #333;
     padding: 10px;
-    background-color: #f8f9fa;
-    border: 1px solid #ddd;
-    border-radius: 5px;
 }
 
-/* Responsive Design */
+#totalOrders {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 10px;
+}
+
 @media (max-width: 768px) {
     #totalOrders {
         font-size: 16px;
