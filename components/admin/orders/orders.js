@@ -5,16 +5,16 @@ async function getUserName(id) {
             type: 'GET',
             dataType: 'json'
         });
-        return result; // Return the full response object
+        return result;
     } catch (error) {
         console.error("Error fetching data:", error);
-        throw error; // Rethrow the error to handle it outside the function if needed
+        throw error;
     }
 }
 
 // Table view and pagination
 function tableView() {
-    const rowsPerPage = 5;
+    const rowsPerPage = 4;
     const rows = $('#main-table tbody tr');
     const rowsCount = rows.length;
     const totalPages = Math.ceil(rowsCount / rowsPerPage); // How many divisions of pages we need
@@ -44,8 +44,8 @@ function tableView() {
         e.preventDefault();
         const pageNumber = $(this).text(); // Get the page number from the clicked link
         displayRows(pageNumber); // Display the appropriate rows
-        pagination.find('li').removeClass('active'); // Remove 'active' class from all pagination links
-        $(this).parent().addClass('active'); // Add 'active' class to the clicked pagination link
+        pagination.find('li').removeClass('active');
+        $(this).parent().addClass('active');
     });
 
     // Initialize the first page
@@ -59,11 +59,11 @@ function tableView() {
 // Get all orders
 async function getAllOrders(accessToken) {
     try {
-        // Show the loading spinner
         $('#loadingSpinner').show();
 
-        // Hide the table while data is loading
         $('#main-table').hide();
+        $('#totalOrders').hide();
+        $('#salesByCityChart').hide();
 
         const result = await $.ajax({
             url: 'http://localhost:4000/orders',
@@ -79,7 +79,6 @@ async function getAllOrders(accessToken) {
 
         $('#totalOrders').text(`Total orders: ${result.amount}`);
 
-        // Function to add orders to the table
         const addOrdersToTable = async (orders) => {
             for (const order of orders.data) {
                 try {
@@ -110,14 +109,99 @@ async function getAllOrders(accessToken) {
     } catch (error) {
         console.error("Error fetching orders:", error);
     } finally {
-        // Hide the loading spinner
         $('#loadingSpinner').hide();
-        // Show the table
+
         $('#main-table').show();
+        $('#totalOrders').show();
+        $('#salesByCityChart').show();
     }
 }
+
+async function getSalesByCity(accessToken) {
+    try {
+        const result = await $.ajax({
+            url: 'http://localhost:4000/orders/groupByCity',
+            type: 'GET',
+            dataType: 'json',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            },
+        });
+
+        const data = result.groupedOrders;
+        createBarChart(data); // Pass the grouped order data to the chart creation function
+    } catch (error) {
+        console.error('Error fetching sales by city:', error);
+    }
+}
+
+function createBarChart(data) {
+    const svg = d3.select('#barChart');
+    const margin = { top: 20, right: 30, bottom: 50, left: 60 };
+    const width = 800 - margin.left - margin.right;
+    const height = 400 - margin.top - margin.bottom;
+
+    // Clear any previous elements inside the svg
+    svg.selectAll("*").remove();
+
+    const g = svg
+        .attr('width', width + margin.left + margin.right)
+        .attr('height', height + margin.top + margin.bottom)
+        .append('g')
+        .attr('transform', `translate(${margin.left},${margin.top})`);
+
+    // X scale for city names
+    const x = d3.scaleBand()
+        .domain(data.map(d => d._id))
+        .range([0, width])
+        .padding(0.1);
+
+    // Y scale for total sales
+    const y = d3.scaleLinear()
+        .domain([0, d3.max(data, d => d.totalSales)])
+        .range([height, 0]);
+
+    // Append the bars
+    g.selectAll('.bar')
+        .data(data)
+        .enter().append('rect')
+        .attr('class', 'bar')
+        .attr('x', d => x(d._id))
+        .attr('y', d => y(d.totalSales))
+        .attr('width', x.bandwidth())
+        .attr('height', d => height - y(d.totalSales));
+
+    // X-axis
+    g.append('g')
+        .attr('transform', `translate(0,${height})`)
+        .call(d3.axisBottom(x))
+        .selectAll('text');
+
+    // Y-axis
+    g.append('g')
+        .call(d3.axisLeft(y));
+
+    // X-axis label (City)
+    svg.append('text')
+        .attr('x', width / 2 + margin.left)
+        .attr('y', height + margin.top + margin.bottom - 10)
+        .attr('text-anchor', 'middle')
+        .attr('class', 'axis-label')
+        .text('City');
+
+    // Y-axis label (Total Sales)
+    svg.append('text')
+        .attr('transform', 'rotate(-90)')
+        .attr('x', -(height / 2) - margin.top)
+        .attr('y', margin.left / 2 - 10)
+        .attr('text-anchor', 'middle')
+        .attr('class', 'axis-label')
+        .text('Total Sales ($)');
+}
+
 
 $(document).ready(async function () {
     const accessToken = localStorage.getItem('accessToken');
     await getAllOrders(accessToken);
+    await getSalesByCity(accessToken);
 });
