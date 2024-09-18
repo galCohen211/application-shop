@@ -5,10 +5,10 @@ async function getUserName(id) {
             type: 'GET',
             dataType: 'json'
         });
-        return result; // Return the full response object
+        return result;
     } catch (error) {
         console.error("Error fetching data:", error);
-        throw error; // Rethrow the error to handle it outside the function if needed
+        throw error;
     }
 }
 
@@ -44,8 +44,8 @@ function tableView() {
         e.preventDefault();
         const pageNumber = $(this).text(); // Get the page number from the clicked link
         displayRows(pageNumber); // Display the appropriate rows
-        pagination.find('li').removeClass('active'); // Remove 'active' class from all pagination links
-        $(this).parent().addClass('active'); // Add 'active' class to the clicked pagination link
+        pagination.find('li').removeClass('active');
+        $(this).parent().addClass('active');
     });
 
     // Initialize the first page
@@ -59,11 +59,11 @@ function tableView() {
 // Get all orders
 async function getAllOrders(accessToken) {
     try {
-        // Show the loading spinner
         $('#loadingSpinner').show();
 
-        // Hide the table while data is loading
         $('#main-table').hide();
+        $('#totalOrders').hide();
+        $('#salesByCityChart').hide();
 
         const result = await $.ajax({
             url: 'http://localhost:4000/orders',
@@ -79,7 +79,6 @@ async function getAllOrders(accessToken) {
 
         $('#totalOrders').text(`Total orders: ${result.amount}`);
 
-        // Function to add orders to the table
         const addOrdersToTable = async (orders) => {
             for (const order of orders.data) {
                 try {
@@ -110,10 +109,11 @@ async function getAllOrders(accessToken) {
     } catch (error) {
         console.error("Error fetching orders:", error);
     } finally {
-        // Hide the loading spinner
         $('#loadingSpinner').hide();
-        // Show the table
+
         $('#main-table').show();
+        $('#totalOrders').show();
+        $('#salesByCityChart').show();
     }
 }
 
