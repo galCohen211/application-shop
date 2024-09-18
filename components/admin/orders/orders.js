@@ -137,7 +137,7 @@ async function getSalesByCity(accessToken) {
 
 function createBarChart(data) {
     const svg = d3.select('#barChart');
-    const margin = { top: 20, right: 30, bottom: 40, left: 60 };
+    const margin = { top: 20, right: 30, bottom: 50, left: 60 };
     const width = 800 - margin.left - margin.right;
     const height = 400 - margin.top - margin.bottom;
 
@@ -175,23 +175,21 @@ function createBarChart(data) {
     g.append('g')
         .attr('transform', `translate(0,${height})`)
         .call(d3.axisBottom(x))
-        .selectAll('text')
-        .attr('transform', 'rotate(-45)')
-        .style('text-anchor', 'end');
+        .selectAll('text');
 
     // Y-axis
     g.append('g')
         .call(d3.axisLeft(y));
 
-    // X-axis label
+    // X-axis label (City)
     svg.append('text')
         .attr('x', width / 2 + margin.left)
-        .attr('y', height + margin.top + margin.bottom - 5)
+        .attr('y', height + margin.top + margin.bottom - 10)
         .attr('text-anchor', 'middle')
         .attr('class', 'axis-label')
         .text('City');
 
-    // Y-axis label
+    // Y-axis label (Total Sales)
     svg.append('text')
         .attr('transform', 'rotate(-90)')
         .attr('x', -(height / 2) - margin.top)
