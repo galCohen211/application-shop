@@ -19,11 +19,13 @@ router.post(
     UserController.signUp
 );
 
-router.get(
+router.get("/", verifyAdminToken, UserController.getAllUsers);
+
+/*router.get(
     "/getAllUsers",
     verifyAdminToken,
     UserController.getAllUsers
-);
+);*/
 
 // Search user
 router.get("/search", verifyAdminToken, UserController.searchUser);

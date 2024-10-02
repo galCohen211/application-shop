@@ -82,10 +82,7 @@ class UserController {
     // Get all users
     static async getAllUsers(req, res) {
         const users = await User.find({});
-        if (!users) {
-            return res.status(400).json("No users")
-        }
-        return res.status(200).json({ users });
+        res.status(200).send(users);
     }
 
     // Login
