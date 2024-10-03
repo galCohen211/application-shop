@@ -50,12 +50,16 @@ function fillPopup(user) {
     $('#gender')[0].value = user.gender;
     $('#birthDate')[0].value = user.birthDate;
 }
-
-// Get all users
+// TODO: to remove search function from users.js
+// Get all usersW
 async function getAllUserTable() {
+    const accessToken = localStorage.getItem('accessToken');
     const result = await $.ajax({
         url: 'http://localhost:4000/users',
         type: 'GET',
+        headers: {
+            'Authorization': `Bearer ${accessToken}`
+        },
         dataType: 'json',
         success: function (response) {
             function addUsersToTable(users) {
@@ -63,15 +67,16 @@ async function getAllUserTable() {
                 tableBody.empty(); // Clear any existing rows
 
                 users.forEach(function (user) {
+                    date = new Date(user.birthDate);
                     const userRow = `
                         <tr>
                             <td data-id="${user._id}">${user.firstName}</td>
                             <td>${user.lastName}</td>
-                            <td>$${user.email}</td>
+                            <td>${user.email}</td>
                             <td>${user.city}</td>
                             <td>${user.street}</td>
                             <td>${user.gender}</td>
-                            <td>${user.birthDate}</td>
+                            <td>${date.toISOString().slice(0, 10)}</td>
                             <td>
                                 <button class="btn edit-btn"><i class="bi bi-pencil"></i></button>
                                 <button class="btn delete-btn"><i class="bi bi-trash"></i></button>
@@ -116,7 +121,7 @@ window.addEventListener('click', function (event) {
 
 function refreshTable() {
     // Fetch all users and reinitialize table view and pagination
-    getAlluserTable().then(() => {
+    getAllUserTable().then(() => {
         tableView();
     });
 }
@@ -135,7 +140,7 @@ function addOrUpdateuser(accessToken) {
         formData.append('street', $('#street').val());
         formData.append('gender', $('#gender').val());
         formData.append('birthDate', $('#birthDate').val());
-
+        const accessToken = localStorage.getItem('accessToken');
         const headerText = $('#popup-header').text();
         if (headerText.includes("Update")) {
             const userId = $('#id').val();
@@ -251,7 +256,7 @@ async function searchusers(accessToken) {
 
     // If search box is cleared, fetch all users again
     if (searchQuery === '') {
-        await getAlluserTable();
+        await getAllUserTable();
         tableView();
         return;
     }
@@ -307,7 +312,7 @@ async function searchusers(accessToken) {
 
 $(document).ready(async function () {
     const accessToken = localStorage.getItem('accessToken');
-    await getAlluserTable();
+    await getAllUserTable();
     tableView();
 
     // Event listeners
