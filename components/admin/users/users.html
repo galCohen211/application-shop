@@ -32,6 +32,7 @@
                         <th>Street</th>
                         <th>Gender</th>
                         <th>Birth Date</th>
+                        <th>Tools</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,31 +47,34 @@
         </div>
     </div>
     <div class="button-container fixed-bottom d-flex justify-content-end p-3">
-        <!-- <button id="plusButton" class="btn add-btn mr-2">
+        <button id="plusButton" class="btn add-btn mr-2">
             <i class="bi bi-plus"></i>
-        </button> -->
+        </button>
     </div>
-    <!-- The Popup Form
+    
     <div id="popupForm" class="popup">
         <div class="popup-content">
             <span id="closePopup" class="close-btn">&times;</span>
             <h2 id="popup-header"></h2>
-            <form id="productForm">
-                 <label for="id">User ID</label>
-                <input type="text" id="id" readonly>
+            <form id="userForm">
+                <input type="text" id="user_id" hidden>
+ 
                 <label for="firstName">First Name</label>
                 <input type="text" id="firstName" name="firstName" placeholder="Enter first name">
  
                 <label for="lastName">Last Name</label>
                 <input type="text" id="lastName" name="lastName" placeholder="Enter Last name">
 
-                <label for="email">email</label>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter password">
+
+                <label for="email">Email</label>
                 <input type="text" id="email" name="email" placeholder="Enter email">
 
                 <label for="city">City</label>
                 <input type="text" id="city" name="city" placeholder="Enter city">
 
-                <label for="street">street</label>
+                <label for="street">Street</label>
                 <input type="text" id="street" name="street" placeholder="Enter street">
 
                 <label for="gender">Gender</label>
@@ -79,9 +83,12 @@
                     <option value="Male">Male</option>
                 </select>
 
+                <label for="birthDate">Birth Date</label>
+                <input type="date" id="birthDate" name="birthDate" placeholder="Enter birth date">
+
                 <button type="submit" class="btn save-btn">Save</button>
             </form>
-        </div> -->
+        </div>
     </div>
 
     <script src="users.js"></script>
