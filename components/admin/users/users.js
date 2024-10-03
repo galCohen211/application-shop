@@ -39,17 +39,17 @@ function tableView() {
     pagination.find('li:first').addClass('active'); // Mark the first page as active
 }
 
-// Fill popup with user details
-function fillPopup(user) {
-    $('#id')[0].value = user._id;
-    $('#fistName')[0].value = user.firstName;
-    $('#lastName')[0].value = user.lastName;
-    $('#email')[0].value = user.email;
-    $('#city')[0].value = user.city;
-    $('#street')[0].value = user.street;
-    $('#gender')[0].value = user.gender;
-    $('#birthDate')[0].value = user.birthDate;
-}
+// // Fill popup with user details
+// function fillPopup(user) {
+//     $('#id')[0].value = user._id;
+//     $('#fistName')[0].value = user.firstName;
+//     $('#lastName')[0].value = user.lastName;
+//     $('#email')[0].value = user.email;
+//     $('#city')[0].value = user.city;
+//     $('#street')[0].value = user.street;
+//     $('#gender')[0].value = user.gender;
+//     $('#birthDate')[0].value = user.birthDate;
+// }
 // TODO: to remove search function from users.js
 // Get all usersW
 async function getAllUserTable() {
@@ -77,10 +77,6 @@ async function getAllUserTable() {
                             <td>${user.street}</td>
                             <td>${user.gender}</td>
                             <td>${date.toISOString().slice(0, 10)}</td>
-                            <td>
-                                <button class="btn edit-btn"><i class="bi bi-pencil"></i></button>
-                                <button class="btn delete-btn"><i class="bi bi-trash"></i></button>
-                            </td>
                         </tr>
                     `;
 
@@ -96,28 +92,28 @@ async function getAllUserTable() {
     return result;
 }
 
-// Open the popup when the plus button is clicked
-const plusButton = document.getElementById('plusButton');
-const closePopupBtn = document.getElementById('closePopup');
+// // Open the popup when the plus button is clicked
+// const plusButton = document.getElementById('plusButton');
+// const closePopupBtn = document.getElementById('closePopup');
 
-plusButton.addEventListener('click', function () {
-    popupForm.style.display = 'flex'; // Use flexbox to center the popup
-    $('#popup-header').text("Add New user");
-    $('#userForm')[0].reset(); // Reset all form fields
-});
+// plusButton.addEventListener('click', function () {
+//     popupForm.style.display = 'flex'; // Use flexbox to center the popup
+//     $('#popup-header').text("Add New user");
+//     $('#userForm')[0].reset(); // Reset all form fields
+// });
 
 
-// Close the popup when the close button (X) is clicked
-closePopupBtn.addEventListener('click', function () {
-    popupForm.style.display = 'none';
-});
+// // Close the popup when the close button (X) is clicked
+// closePopupBtn.addEventListener('click', function () {
+//     popupForm.style.display = 'none';
+// });
 
-// Close the popup when clicking outside the popup content
-window.addEventListener('click', function (event) {
-    if (event.target === popupForm) {
-        popupForm.style.display = 'none';
-    }
-});
+// // Close the popup when clicking outside the popup content
+// window.addEventListener('click', function (event) {
+//     if (event.target === popupForm) {
+//         popupForm.style.display = 'none';
+//     }
+// });
 
 function refreshTable() {
     // Fetch all users and reinitialize table view and pagination
@@ -126,129 +122,129 @@ function refreshTable() {
     });
 }
 
-// Add or update a user
-function addOrUpdateuser(accessToken) {
-    $('#userForm').on('submit', function (event) {
-        event.preventDefault(); // Prevent default form submission
+// // Add or update a user
+// function addOrUpdateuser(accessToken) {
+//     $('#userForm').on('submit', function (event) {
+//         event.preventDefault(); // Prevent default form submission
 
-        // Create FormData object and append form fields
-        const formData = new FormData();
-        formData.append('firstName', $('#firstName').val());
-        formData.append('lastName', $('#lastName').val());
-        formData.append('email', $('#email').val());
-        formData.append('city', $('#brand').val());
-        formData.append('street', $('#street').val());
-        formData.append('gender', $('#gender').val());
-        formData.append('birthDate', $('#birthDate').val());
-        const accessToken = localStorage.getItem('accessToken');
-        const headerText = $('#popup-header').text();
-        if (headerText.includes("Update")) {
-            const userId = $('#id').val();
-            $.ajax({
-                url: `http://localhost:4000/users/${userId}`,
-                type: 'PUT',
-                contentType: false,
-                processData: false,
-                headers: {
-                    'Authorization': `Bearer ${accessToken}`
-                },
-                data: formData,
-                success: function () {
-                    $('#userForm')[0].reset();
-                    $('#popupForm').hide();
-                    refreshTable();
-                },
-                error: function (error) {
-                    console.error('Error updating user:', error);
-                    alert('An error occurred while updating the user.');
-                }
-            });
-        } else {
-            $.ajax({
-                url: 'http://localhost:4000/users',
-                type: 'POST',
-                contentType: false,
-                processData: false,
-                headers: {
-                    'Authorization': `Bearer ${accessToken}`
-                },
-                data: formData,
-                success: function (result) {
-                    const tableBody = $('#main-table tbody');
-                    const newRow = `
-                        <tr>
-                            <td>${result.user.firstName}</td>
-                            <td>${result.user.lastName}</td>
-                            <td>$${result.user.email}</td>
-                            <td>${result.user.city}</td>
-                            <td>${result.user.street}</td>
-                            <td>${result.user.gender}</td>
-                            <td>${result.user.birthDate}</td>
-                        </tr>
-                    `;
-                    tableBody.append(newRow);
-                    $('#userForm')[0].reset();
-                    $('#popupForm').hide();
-                },
-                error: function (error) {
-                    console.error('Error adding user:', error);
-                    alert('An error occurred while adding the user.');
-                }
-            });
-        }
-    });
-}
+//         // Create FormData object and append form fields
+//         const formData = new FormData();
+//         formData.append('firstName', $('#firstName').val());
+//         formData.append('lastName', $('#lastName').val());
+//         formData.append('email', $('#email').val());
+//         formData.append('city', $('#brand').val());
+//         formData.append('street', $('#street').val());
+//         formData.append('gender', $('#gender').val());
+//         formData.append('birthDate', $('#birthDate').val());
+//         const accessToken = localStorage.getItem('accessToken');
+//         const headerText = $('#popup-header').text();
+//         if (headerText.includes("Update")) {
+//             const userId = $('#id').val();
+//             $.ajax({
+//                 url: `http://localhost:4000/users/${userId}`,
+//                 type: 'PUT',
+//                 contentType: false,
+//                 processData: false,
+//                 headers: {
+//                     'Authorization': `Bearer ${accessToken}`
+//                 },
+//                 data: formData,
+//                 success: function () {
+//                     $('#userForm')[0].reset();
+//                     $('#popupForm').hide();
+//                     refreshTable();
+//                 },
+//                 error: function (error) {
+//                     console.error('Error updating user:', error);
+//                     alert('An error occurred while updating the user.');
+//                 }
+//             });
+//         } else {
+//             $.ajax({
+//                 url: 'http://localhost:4000/users',
+//                 type: 'POST',
+//                 contentType: false,
+//                 processData: false,
+//                 headers: {
+//                     'Authorization': `Bearer ${accessToken}`
+//                 },
+//                 data: formData,
+//                 success: function (result) {
+//                     const tableBody = $('#main-table tbody');
+//                     const newRow = `
+//                         <tr>
+//                             <td>${result.user.firstName}</td>
+//                             <td>${result.user.lastName}</td>
+//                             <td>$${result.user.email}</td>
+//                             <td>${result.user.city}</td>
+//                             <td>${result.user.street}</td>
+//                             <td>${result.user.gender}</td>
+//                             <td>${result.user.birthDate}</td>
+//                         </tr>
+//                     `;
+//                     tableBody.append(newRow);
+//                     $('#userForm')[0].reset();
+//                     $('#popupForm').hide();
+//                 },
+//                 error: function (error) {
+//                     console.error('Error adding user:', error);
+//                     alert('An error occurred while adding the user.');
+//                 }
+//             });
+//         }
+//     });
+// }
 
-// Delete a user
-function deleteuser(accessToken) {
-    $('#main-table').on('click', '.delete-btn', function () {
-        const row = $(this).closest('tr');
-        const userId = row.find('td:first').data('id');
+// // Delete a user
+// function deleteuser(accessToken) {
+//     $('#main-table').on('click', '.delete-btn', function () {
+//         const row = $(this).closest('tr');
+//         const userId = row.find('td:first').data('id');
 
-        if (confirm("Are you sure you want to delete this user?")) {
-            $.ajax({
-                url: `http://localhost:4000/users/${userId}`,
-                type: 'DELETE',
-                headers: {
-                    'Authorization': `Bearer ${accessToken}`
-                },
-                success: function () {
-                    row.remove(); // Remove the row from the table
-                    alert('user deleted successfully.');
-                },
-                error: function (error) {
-                    console.error('Error deleting user:', error);
-                    alert('An error occurred while deleting the user.');
-                }
-            });
-        }
-    });
-}
+//         if (confirm("Are you sure you want to delete this user?")) {
+//             $.ajax({
+//                 url: `http://localhost:4000/users/${userId}`,
+//                 type: 'DELETE',
+//                 headers: {
+//                     'Authorization': `Bearer ${accessToken}`
+//                 },
+//                 success: function () {
+//                     row.remove(); // Remove the row from the table
+//                     alert('user deleted successfully.');
+//                 },
+//                 error: function (error) {
+//                     console.error('Error deleting user:', error);
+//                     alert('An error occurred while deleting the user.');
+//                 }
+//             });
+//         }
+//     });
+// }
 
-// Edit a user
-function edituser(accessToken) {
-    $('#main-table').on('click', '.edit-btn', function () {
-        const row = $(this).closest('tr');
-        const userId = row.find('td:first').data('id');
+// // Edit a user
+// function edituser(accessToken) {
+//     $('#main-table').on('click', '.edit-btn', function () {
+//         const row = $(this).closest('tr');
+//         const userId = row.find('td:first').data('id');
 
-        $.ajax({
-            url: `http://localhost:4000/users/${userId}`,
-            type: 'GET',
-            headers: {
-                'Authorization': `Bearer ${accessToken}`
-            },
-            success: function (result) {
-                popupForm.style.display = 'flex';
-                $('#popup-header').text("Update user");
-                fillPopup(result.user);
-            },
-            error: function (error) {
-                console.error('Error fetching user details:', error);
-                alert('An error occurred while fetching user details.');
-            }
-        });
-    });
-}
+//         $.ajax({
+//             url: `http://localhost:4000/users/${userId}`,
+//             type: 'GET',
+//             headers: {
+//                 'Authorization': `Bearer ${accessToken}`
+//             },
+//             success: function (result) {
+//                 popupForm.style.display = 'flex';
+//                 $('#popup-header').text("Update user");
+//                 fillPopup(result.user);
+//             },
+//             error: function (error) {
+//                 console.error('Error fetching user details:', error);
+//                 alert('An error occurred while fetching user details.');
+//             }
+//         });
+//     });
+// }
 
 // Search users
 async function searchusers(accessToken) {
@@ -272,6 +268,7 @@ async function searchusers(accessToken) {
             tableBody.empty(); // Clear previous rows
 
             if (response.length > 0) {
+                birth = new Date(user.birthDate.toISOString().slice(0, 10));
                 response.forEach(user => {
                     const userRow = `
                         <tr>
@@ -281,7 +278,7 @@ async function searchusers(accessToken) {
                             <td>${user.city}</td>
                             <td>${user.street}</td>
                             <td>${user.gender}</td>
-                            <td>${user.birthDate}</td>
+                            <td>${birth}</td>
                             <td>
                                 <button class="btn edit-btn"><i class="bi bi-pencil"></i></button>
                                 <button class="btn delete-btn"><i class="bi bi-trash"></i></button>
@@ -309,14 +306,13 @@ async function searchusers(accessToken) {
     return result;
 }
 
-
 $(document).ready(async function () {
     const accessToken = localStorage.getItem('accessToken');
     await getAllUserTable();
     tableView();
 
     // Event listeners
-    addOrUpdateuser(accessToken);
-    deleteuser(accessToken);
-    edituser(accessToken);
+    //addOrUpdateuser(accessToken);
+    //deleteuser(accessToken);
+    //edituser(accessToken);
 });
