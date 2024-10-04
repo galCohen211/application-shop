@@ -117,7 +117,6 @@ plusButton.addEventListener('click', function () {
     $('#birthDate')[0].readOnly = false;
     document.querySelector('[for="password"]').hidden = false;
     $("#password")[0].hidden = false;
-
 });
 
 // Close the popup when the close button (X) is clicked
