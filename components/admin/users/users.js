@@ -7,7 +7,7 @@ function tableView() {
 
     $('#pagination').empty(); // Clear previous pagination
 
-    const pagination = $('<ul class="pagination"></ul>'); // Cfreate the pagination element
+    const pagination = $('<ul class="pagination"></ul>'); // Create the pagination element
 
     // Function to display rows for the given page number
     function displayRows(pageNumber) {
@@ -111,8 +111,14 @@ plusButton.addEventListener('click', function () {
     popupForm.style.display = 'flex'; // Use flexbox to center the popup
     $('#popup-header').text("Add New user");
     $('#userForm')[0].reset(); // Reset all form fields
-});
+    $('#firstName')[0].readOnly = false;
+    $('#lastName')[0].readOnly = false;
+    $('#gender')[0].disabled = false;
+    $('#birthDate')[0].readOnly = false;
+    document.querySelector('[for="password"]').hidden = false;
+    $("#password")[0].hidden = false;
 
+});
 
 // Close the popup when the close button (X) is clicked
 closePopupBtn.addEventListener('click', function () {
@@ -134,7 +140,7 @@ function refreshTable() {
 }
 
 // // Add or update a user
-function addOrUpdateuser(accessToken) {
+function addOrUpdateUser(accessToken) {
     $('#userForm').on('submit', async function (event) {
         event.preventDefault(); // Prevent default form submission
 
@@ -172,9 +178,6 @@ function addOrUpdateuser(accessToken) {
               });
               const responseText = await response.text();
         
-              console.log(response);
-              console.log(responseText);
-        
               if (response.ok) {
                 $('#userForm')[0].reset();
                 $('#popupForm').hide();
@@ -193,9 +196,6 @@ function addOrUpdateuser(accessToken) {
                 body: JSON.stringify(userData),
               });
               const responseText = await response.text();
-        
-              console.log(response);
-              console.log(responseText);
         
               if (response.ok) {
                 $('#userForm')[0].reset();
@@ -244,7 +244,7 @@ function deleteuser(accessToken) {
 }
 
 // Edit a user
-function edituser(accessToken) {
+function editUser(accessToken) {
     $('#main-table').on('click', '.edit-btn', function () {
         const row = $(this).closest('tr');
         const userId = row.find('td:first').data('id');
@@ -274,7 +274,7 @@ $(document).ready(async function () {
     tableView();
 
     // Event listeners
-    addOrUpdateuser(accessToken);
+    addOrUpdateUser(accessToken);
     deleteuser(accessToken);
-    edituser(accessToken);
+    editUser(accessToken);
 });

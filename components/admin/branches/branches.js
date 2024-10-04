@@ -1,4 +1,3 @@
-// Table view and pagination
 function tableView() {
     const rowsPerPage = 4; // Number of rows per page
     const rows = $('#main-table tbody tr');
@@ -46,7 +45,7 @@ async function getAllBranchTable() {
         type: 'GET',
         dataType: 'json',
         success: function (response) {
-            function addbranchesToTable(branches) {
+            function addBranchesToTable(branches) {
                 const tableBody = $("#main-table tbody");
                 tableBody.empty(); // Clear any existing rows
 
@@ -55,16 +54,15 @@ async function getAllBranchTable() {
                     const branchRow = `
                         <tr>
                             <td>${branch.city}</td>
-                            <td>$${branch.street}</td>
+                            <td>${branch.street}</td>
                             <td>${branch.coordinates.lat}</td>
                             <td>${branch.coordinates.lng}</td>
                         </tr>
                     `;
-
                     tableBody.append(branchRow); // Add the new row to the table
                 });
             }
-            addbranchesToTable(response);
+            addBranchesToTable(response);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.error("Error fetching data:", textStatus, errorThrown);
