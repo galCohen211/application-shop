@@ -313,7 +313,6 @@ async function searchProducts(accessToken) {
     return result;
 }
 
-
 $(document).ready(async function () {
     const accessToken = localStorage.getItem('accessToken');
     await getAllProductTable();
