@@ -1,18 +1,18 @@
 function tableView() {
-    const rowsPerPage = 4; // Number of rows per page
+    const rowsPerPage = 4;
     const rows = $('#main-table tbody tr');
     const rowsCount = rows.length;
-    const totalPages = Math.ceil(rowsCount / rowsPerPage); // How many divisions of pages we need
+    const totalPages = Math.ceil(rowsCount / rowsPerPage);
 
     $('#pagination').empty(); // Clear previous pagination
 
     const pagination = $('<ul class="pagination"></ul>'); // Create the pagination element
 
-    // Function to display rows for the given page number
+    // Display rows for the current page number
     function displayRows(pageNumber) {
         const start = (pageNumber - 1) * rowsPerPage;
         const end = start + rowsPerPage;
-        rows.hide(); // Hide all rows
+        rows.hide();
         rows.slice(start, end).show(); // Show the rows for the current page
     }
 
@@ -27,10 +27,10 @@ function tableView() {
     // Handle pagination click
     pagination.on('click', 'a', function (e) {
         e.preventDefault();
-        const pageNumber = $(this).text(); // Get the page number from the clicked link
+        const pageNumber = $(this).text();
         displayRows(pageNumber); // Display the appropriate rows
-        pagination.find('li').removeClass('active'); // Remove 'active' class from all pagination links
-        $(this).parent().addClass('active'); // Add 'active' class to the clicked pagination link
+        pagination.find('li').removeClass('active');
+        $(this).parent().addClass('active');
     });
 
     // Initialize the first page
