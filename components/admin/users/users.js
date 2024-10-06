@@ -42,18 +42,18 @@ function tableView() {
 // Fill popup with user details
 function fillPopup(user) {
     $('#user_id')[0].value = user._id;
-    $('#firstName')[0].value = user.firstName;
-    $('#firstName')[0].readOnly = true;
-    $('#lastName')[0].value = user.lastName;
-    $('#lastName')[0].readOnly = true;
+    document.querySelector('[for="firstName"]').hidden = true;
+    $('#firstName')[0].hidden = true;
+    document.querySelector('[for="lastName"]').hidden = true;
+    $('#lastName')[0].hidden = true;
     $('#email')[0].value = user.email;
     $('#city')[0].value = user.city;
     $('#street')[0].value = user.street;
-    $('#gender')[0].value = user.gender;
-    $('#gender')[0].disabled = true;
+    document.querySelector('[for="gender"]').hidden = true;
+    $('#gender')[0].hidden = true;
     date = new Date(user.birthDate);
-    $('#birthDate')[0].value = date.toISOString().slice(0, 10);
-    $('#birthDate')[0].readOnly = true;
+    document.querySelector('[for="birthDate"]').hidden = true;
+    $('#birthDate')[0].hidden = true;
     document.querySelector('[for="password"]').hidden = true;
     $("#password")[0].hidden = true;
 
