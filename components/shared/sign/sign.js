@@ -230,30 +230,30 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         body: JSON.stringify(registerData),
       });
-      const responseText = await response.text();
-
-      console.log(response);
-      console.log(responseText);
+      const data = await response.json();
 
       if (response.ok) {
+        console.log("Signup successful:", data);
+        localStorage.setItem("role", data.role);
+        localStorage.setItem("accessToken", data.accessToken);
         window.location.assign("../../shared/home/index.html");
       } else {
         try {
-          const errorMsg = JSON.parse(responseText)[0];
-          if (errorMsg.email === "unavailable") {
+          if (data.email === "unavailable") {
             document.getElementById("form-submit-error-message").innerText =
               "User already exists";
           }
         } catch (error) {
           document.getElementById("form-submit-error-message").innerText =
             "An error occurred. Please try again.";
+          console.log("Register failed");
+          console.error(error);
         } finally {
           document.getElementById(
             "form-submit-error-message-container"
           ).style.display = "block";
         }
-        console.log("Register failed");
-        console.error(error);
+        
       }
     });
 });
