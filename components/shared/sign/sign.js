@@ -72,7 +72,6 @@ document
 
       if (response.ok) {
         const data = await response.json();
-        console.log("Login successful:", data);
         localStorage.setItem("role", data.role);
         localStorage.setItem("accessToken", data.accessToken);
         console.log("role:", data.role);
@@ -233,7 +232,6 @@ document.addEventListener("DOMContentLoaded", function () {
       const data = await response.json();
 
       if (response.ok) {
-        console.log("Signup successful:", data);
         localStorage.setItem("role", data.role);
         localStorage.setItem("accessToken", data.accessToken);
         window.location.assign("../../shared/home/index.html");
