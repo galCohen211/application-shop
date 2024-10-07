@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Set the target date and time
-const targetDate = new Date("December 01, 2024 23:59:59").getTime();
+const targetDate = new Date("December 25, 2024 23:59:59").getTime();
 
 // Countdown timer function
 function updateCountdown() {
