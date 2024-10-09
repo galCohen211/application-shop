@@ -68,19 +68,21 @@
         </div>
       </div>
 
-      <div class="col-sm-12 col-md-10">
+      <div class="col-sm-12 col-md-10" id="products-container-col">
         <!-- Products -->
         <div id="products-container" class="grid-columns"></div>
       </div>
+      <div id="product-empty-message"></div>
+    </div>
 
       <!-- Popup Modal -->
       <div id="popup" class="popup">
         <div class="popup-content">
           <span class="close">&times;</span>
-          <h2>Special Offer!</h2>
-          <p>Get 20% off your first purchase. Sign-up and get started!!</p>
+          <h3>Hanukkah Special Deals!</h3>
+          <p>Get ready for hot discounts for the holiday!</p>
           <p id="timer">
-            Offer expires in:
+            Hanukkah:
             <br />
             <span id="countdown"></span>
           </p>
@@ -97,9 +99,26 @@
           <h2 id="popup-name"></h2>
           <p id="popup-size"></p>
           <p id="popup-price"></p>
-          <button id="add-to-cart-btn" class="btn btn-primary mt-3">
-            Add to Cart
-          </button>
+
+          <div class="btn-group mr-2" role="group" aria-label="Second group">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="decreaseAmount()"
+            >
+              -
+            </button>
+            <button  id="add-to-cart-btn" class="btn btn-light">
+              Add to Cart (<span id="product-amount"></span>)
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="increaseAmount()"
+            >
+              +
+            </button>
+          </div>
         </div>
       </div>
 
@@ -112,7 +131,7 @@
           <i class="fas fa-times"></i>
         </button>
       </div>
-
+      
       <script src="../../shared/headers/header.js"></script>
       <script src="../clothing/clothing.js"></script>
       <script src="../clothing/popup.js"></script>

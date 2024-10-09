@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Cart | Style For You</title>
+    <link rel="stylesheet" href="../../shared/headers/user_guest.css" />
+    <link rel="stylesheet" href="../cart/cart.css" />
+    <link rel="stylesheet" href="../../shared/clothing/popup.css" />
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      rel="icon"
+      href="../../../assets/images/general/app-icon.ico"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <div id="header"></div>
+
+    <h1>Your Cart</h1>
+
+    <div class="main-top-images">
+      <div id="total-cart-price-container" style="display: none">
+        <div class="total-cart-price-wrapper">
+          <h1>Order summary:</h1>
+          <h3 id="total-cart-price"></h3>
+          <button type="submit" id="open-checkout-btn" class="btn btn-primary submit-btn" onclick="openSubmitForm()">Submit Order</button>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-10">
+        <!-- Products -->
+        <div id="products-container" class="grid-columns"></div>
+      </div>
+
+      <!-- Popup Modal -->
+      <div id="popup" class="popup">
+        <div class="popup-content">
+          <span class="close">&times;</span>
+
+          <div class="container center-form order-form-popup">
+            <h1>Fill some final details</h1>
+            <form id="gameForm"></form>
+              <div class="mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="City"
+                  required
+                  title="Please enter a valid City."
+                  id="City"
+                />
+              </div>
+              <div class="mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Street"
+                  required
+                  title="Please enter a valid Street."
+                  id="Street"
+                />
+              </div>
+              <div class="mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Credit Card Number"
+                  required
+                  title="Please enter a valid creditcard."
+                  id="creditcard"
+                />
+              </div>
+              <div class="mb-3">
+                <button onclick="submitOrder()" class="btn btn-primary">
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+
+      <script src="../cart/cart.js"></script>
+      <script src="../../shared/headers/header.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    </div>
+  </body>
+</html>

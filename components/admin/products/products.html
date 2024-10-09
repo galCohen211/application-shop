@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Products</title>
-    <link rel="stylesheet" href="products.css" />
+    <link rel="stylesheet" href="../format.css" />
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="../../shared/headers/admin.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-
 <body>
     <div id="header"></div>
 
@@ -63,8 +62,8 @@
             <span id="closePopup" class="close-btn">&times;</span>
             <h2 id="popup-header"></h2>
             <form id="productForm">
-                <label for="id">Product ID</label>
-                <input type="text" id="id" readonly>
+                <label hidden for="id">Product ID</label>
+                <input type="text" id="id" readonly hidden>
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" placeholder="Enter product name">
 
