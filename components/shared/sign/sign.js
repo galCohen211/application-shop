@@ -275,6 +275,34 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+function handleGoogleSignIn(response) {
+  console.log("Google ID Token:", response.credential);
+  const idToken = response.credential; // Get the Google ID token from the response
+
+  // Send the token to your backend to verify and log in the user
+  fetch("http://localhost:4000/users/google", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ idToken }), // Send the ID token to the server
+  })
+  .then((res) => res.json())
+  .then((data) => {
+    if (data.success) {
+      localStorage.setItem("role", data.role);
+      localStorage.setItem("accessToken", data.accessToken);
+      window.location.href = "../../shared/home/index.html";
+    } else {
+      const errorMessage = document.getElementById("error-message");
+      errorMessage.style.display = "block";
+      errorMessage.textContent = "Login with Google failed.";
+    }
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+}
 
 document.addEventListener("DOMContentLoaded", setMaxDate);
 document.addEventListener("DOMContentLoaded", passwordValidation);

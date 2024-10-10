@@ -1,191 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    />
-    <title>Login | Style for you</title>
-    <link rel="stylesheet" href="sign.css" />
-  </head>
-  <body>
-    <a href="../../shared/home/index.html" class="home-button">
-      <i class="fas fa-home"></i> Home
-    </a>
-    <div class="container" id="container">
-      <div class="form-container sign-up">
-        <form id="sign-up-form">
-          <h1>Create Account</h1>
 
-          <div class="validatable-input-container">
-            <input
-              type="text"
-              placeholder="First name*"
-              id="firstName"
-              required
-              pattern="[A-Za-z\s]+"
-              title="Please enter a valid first name."
-            />
-            <p id="firstname-error-message" class="input-message-text">
-              Firstname is required
-            </p>
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google-signin-client_id" content="724624414737-b6sqaet5vul4it8q3gk9prdmb641unfd.apps.googleusercontent.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <title>Login | Style for you</title>
+  <link rel="stylesheet" href="sign.css" />
+</head>
 
-          <div class="validatable-input-container">
-            <input
-              type="text"
-              placeholder="Last name*"
-              id="lastName"
-              required
-              pattern="[A-Za-z\s]+"
-              title="Please enter a valid first name."
-            />
-            <p id="lastname-error-message" class="input-message-text">
-              Lastname is required
-            </p>
-          </div>
+<body>
+  <a href="../../shared/home/index.html" class="home-button">
+    <i class="fas fa-home"></i> Home
+  </a>
+  <div class="container" id="container">
+    <div class="form-container sign-up">
+      <form id="sign-up-form">
+        <h1>Create Account</h1>
 
-          <div class="validatable-input-container">
-            <input
-              type="email"
-              placeholder="Email*"
-              id="email"
-              required
-              pattern="[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z]+"
-              title="Please enter a valid email address."
-            />
-            <p id="email-error-message" class="input-message-text">
-              Invalid email address
-            </p>
-          </div>
+        <div class="validatable-input-container">
+          <input type="text" placeholder="First name*" id="firstName" required pattern="[A-Za-z\s]+"
+            title="Please enter a valid first name." />
+          <p id="firstname-error-message" class="input-message-text">
+            Firstname is required
+          </p>
+        </div>
 
-          <div class="validatable-input-container">
-            <input
-              type="password"
-              placeholder="Password*"
-              id="password"
-              required
-            />
-            <p id="password-hint-message" class="input-message-text">
-              Password is <span id="strenght"></span>
-            </p>
-          </div>
+        <div class="validatable-input-container">
+          <input type="text" placeholder="Last name*" id="lastName" required pattern="[A-Za-z\s]+"
+            title="Please enter a valid first name." />
+          <p id="lastname-error-message" class="input-message-text">
+            Lastname is required
+          </p>
+        </div>
 
-          <div class="validatable-input-container">
-            <input
-              type="text"
-              placeholder="City*"
-              id="city"
-              required
-              pattern="[A-Za-z\s]+"
-              title="Please enter a valid city."
-            />
-            <p id="city-error-message" class="input-message-text">
-              City is required
-            </p>
-          </div>
+        <div class="validatable-input-container">
+          <input type="email" placeholder="Email*" id="email" required pattern="[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z]+"
+            title="Please enter a valid email address." />
+          <p id="email-error-message" class="input-message-text">
+            Invalid email address
+          </p>
+        </div>
 
-          <div class="validatable-input-container">
-            <input
-              type="text"
-              placeholder="Street*"
-              id="street"
-              required
-              pattern="[A-Za-z0-9\s]+"
-              title="Please enter a valid street."
-            />
-            <p id="street-error-message" class="input-message-text">
-              Street is required
-            </p>
-          </div>
+        <div class="validatable-input-container">
+          <input type="password" placeholder="Password*" id="password" required />
+          <p id="password-hint-message" class="input-message-text">
+            Password is <span id="strenght"></span>
+          </p>
+        </div>
 
-          <div class="validatable-input-container">
-            <div class="gender-container">
-              <div class="gender-options">
-                <div>
-                  <input
-                    type="radio"
-                    id="female"
-                    name="gender"
-                    value="Female"
-                    required
-                  />
-                  <label for="female">Female</label>
-                </div>
-                <div>
-                  <input
-                    type="radio"
-                    id="male"
-                    name="gender"
-                    value="Male"
-                    required
-                  />
-                  <label for="male">Male</label>
-                </div>
+        <div class="validatable-input-container">
+          <input type="text" placeholder="City*" id="city" required pattern="[A-Za-z\s]+"
+            title="Please enter a valid city." />
+          <p id="city-error-message" class="input-message-text">
+            City is required
+          </p>
+        </div>
+
+        <div class="validatable-input-container">
+          <input type="text" placeholder="Street*" id="street" required pattern="[A-Za-z0-9\s]+"
+            title="Please enter a valid street." />
+          <p id="street-error-message" class="input-message-text">
+            Street is required
+          </p>
+        </div>
+
+        <div class="validatable-input-container">
+          <div class="gender-container">
+            <div class="gender-options">
+              <div>
+                <input type="radio" id="female" name="gender" value="Female" required />
+                <label for="female">Female</label>
+              </div>
+              <div>
+                <input type="radio" id="male" name="gender" value="Male" required />
+                <label for="male">Male</label>
               </div>
             </div>
-            <p id="gender-error-message" class="input-message-text">
-              Gender is required
-            </p>
           </div>
+          <p id="gender-error-message" class="input-message-text">
+            Gender is required
+          </p>
+        </div>
 
-          <div class="validatable-input-container">
-            <input
-              type="date"
-              placeholder="Birthdate*"
-              id="birthdate"
-              required
-            />
-            <p id="birthdate-error-message" class="input-message-text">
-              Birthdate is required
-            </p>
-          </div>
+        <div class="validatable-input-container">
+          <input type="date" placeholder="Birthdate*" id="birthdate" required />
+          <p id="birthdate-error-message" class="input-message-text">
+            Birthdate is required
+          </p>
+        </div>
 
-          <div class="validatable-input-container">
-            <button type="click" id="sign-up-btn">Sign Up</button>
-            <div
-              id="form-submit-error-message-container"
-              class="form-message-text"
-            >
-              <p id="form-submit-error-message"></p>
-            </div>
+        <div class="validatable-input-container">
+          <button type="click" id="sign-up-btn">Sign Up</button>
+          <div id="form-submit-error-message-container" class="form-message-text">
+            <p id="form-submit-error-message"></p>
           </div>
-        </form>
-      </div>
-      <div class="form-container sign-in">
-        <form>
-          <h1>Sign In</h1>
-          <input type="email" placeholder="Email" id="email-sign-in" required />
-          <div class="validatable-input-container">
-            <input
-              type="password"
-              placeholder="Password"
-              id="password-sign-in"
-              required
-            />
-            <i class="fas fa-eye" id="toggle-password"></i>
-          </div>
-          <button id="sign-in-btn">Sign In</button>
-          <p id="error-message">Invalid email or password.</p>
-        </form>
-      </div>
-      <div class="toggle-container">
-        <div class="toggle">
-          <div class="toggle-panel toggle-left">
-            <h1>Welcome back to Style For You!</h1>
-            <p>Sign in and let Style For You guide your fashion journey!</p>
-            <button class="hidden" id="login">Sign In</button>
-          </div>
-          <div class="toggle-panel toggle-right">
-            <h1>Hello, Friend!</h1>
-            <p>Register to get personalized style from Style For You!</p>
-            <button class="hidden" id="register">Sign Up</button>
-          </div>
+        </div>
+      </form>
+    </div>
+    <div class="form-container sign-in">
+      <form>
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
+        <h1>Sign In</h1>
+        <input type="email" placeholder="Email" id="email-sign-in" required />
+        <div class="validatable-input-container">
+          <input type="password" placeholder="Password" id="password-sign-in" required />
+          <i class="fas fa-eye" id="toggle-password"></i>
+        </div>
+        <button id="sign-in-btn">Sign In</button>
+        <p id="error-message">Invalid email or password.</p>
+        <div style="margin-top: 30px;"></div>
+        <div id="g_id_onload" data-client_id="724624414737-b6sqaet5vul4it8q3gk9prdmb641unfd.apps.googleusercontent.com"
+          data-callback="handleGoogleSignIn" data-auto_prompt="false">
+        </div>
+
+        <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with"
+          data-shape="rectangular" data-logo_alignment="left">
+        </div>
+
+        <!-- Error message display -->
+        <div id="error-message" style="display: none; color: red;"></div>
+      </form>
+    </div>
+    <div class="toggle-container">
+      <div class="toggle">
+        <div class="toggle-panel toggle-left">
+          <h1>Welcome back to Style For You!</h1>
+          <p>Sign in and let Style For You guide your fashion journey!</p>
+          <button class="hidden" id="login">Sign In</button>
+        </div>
+        <div class="toggle-panel toggle-right">
+          <h1>Hello, Friend!</h1>
+          <p>Register to get personalized style from Style For You!</p>
+          <button class="hidden" id="register">Sign Up</button>
         </div>
       </div>
     </div>
-    <script src="sign.js"></script>
-  </body>
+  </div>
+  <script src="sign.js"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+</body>
+
 </html>

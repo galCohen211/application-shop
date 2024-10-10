@@ -46,4 +46,7 @@ router.put("/:id",
     verifyToken,
     UserController.updateUser);
 
+// route for Google login
+router.post('/google', UserController.googleLogin);
+
 module.exports = router;
