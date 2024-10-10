@@ -313,6 +313,24 @@ async function searchProducts(accessToken) {
     return result;
 }
 
+async function getProductByQuantity(accessToken) {
+    try {
+        const result = await $.ajax({
+            url: 'http://localhost:4000/products/groupByQuantity',
+            type: 'GET',
+            dataType: 'json',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            },
+        });
+
+        const data = result.groupedProducts;
+       // createBarChart(data); // Pass the grouped order data to the chart creation function
+    } catch (error) {
+        console.error('Error fetching sales by city:', error);
+    }
+}
+
 $(document).ready(async function () {
     const accessToken = localStorage.getItem('accessToken');
     await getAllProductTable();

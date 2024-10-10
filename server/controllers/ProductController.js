@@ -204,6 +204,28 @@ class ProductController {
             res.status(500).send("Error occurred while searching for products");
         }
     }
+
+    static async groupProductsByQuantity(req, res) {
+        try {
+            const groupedProducts = await Product.aggregate([
+                {
+                    $group: {
+                        _id: "$name",  // Group by name
+                        quantity: { $sum: "$quantity" },  // Sum the quantity for each group
+                        size: { $sum: 1 }  // Count the number of orders in each city
+                    }
+                },
+                {
+                    $sort: { quantity: -1 }
+                }
+            ]);
+
+            res.status(200).json({ groupedProducts });
+        } catch (err) {
+            console.error(err);
+            res.status(500).json({ error: "Failed to group products by qunatity" });
+        }
+    }
 }
 
 module.exports = ProductController;
