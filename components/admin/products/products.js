@@ -381,8 +381,7 @@ function createBrandBarChart(data) {
         .attr('transform', `translate(0,${height})`)
         .call(d3.axisBottom(x))
         .selectAll('text')
-        .attr('transform', 'rotate(-45)')
-        .style('text-anchor', 'end');
+        .style('text-anchor', 'middle'); // יישור הטקסט למרכז
 
     g.append('g')
         .call(d3.axisLeft(y));
@@ -401,7 +400,14 @@ function createBrandBarChart(data) {
         .attr('text-anchor', 'middle')
         .attr('class', 'axis-label')
         .text('Item Count');
+
+        svg.attr('width', width + margin.left + margin.right)
+        .attr('height', height + margin.top + margin.bottom)
+        .style('display', 'block')
+        .style('margin', '0 auto'); 
+     
 }
+
 
 
 $(document).ready(async function () {
