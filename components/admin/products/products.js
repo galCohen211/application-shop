@@ -381,7 +381,7 @@ function createBrandBarChart(data) {
         .attr('transform', `translate(0,${height})`)
         .call(d3.axisBottom(x))
         .selectAll('text')
-        .style('text-anchor', 'middle'); // יישור הטקסט למרכז
+        .style('text-anchor', 'middle'); 
 
     g.append('g')
         .call(d3.axisLeft(y));
