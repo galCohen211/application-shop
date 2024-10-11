@@ -204,6 +204,26 @@ class ProductController {
             res.status(500).send("Error occurred while searching for products");
         }
     }
+
+// Get products grouped by brand
+static async getProductsByBrand(req, res) {
+    try {
+        const products = await Product.aggregate([
+            {
+                $group: {
+                    _id: "$brand", 
+                    totalProducts: { $sum: 1 }
+                }
+            }
+        ]);
+        res.json({ groupedProducts: products }); 
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching products by brand' });
+    }
 }
+
+
+}
+
 
 module.exports = ProductController;

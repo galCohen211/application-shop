@@ -7,6 +7,9 @@ const verifyAdminToken = require("../middleware/verifyAdminToken");
 
 const router = express.Router();
 
+// Product by brand
+router.get("/groupByBrand", verifyAdminToken, ProductController.getProductsByBrand);
+
 // Get all products
 router.get("/", ProductController.getAllProducts);
 
