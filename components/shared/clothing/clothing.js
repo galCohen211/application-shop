@@ -51,10 +51,10 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("product-popup").style.display = "none";
     });
 
-  // Optional: Close the product popup if clicking outside of it
+  // Close the product popup if clicking outside of it
   window.addEventListener("click", function (event) {
     if (event.target === document.getElementById("product-popup")) {
-      document.getElementById("product-popup").style.display = "flex";
+      document.getElementById("product-popup").style.display = "none";
     }
   });
 
