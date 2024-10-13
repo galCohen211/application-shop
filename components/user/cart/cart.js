@@ -105,6 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function updateAmount(productId, change) {
   const authToken = localStorage.getItem("accessToken");
+  
   // Find the product in the cart
   const cartProduct = cartProducts.find(product => product._id === productId);
 
@@ -114,12 +115,11 @@ function updateAmount(productId, change) {
     return;
   }
 
-  const cartItemId = cartProduct.cartItemId; // Correctly get the cart item ID
+  const cartItemId = cartProduct.cartItemId;
 
   // Get the current amount for the cart product
   const currentAmount = parseInt(document.getElementById(`amount-${productId}`).innerText);
 
-  // Calculate the new amount
   const newAmount = currentAmount + change;
 
   // Validate new amount
@@ -145,11 +145,10 @@ function updateAmount(productId, change) {
   })
     .then((response) => response.json())
     .then((updatedCartItem) => {
-      // Update the UI to reflect the new amount
       document.getElementById(`amount-${productId}`).innerText = newAmount;
 
       // Update the amount in the cartProducts array
-      cartProduct.amount = newAmount; // Update amount directly
+      cartProduct.amount = newAmount; 
 
       // Recalculate and update cart total price
       cartTotalPrice = cartProducts.reduce((accumulator, currentValue) => {

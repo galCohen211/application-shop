@@ -137,15 +137,11 @@ class CartController {
         // Save the updated cart item
         await cartItem.save();
 
-        // Send the updated cart item back to the client
         res.send(cartItem);
     } catch (error) {
-        // Log the error for debugging
-        console.error("Error updating cart item amount:", error);
         res.status(500).send({ error: "An error occurred while updating the cart item amount" });
     }
 }
-
 
   static deleteProductFromCart(req, res) {
     const { cart, item } = req.query;
