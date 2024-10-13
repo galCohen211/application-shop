@@ -105,6 +105,48 @@ class CartController {
     }
   }
 
+  static async updateCartItemAmount(req, res) {
+    const { itemId } = req.params;
+    const { amount } = req.body;
+
+    // Validate amount
+    if (amount <= 0) {
+        return res.status(400).send({ error: "Amount cannot be zero or less." });
+    }
+
+    try {
+        // Find the cart item by its ID and populate its product
+        const cartItem = await CartItem.findById(itemId).populate('product'); // Use findById
+
+        // Check if the cart item exists
+        if (!cartItem) {
+            return res.status(404).send({ error: "Cart item not found" });
+        }
+
+        // Check if the requested amount exceeds the product's available quantity
+        if (amount > cartItem.product.quantity) {
+            return res.status(400).send({
+                error: `Cannot add more than ${cartItem.product.quantity} items. Available stock: ${cartItem.product.quantity}`
+            });
+        }
+
+        // Update the amount and price
+        cartItem.amount = amount;
+        cartItem.price = cartItem.product.price * amount;
+
+        // Save the updated cart item
+        await cartItem.save();
+
+        // Send the updated cart item back to the client
+        res.send(cartItem);
+    } catch (error) {
+        // Log the error for debugging
+        console.error("Error updating cart item amount:", error);
+        res.status(500).send({ error: "An error occurred while updating the cart item amount" });
+    }
+}
+
+
   static deleteProductFromCart(req, res) {
     const { cart, item } = req.query;
     CartItem.findOneAndDelete({ product: item, cart }).then((item) => {

@@ -147,3 +147,21 @@ button {
     border-color: #a7a7a7 !important;
     cursor: not-allowed;
 }
+
+.amount-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .amount-controls button {
+    width: 40px;
+  }
+  
+  .amount-controls span {
+    display: inline-block;
+    width: 30px;
+    text-align: center;
+  }
+  

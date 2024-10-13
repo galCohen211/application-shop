@@ -13,4 +13,8 @@ router.post("/", verifyToken, CartController.addProductToCart);
 // Delete procudt from cart
 router.delete("/", verifyToken, CartController.deleteProductFromCart);
 
+// Modify cart item amount
+router.put("/item/:itemId", CartController.updateCartItemAmount);
+
+
 module.exports = router;
