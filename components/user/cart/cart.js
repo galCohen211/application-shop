@@ -31,12 +31,13 @@ function loadCart() {
             // Looping through all the products
             cartProducts = products
               .map((product) => {
-                // Get the product from the existing cart (to get it's amount in the cart)
+                // Get the product from the existing cart (to get its amount in the cart)
                 const cartItem = cartDetails.cartItems.find(
                   (cartItem) => cartItem.product === product._id
                 );
                 if (cartItem) {
-                  return { ...product, amount: cartItem.amount }; // Add the 'amount' field
+                  // Include the cartItem ID and amount in the returned object
+                  return { ...product, amount: cartItem.amount, cartItemId: cartItem._id }; // Add the 'cartItemId' field
                 }
               })
               .filter(Boolean); // Remove undefined values - products that not in the cart
@@ -53,17 +54,21 @@ function loadCart() {
               cartProducts.forEach((cartProduct) => {
                 productsHTML += `
                 <div class="product" data-id="${cartProduct._id}">
-                  <div class="img-top-images">
-                    <img src="${cartProduct.imagePath}" alt="${cartProduct.name}">
-                  </div>
-                  <h2>${cartProduct.name}</h2>
-                  <p>Size: ${cartProduct.size}</p>
-                  <p>${cartProduct.price} $</p>
-                  <p>Amount: ${cartProduct.amount}</p>
-                  <button class="delete-btn" onclick="confirmDelete('${cartProduct._id}')">
-                    Delete
-                  </button>
+                <div class="img-top-images">
+                  <img src="${cartProduct.imagePath}" alt="${cartProduct.name}">
                 </div>
+                <h2>${cartProduct.name}</h2>
+                <p>Size: ${cartProduct.size}</p>
+                <p>${cartProduct.price} $</p>
+               <p class="amount-controls">
+                  <button class="btn btn-light" onclick="updateAmount('${cartProduct._id}', -1)">-</button>
+                  <span id="amount-${cartProduct._id}">${cartProduct.amount}</span>
+                  <button class="btn btn-light" onclick="updateAmount('${cartProduct._id}', 1)">+</button>
+                </p>
+                <button class="delete-btn" onclick="confirmDelete('${cartProduct._id}')">
+                  Delete
+                </button>
+              </div>
               `;
               });
               $("#products-container").html(productsHTML);
@@ -97,6 +102,66 @@ function loadCart() {
 document.addEventListener("DOMContentLoaded", () => {
   loadCart();
 });
+
+function updateAmount(productId, change) {
+  const authToken = localStorage.getItem("accessToken");
+  
+  // Find the product in the cart
+  const cartProduct = cartProducts.find(product => product._id === productId);
+
+  // Ensure cartProduct exists
+  if (!cartProduct) {
+    alert("Cart item not found");
+    return;
+  }
+
+  const cartItemId = cartProduct.cartItemId;
+
+  // Get the current amount for the cart product
+  const currentAmount = parseInt(document.getElementById(`amount-${productId}`).innerText);
+
+  const newAmount = currentAmount + change;
+
+  // Validate new amount
+  if (newAmount <= 0) {
+    alert("Amount cannot be zero or less.");
+    return;
+  }
+
+  // Check if the new amount exceeds the available product quantity
+  if (newAmount > cartProduct.quantity) {
+    alert(`Cannot add more than ${cartProduct.quantity} items. Available stock: ${cartProduct.quantity}`);
+    return;
+  }
+
+  // Update amount in the backend
+  fetch(`http://localhost:4000/carts/item/${cartItemId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${authToken}`,
+    },
+    body: JSON.stringify({ amount: newAmount }),
+  })
+    .then((response) => response.json())
+    .then((updatedCartItem) => {
+      document.getElementById(`amount-${productId}`).innerText = newAmount;
+
+      // Update the amount in the cartProducts array
+      cartProduct.amount = newAmount; 
+
+      // Recalculate and update cart total price
+      cartTotalPrice = cartProducts.reduce((accumulator, currentValue) => {
+        return accumulator + currentValue.price * currentValue.amount;
+      }, 0).toFixed(2);
+
+      // Update total price in the UI
+      document.getElementById("total-cart-price").innerText = `Cart total price: ${cartTotalPrice}$`;
+    })
+    .catch((error) => {
+      console.error("Error updating product amount:", error);
+    });
+}
 
 //Delete product from cart
 function deleteProductFromCart(productId) {
