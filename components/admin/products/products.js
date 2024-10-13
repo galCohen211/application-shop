@@ -1,70 +1,72 @@
 // Table view and pagination
 function tableView() {
-    const rowsPerPage = 4;
-    const rows = $('#main-table tbody tr');
-    const rowsCount = rows.length;
-    const totalPages = Math.ceil(rowsCount / rowsPerPage);
+  const rowsPerPage = 4;
+  const rows = $("#main-table tbody tr");
+  const rowsCount = rows.length;
+  const totalPages = Math.ceil(rowsCount / rowsPerPage);
 
-    $('#pagination').empty(); // Clear previous pagination
+  $("#pagination").empty(); // Clear previous pagination
 
-    const pagination = $('<ul class="pagination"></ul>'); // Create the pagination element
+  const pagination = $('<ul class="pagination"></ul>'); // Create the pagination element
 
-    // Display rows for the current page number
-    function displayRows(pageNumber) {
-        const start = (pageNumber - 1) * rowsPerPage;
-        const end = start + rowsPerPage;
-        rows.hide();
-        rows.slice(start, end).show(); // Show the rows for the current page
-    }
+  // Display rows for the current page number
+  function displayRows(pageNumber) {
+    const start = (pageNumber - 1) * rowsPerPage;
+    const end = start + rowsPerPage;
+    rows.hide();
+    rows.slice(start, end).show(); // Show the rows for the current page
+  }
 
-    // Generate pagination controls dynamically
-    for (let i = 1; i <= totalPages; i++) {
-        pagination.append(`<li class="page-item"><a class="page-link" href="#">${i}</a></li>`);
-    }
+  // Generate pagination controls dynamically
+  for (let i = 1; i <= totalPages; i++) {
+    pagination.append(
+      `<li class="page-item"><a class="page-link" href="#">${i}</a></li>`
+    );
+  }
 
-    // Insert the pagination element after the table
-    $('#pagination').append(pagination);
+  // Insert the pagination element after the table
+  $("#pagination").append(pagination);
 
-    // Handle pagination click
-    pagination.on('click', 'a', function (e) {
-        e.preventDefault();
-        const pageNumber = $(this).text();
-        displayRows(pageNumber); // Display the appropriate rows
-        pagination.find('li').removeClass('active');
-        $(this).parent().addClass('active');
-    });
+  // Handle pagination click
+  pagination.on("click", "a", function (e) {
+    e.preventDefault();
+    const pageNumber = $(this).text();
+    displayRows(pageNumber); // Display the appropriate rows
+    pagination.find("li").removeClass("active");
+    $(this).parent().addClass("active");
+  });
 
-    // Initialize the first page
-    displayRows(1);
-    pagination.find('li:first').addClass('active'); // Mark the first page as active
+  // Initialize the first page
+  displayRows(1);
+  pagination.find("li:first").addClass("active"); // Mark the first page as active
 }
 
 // Fill popup with product details
 function fillPopup(product) {
-    $('#id')[0].value = product._id;
-    $('#name')[0].value = product.name;
-    $('#category')[0].value = product.category;
-    $('#price')[0].value = product.price;
-    $('#brand')[0].value = product.brand;
-    $('#quantity')[0].value = product.quantity;
-    $('#gender')[0].value = product.gender;
-    $('#color')[0].value = product.color;
-    $('#size')[0].value = product.size;
+  $("#id")[0].value = product._id;
+  $("#name")[0].value = product.name;
+  $("#category")[0].value = product.category;
+  $("#price")[0].value = product.price;
+  $("#brand")[0].value = product.brand;
+  $("#quantity")[0].value = product.quantity;
+  $("#gender")[0].value = product.gender;
+  $("#color")[0].value = product.color;
+  $("#size")[0].value = product.size;
 }
 
 // Get all products
 async function getAllProductTable() {
-    const result = await $.ajax({
-        url: 'http://localhost:4000/products',
-        type: 'GET',
-        dataType: 'json',
-        success: function (response) {
-            function addProductsToTable(products) {
-                const tableBody = $("#main-table tbody");
-                tableBody.empty(); // Clear any existing rows
+  const result = await $.ajax({
+    url: "http://localhost:4000/products",
+    type: "GET",
+    dataType: "json",
+    success: function (response) {
+      function addProductsToTable(products) {
+        const tableBody = $("#main-table tbody");
+        tableBody.empty(); // Clear any existing rows
 
-                products.forEach(function (product) {
-                    const productRow = `
+        products.forEach(function (product) {
+          const productRow = `
                         <tr>
                             <td data-id="${product._id}">${product.name}</td>
                             <td>${product.category}</td>
@@ -82,100 +84,99 @@ async function getAllProductTable() {
                         </tr>
                     `;
 
-                    tableBody.append(productRow); // Add the new row to the table
-                });
-            }
-            addProductsToTable(response);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.error("Error fetching data:", textStatus, errorThrown);
-        }
-    });
-    return result;
+          tableBody.append(productRow); // Add the new row to the table
+        });
+      }
+      addProductsToTable(response);
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+      console.error("Error fetching data:", textStatus, errorThrown);
+    },
+  });
+  return result;
 }
 
 // Open the popup when the plus button is clicked
-const plusButton = document.getElementById('plusButton');
-const closePopupBtn = document.getElementById('closePopup');
+const plusButton = document.getElementById("plusButton");
+const closePopupBtn = document.getElementById("closePopup");
 
-plusButton.addEventListener('click', function () {
-    popupForm.style.display = 'flex'; // Use flexbox to center the popup
-    $('#popup-header').text("Add New Product");
-    $('#productForm')[0].reset(); // Reset all form fields
+plusButton.addEventListener("click", function () {
+  popupForm.style.display = "flex"; // Use flexbox to center the popup
+  $("#popup-header").text("Add New Product");
+  $("#productForm")[0].reset(); // Reset all form fields
 });
 
-
 // Close the popup when the close button (X) is clicked
-closePopupBtn.addEventListener('click', function () {
-    popupForm.style.display = 'none';
+closePopupBtn.addEventListener("click", function () {
+  popupForm.style.display = "none";
 });
 
 // Close the popup when clicking outside the popup content
-window.addEventListener('click', function (event) {
-    if (event.target === popupForm) {
-        popupForm.style.display = 'none';
-    }
+window.addEventListener("click", function (event) {
+  if (event.target === popupForm) {
+    popupForm.style.display = "none";
+  }
 });
 
 function refreshTable() {
-    // Fetch all products and reinitialize table view and pagination
-    getAllProductTable().then(() => {
-        tableView();
-    });
+  // Fetch all products and reinitialize table view and pagination
+  getAllProductTable().then(() => {
+    tableView();
+  });
 }
 
 // Add or update a product
 function addOrUpdateProduct(accessToken) {
-    $('#productForm').on('submit', function (event) {
-        event.preventDefault(); // Prevent default form submission
+  $("#productForm").on("submit", function (event) {
+    event.preventDefault(); // Prevent default form submission
 
-        // Create FormData object and append form fields
-        const formData = new FormData();
-        formData.append('name', $('#name').val());
-        formData.append('category', $('#category').val());
-        formData.append('price', $('#price').val());
-        formData.append('brand', $('#brand').val());
-        formData.append('size', $('#size').val());
-        formData.append('color', $('#color').val());
-        formData.append('quantity', $('#quantity').val());
-        formData.append('gender', $('#gender').val());
-        formData.append('imagePath', $('#imagePath')[0].files[0]);
+    // Create FormData object and append form fields
+    const formData = new FormData();
+    formData.append("name", $("#name").val());
+    formData.append("category", $("#category").val());
+    formData.append("price", $("#price").val());
+    formData.append("brand", $("#brand").val());
+    formData.append("size", $("#size").val());
+    formData.append("color", $("#color").val());
+    formData.append("quantity", $("#quantity").val());
+    formData.append("gender", $("#gender").val());
+    formData.append("imagePath", $("#imagePath")[0].files[0]);
 
-        const headerText = $('#popup-header').text();
-        if (headerText.includes("Update")) {
-            const productId = $('#id').val();
-            $.ajax({
-                url: `http://localhost:4000/products/${productId}`,
-                type: 'PUT',
-                contentType: false,
-                processData: false,
-                headers: {
-                    'Authorization': `Bearer ${accessToken}`
-                },
-                data: formData,
-                success: function () {
-                    $('#productForm')[0].reset();
-                    $('#popupForm').hide();
-                    refreshTable();
-                },
-                error: function (error) {
-                    console.error('Error updating product:', error);
-                    alert('An error occurred while updating the product.');
-                }
-            });
-        } else {
-            $.ajax({
-                url: 'http://localhost:4000/products',
-                type: 'POST',
-                contentType: false,
-                processData: false,
-                headers: {
-                    'Authorization': `Bearer ${accessToken}`
-                },
-                data: formData,
-                success: function (result) {
-                    const tableBody = $('#main-table tbody');
-                    const newRow = `
+    const headerText = $("#popup-header").text();
+    if (headerText.includes("Update")) {
+      const productId = $("#id").val();
+      $.ajax({
+        url: `http://localhost:4000/products/${productId}`,
+        type: "PUT",
+        contentType: false,
+        processData: false,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+        data: formData,
+        success: function () {
+          $("#productForm")[0].reset();
+          $("#popupForm").hide();
+          refreshTable();
+        },
+        error: function (error) {
+          console.error("Error updating product:", error);
+          alert("An error occurred while updating the product.");
+        },
+      });
+    } else {
+      $.ajax({
+        url: "http://localhost:4000/products",
+        type: "POST",
+        contentType: false,
+        processData: false,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+        data: formData,
+        success: function (result) {
+          const tableBody = $("#main-table tbody");
+          const newRow = `
                         <tr>
                             <td>${result.product.name}</td>
                             <td>${result.product.category}</td>
@@ -188,94 +189,96 @@ function addOrUpdateProduct(accessToken) {
                             <td><img src="${result.product.imagePath}" alt="${result.product.name}" width="50" /></td>
                         </tr>
                     `;
-                    tableBody.append(newRow);
-                    $('#productForm')[0].reset();
-                    $('#popupForm').hide();
-                },
-                error: function (error) {
-                    console.error('Error adding product:', error);
-                    alert('An error occurred while adding the product.');
-                }
-            });
-        }
-    });
+          tableBody.append(newRow);
+          $("#productForm")[0].reset();
+          $("#popupForm").hide();
+        },
+        error: function (error) {
+          console.error("Error adding product:", error);
+          alert("An error occurred while adding the product.");
+        },
+      });
+    }
+  });
 }
 
 // Delete a product
 function deleteProduct(accessToken) {
-    $('#main-table').on('click', '.delete-btn', function () {
-        const row = $(this).closest('tr');
-        const productId = row.find('td:first').data('id');
+  $("#main-table").on("click", ".delete-btn", function () {
+    const row = $(this).closest("tr");
+    const productId = row.find("td:first").data("id");
 
-        if (confirm("Are you sure you want to delete this product?")) {
-            $.ajax({
-                url: `http://localhost:4000/products/${productId}`,
-                type: 'DELETE',
-                headers: {
-                    'Authorization': `Bearer ${accessToken}`
-                },
-                success: function () {
-                    row.remove(); // Remove the row from the table
-                    alert('Product deleted successfully.');
-                },
-                error: function (error) {
-                    console.error('Error deleting product:', error);
-                    alert('An error occurred while deleting the product.');
-                }
-            });
-        }
-    });
+    if (confirm("Are you sure you want to delete this product?")) {
+      $.ajax({
+        url: `http://localhost:4000/products/${productId}`,
+        type: "DELETE",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+        success: function () {
+          row.remove(); // Remove the row from the table
+          alert("Product deleted successfully.");
+        },
+        error: function (error) {
+          console.error("Error deleting product:", error);
+          alert("An error occurred while deleting the product.");
+        },
+      });
+    }
+  });
 }
 
 // Edit a product
 function editProduct(accessToken) {
-    $('#main-table').on('click', '.edit-btn', function () {
-        const row = $(this).closest('tr');
-        const productId = row.find('td:first').data('id');
+  $("#main-table").on("click", ".edit-btn", function () {
+    const row = $(this).closest("tr");
+    const productId = row.find("td:first").data("id");
 
-        $.ajax({
-            url: `http://localhost:4000/products/${productId}`,
-            type: 'GET',
-            headers: {
-                'Authorization': `Bearer ${accessToken}`
-            },
-            success: function (result) {
-                popupForm.style.display = 'flex';
-                $('#popup-header').text("Update Product");
-                fillPopup(result.product);
-            },
-            error: function (error) {
-                console.error('Error fetching product details:', error);
-                alert('An error occurred while fetching product details.');
-            }
-        });
+    $.ajax({
+      url: `http://localhost:4000/products/${productId}`,
+      type: "GET",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      success: function (result) {
+        popupForm.style.display = "flex";
+        $("#popup-header").text("Update Product");
+        fillPopup(result.product);
+      },
+      error: function (error) {
+        console.error("Error fetching product details:", error);
+        alert("An error occurred while fetching product details.");
+      },
     });
+  });
 }
 
 // Search Products
 async function searchProducts(accessToken) {
-    const searchQuery = $('.search-box').val().trim();
+  const searchQuery = $(".search-box").val().trim();
 
-    // If search box is cleared, fetch all products again
-    if (searchQuery === '') {
-        await getAllProductTable();
-        tableView();
-        return;
-    }
+  // If search box is cleared, fetch all products again
+  if (searchQuery === "") {
+    await getAllProductTable();
+    tableView();
+    return;
+  }
 
-    const result = await $.ajax({
-        url: `http://localhost:4000/products/search?name=${encodeURIComponent(searchQuery)}`,
-        type: 'GET',
-        headers: {
-            'Authorization': `Bearer ${accessToken}`
-        },
-        success: function (response) {
-            const tableBody = $("#main-table tbody");
-            tableBody.empty(); // Clear previous rows
+  const result = await $.ajax({
+    url: `http://localhost:4000/products/search?name=${encodeURIComponent(
+      searchQuery
+    )}`,
+    type: "GET",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+    success: function (response) {
+      const tableBody = $("#main-table tbody");
+      tableBody.empty(); // Clear previous rows
 
-            if (response.length > 0) {
-                response.forEach(product => {
-                    const productRow = `
+      if (response.length > 0) {
+        response.forEach((product) => {
+          const productRow = `
                         <tr>
                             <td data-id="${product._id}">${product.name}</td>
                             <td>${product.category}</td>
@@ -292,39 +295,136 @@ async function searchProducts(accessToken) {
                             </td>
                         </tr>
                     `;
-                    tableBody.append(productRow);
-                });
-            } else {
-                // Show empty table
-                tableBody.append('<tr><td colspan="10">No products found</td></tr>');
-            }
+          tableBody.append(productRow);
+        });
+      } else {
+        // Show empty table
+        tableBody.append('<tr><td colspan="10">No products found</td></tr>');
+      }
 
-            // Reinitialize pagination after search results
-            tableView();
-        },
-        error: function (error) {
-            console.error('Error fetching search results:', error);
-            // No need to throw an error; simply show an empty table with headers
-            $("#main-table tbody").empty();
-            tableView(); // Clear pagination if no results
-        }
-    });
+      // Reinitialize pagination after search results
+      tableView();
+    },
+    error: function (error) {
+      console.error("Error fetching search results:", error);
+      // No need to throw an error; simply show an empty table with headers
+      $("#main-table tbody").empty();
+      tableView(); // Clear pagination if no results
+    },
+  });
 
-    return result;
+  return result;
 }
 
+async function getBrandsByCategory(accessToken) {
+    try {
+        const result = await $.ajax({
+            url: "http://localhost:4000/products/groupByBrand",    
+            type: "GET",
+            dataType: "json",
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        });
+        const data = result.groupedProducts; 
+        createBrandBarChart(data); 
+    } catch (error) {
+        console.error("Error fetching brand count by category:", error);
+    }
+}
+
+function createBrandBarChart(data) {
+    data.sort((a, b) => b.totalProducts - a.totalProducts);
+    const svg = d3.select('#categoryBarChart');
+    const margin = { top: 20, right: 30, bottom: 50, left: 60 };
+    const width = 800 - margin.left - margin.right;
+    const height = 400 - margin.top - margin.bottom;
+
+    svg.selectAll("*").remove();
+
+    const g = svg
+        .attr('width', width + margin.left + margin.right)
+        .attr('height', height + margin.top + margin.bottom)
+        .append('g')
+        .attr('transform', `translate(${margin.left},${margin.top})`);
+
+    const x = d3.scaleBand()
+        .domain(data.map(d => d._id))
+        .range([0, width])
+        .padding(0.1);
+
+    const y = d3.scaleLinear()
+        .domain([0, d3.max(data, d => d.totalProducts)]) 
+        .range([height, 0]);
+
+    g.selectAll('.bar')
+        .data(data)
+        .enter().append('rect')
+        .attr('class', 'bar')
+        .attr('x', d => x(d._id))
+        .attr('y', d => y(d.totalProducts)) 
+        .attr('width', x.bandwidth())
+        .attr('height', d => height - y(d.totalProducts)) 
+        .attr('fill', 'black');
+
+    g.selectAll('.label')
+        .data(data)
+        .enter().append('text')
+        .attr('class', 'label')
+        .attr('x', d => x(d._id) + x.bandwidth() / 2)
+        .attr('y', d => y(d.totalProducts) - 5) 
+        .attr('text-anchor', 'middle')
+        .attr('fill', 'black')
+        .text(d => d.totalProducts); 
+
+    g.append('g')
+        .attr('transform', `translate(0,${height})`)
+        .call(d3.axisBottom(x))
+        .selectAll('text')
+        .style('text-anchor', 'middle'); 
+
+    g.append('g')
+        .call(d3.axisLeft(y));
+
+    svg.append('text')
+        .attr('x', width / 2 + margin.left)
+        .attr('y', height + margin.top + margin.bottom - 10)
+        .attr('text-anchor', 'middle')
+        .attr('class', 'axis-label')
+        .text('Brand');
+
+    svg.append('text')
+        .attr('transform', 'rotate(-90)')
+        .attr('x', -(height / 2) - margin.top)
+        .attr('y', margin.left / 2 - 10)
+        .attr('text-anchor', 'middle')
+        .attr('class', 'axis-label')
+        .text('Item Count');
+
+        svg.attr('width', width + margin.left + margin.right)
+        .attr('height', height + margin.top + margin.bottom)
+        .style('display', 'block')
+        .style('margin', '0 auto'); 
+     
+}
+
+
+
 $(document).ready(async function () {
-    const accessToken = localStorage.getItem('accessToken');
-    await getAllProductTable();
-    tableView();
+  const accessToken = localStorage.getItem("accessToken");
+  await getAllProductTable();
+  tableView();
 
-    // Event listeners
-    addOrUpdateProduct(accessToken);
-    deleteProduct(accessToken);
-    editProduct(accessToken);
+  // Event listeners
+  addOrUpdateProduct(accessToken);
+  deleteProduct(accessToken);
+  editProduct(accessToken);
 
-    // Search functionality
-    $('.search-box').on('input', function () {
-        searchProducts(accessToken);
-    });
+  // Search functionality
+  $(".search-box").on("input", function () {
+    searchProducts(accessToken);
+  });
+
+  await getBrandsByCategory(accessToken);
 });
+
