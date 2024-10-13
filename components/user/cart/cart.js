@@ -202,11 +202,10 @@ function submitOrder() {
           "total-cart-price"
         ).innerText = `No items in cart`;
 
-        alert("Order placed successfully!");
       }
     })
     .catch((error) => {
-      alert("Error accured during placing the order :/");
+      alert("Error occurred while placing the order :/");
       console.error(error);
     });
 }

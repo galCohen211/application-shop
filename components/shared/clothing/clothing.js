@@ -292,6 +292,5 @@ function increaseAmount() {
 function addSuccess() {
   document.getElementById("product-popup").style.display = "none";
   setTimeout(() => {
-    alert("Added to cart successfully!");
   }, 200);
 }
