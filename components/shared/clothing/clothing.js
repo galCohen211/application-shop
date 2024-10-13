@@ -95,10 +95,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const addToCartButton = document.getElementById("add-to-cart-btn");
   addToCartButton.addEventListener("click", () => {
     const authToken = localStorage.getItem("accessToken");
+    
+    if(authToken == undefined)
+    {
+      window.location.href = "../sign/sign.html";
+      return;
+    }
+
     const accessToken = localStorage.getItem("accessToken");
     const payload = JSON.parse(atob(accessToken.split(".")[1]));
     const userId = payload.userId;
 
+    
     fetch(`http://localhost:4000/carts/?id=${userId}`, {
       method: "GET",
       headers: {
