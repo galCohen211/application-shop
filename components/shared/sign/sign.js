@@ -221,38 +221,33 @@ document.addEventListener("DOMContentLoaded", function () {
         gender,
         birthDate,
       };
-
-      const response = await fetch("http://localhost:4000/users/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(registerData),
-      });
-      const data = await response.json();
-
-      if (response.ok) {
-        localStorage.setItem("role", data.role);
-        localStorage.setItem("accessToken", data.accessToken);
-        window.location.assign("../../shared/home/index.html");
-      } else {
-        try {
-          if (data.email === "unavailable") {
+      
+      try {
+        const response = await fetch("http://localhost:4000/users/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(registerData),
+        });
+      
+        const data = await response.json();
+      
+        if (response.ok) {
+          localStorage.setItem("role", data.role);
+          localStorage.setItem("accessToken", data.accessToken);
+          window.location.assign("../../shared/home/index.html");
+        } else {
             document.getElementById("form-submit-error-message").innerText =
               "User already exists";
-          }
-        } catch (error) {
-          document.getElementById("form-submit-error-message").innerText =
-            "An error occurred. Please try again.";
-          console.log("Register failed");
-          console.error(error);
-        } finally {
-          document.getElementById(
-            "form-submit-error-message-container"
-          ).style.display = "block";
+          document.getElementById("form-submit-error-message-container").style.display = "block";
         }
-        
-      }
+      } catch (error) {
+        document.getElementById("form-submit-error-message").innerText =
+          "An error occurred. Please try again.";
+        document.getElementById("form-submit-error-message-container").style.display = "block";
+        console.error("Register failed", error);
+      }      
     });
 });
 
