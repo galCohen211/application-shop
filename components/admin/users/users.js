@@ -74,7 +74,7 @@ async function getAllUserTable() {
                 tableBody.empty(); // Clear any existing rows
 
                 users.forEach(function (user) {
-                    date = new Date(user.birthDate);
+                    date = new Date(user.birthDate).toLocaleDateString('en-GB');
                     const userRow = `
                         <tr>
                             <td data-id="${user._id}">${user.firstName}</td>
@@ -83,7 +83,7 @@ async function getAllUserTable() {
                             <td>${user.city}</td>
                             <td>${user.street}</td>
                             <td>${user.gender}</td>
-                            <td>${date.toISOString().slice(0, 10)}</td>
+                            <td>${date}</td>
                             <td>
                                 <button class="btn edit-btn"><i class="bi bi-pencil"></i></button>
                                 <button class="btn delete-btn"><i class="bi bi-trash"></i></button>
