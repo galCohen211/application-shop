@@ -40,7 +40,6 @@ function tableView() {
 }
 
 
-
 // Fill popup with user details
 function fillPopup(user) {
     
