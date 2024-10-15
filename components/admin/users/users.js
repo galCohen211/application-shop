@@ -39,13 +39,18 @@ function tableView() {
     pagination.find('li:first').addClass('active'); // Mark the first page as active
 }
 
+
+
 // Fill popup with user details
 function fillPopup(user) {
+    
     $('#user_id')[0].value = user._id;
     document.querySelector('[for="firstName"]').hidden = true;
     $('#firstName')[0].hidden = true;
     document.querySelector('[for="lastName"]').hidden = true;
     $('#lastName')[0].hidden = true;
+    $('#firstName')[0].value = user.firstName;
+    $('#lastName')[0].value = user.lastName;
     $('#email')[0].value = user.email;
     $('#city')[0].value = user.city;
     $('#street')[0].value = user.street;
@@ -54,8 +59,10 @@ function fillPopup(user) {
     date = new Date(user.birthDate);
     document.querySelector('[for="birthDate"]').hidden = true;
     $('#birthDate')[0].hidden = true;
+    $('#birthDate')[0].value = date.toISOString().split('T')[0];
     document.querySelector('[for="password"]').hidden = true;
     $("#password")[0].hidden = true;
+    $("#password")[0].value = user.password;
 
 }
 // Get all users
@@ -111,11 +118,17 @@ plusButton.addEventListener('click', function () {
     popupForm.style.display = 'flex'; // Use flexbox to center the popup
     $('#popup-header').text("Add New user");
     $('#userForm')[0].reset(); // Reset all form fields
-    $('#firstName')[0].readOnly = false;
-    $('#lastName')[0].readOnly = false;
-    $('#gender')[0].disabled = false;
-    $('#birthDate')[0].readOnly = false;
     document.querySelector('[for="password"]').hidden = false;
+    $("#password")[0].hidden = false;
+    document.querySelector('[for="firstName"]').hidden = false;
+    $('#firstName')[0].hidden = false;
+    document.querySelector('[for="lastName"]').hidden = false;
+    $('#lastName')[0].hidden = false;
+    document.querySelector('[for="gender"]').hidden = false;
+    $('#gender')[0].hidden = false;
+    document.querySelector('[for="birthDate"]').hidden = false;
+    $('#birthDate')[0].hidden = false;
+    document.querySelector('[for="password"]').hidden =false;
     $("#password")[0].hidden = false;
 });
 
@@ -152,6 +165,7 @@ function addOrUpdateUser(accessToken) {
         street = $('#street').val();
         gender = $('#gender').val();
         birthDate = $('#birthDate').val();
+
         const userData = {
             firstName,
             lastName,
@@ -182,7 +196,7 @@ function addOrUpdateUser(accessToken) {
                 $('#popupForm').hide();
                 refreshTable();
               } else {
-                    console.error('Error updating user:', error);
+                    console.error('Error updating user');
                     alert('An error occurred while updating the user.');
                 }
         } else {

@@ -60,22 +60,23 @@
                 <input type="text" id="user_id" hidden>
  
                 <label for="firstName">First Name</label>
-                <input type="text" id="firstName" name="firstName" placeholder="Enter first name">
- 
+                <input type="text" id="firstName" name="firstName" placeholder="Enter first name" required pattern="[A-Za-z\s]+">
+            
+
                 <label for="lastName">Last Name</label>
-                <input type="text" id="lastName" name="lastName" placeholder="Enter Last name">
+                <input type="text" id="lastName" name="lastName" placeholder="Enter Last name" required pattern="[A-Za-z\s]+">
 
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter password">
-
+                <input type="password" id="password" name="password" placeholder="Enter password" required>
+        
                 <label for="email">Email</label>
-                <input type="text" id="email" name="email" placeholder="Enter email">
-
+                <input type="text" id="email" name="email" placeholder="Enter email" required pattern="[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z]+">
+    
                 <label for="city">City</label>
-                <input type="text" id="city" name="city" placeholder="Enter city">
-
+                <input type="text" id="city" name="city" placeholder="Enter city" required pattern="[A-Za-z\s]+">
+                
                 <label for="street">Street</label>
-                <input type="text" id="street" name="street" placeholder="Enter street">
+                <input type="text" id="street" name="street" placeholder="Enter street" required pattern="[A-Za-z0-9\s]+">
 
                 <label for="gender">Gender</label>
                 <select id="gender" name="gender">
@@ -84,7 +85,7 @@
                 </select>
 
                 <label for="birthDate">Birth Date</label>
-                <input type="date" id="birthDate" name="birthDate" placeholder="Enter birth date">
+                <input type="date" id="birthDate" name="birthDate" placeholder="Enter birth date" required>
 
                 <button type="submit" class="btn save-btn">Save</button>
             </form>
