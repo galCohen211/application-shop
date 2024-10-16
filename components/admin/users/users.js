@@ -107,17 +107,17 @@ async function getAllUserTable() {
 const plusButton = document.getElementById('plusButton');
 const closePopupBtn = document.getElementById('closePopup');
 
-plusButton.addEventListener('click', function () {
-    popupForm.style.display = 'flex'; // Use flexbox to center the popup
-    $('#popup-header').text("Add New user");
-    $('#userForm')[0].reset(); // Reset all form fields
-    $('#firstName')[0].readOnly = false;
-    $('#lastName')[0].readOnly = false;
-    $('#gender')[0].disabled = false;
-    $('#birthDate')[0].readOnly = false;
-    document.querySelector('[for="password"]').hidden = false;
-    $("#password")[0].hidden = false;
-});
+// plusButton.addEventListener('click', function () {
+//     popupForm.style.display = 'flex'; // Use flexbox to center the popup
+//     $('#popup-header').text("Add New user");
+//     $('#userForm')[0].reset(); // Reset all form fields
+//     $('#firstName')[0].readOnly = false;
+//     $('#lastName')[0].readOnly = false;
+//     $('#gender')[0].disabled = false;
+//     $('#birthDate')[0].readOnly = false;
+//     document.querySelector('[for="password"]').hidden = false;
+//     $("#password")[0].hidden = false;
+// });
 
 // Close the popup when the close button (X) is clicked
 closePopupBtn.addEventListener('click', function () {
