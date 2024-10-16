@@ -220,7 +220,6 @@ body{
 }
 
 .input-message-text {
-    display: block;
     margin: 0;
     left: 0;
     bottom: -10px;
